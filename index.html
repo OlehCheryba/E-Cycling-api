@@ -9,50 +9,59 @@
 </head>
 <body>
 	<header>
-		<h1>E-Cycling Lviv</h1>
-		<p>виготовлення електровелоспедів</p>
+        <a href="index.html" id="header-text">
+		    <span id="header-name-company">E-Cycling Lviv</span>
+            <br>
+		    виготовлення електровелоспедів
+        </a>
+        <nav>
+            <a href="#">Наш офіс</a>
+            <a href="#">Вакансії</a>
+            <a href="#">Клієнти</a>
+        </nav>
     </header>
-    <nav>
-    	<a href="#">Наш офіс</a>
-    	<a href="#">Вакансії</a>
-    	<a href="#">Клієнти</a>
-    </nav>
-    <section>
-	    <article>
-	    	<h2>Особливості електровелосипеда</h2>
-	    	<p>
-	    		<img src="img/fatbike-article.jpg" alt="">
+    <main>
+	    <section  id="specilly">
+	    	<h2 class="center">Особливості електровелосипеда</h2>
+            <img src="img/fatbike-article.jpg" alt="" id="specilly-photo">
+	    	<p id="specilly-text">
 	    		Електричний велосипед відкриває нові горизонти: це швидше і зручніше на дорозі і пропонує нові можливості для гастролей, поїздок на дорогу або відпочинку. Більше того, ви можете тренуватися з більш рівномірним навантаженням, насолоджуватися підйомом на гору і їздити на велосипедному причепі без виснаження ... і це тільки для початку. Є багато причин для вибору електронного велосипеда! Головною особливістю цих гібридних велосипедів - або педелек, як їх іноді називають - є їх електронний пристрій, що підтримує вершника. Двигун подає енергію, як тільки вершник починає крутити педалі. Ця підтримка потужності може регулюватися як потрібно.
 	    	</p>
-	    </article>
+	    </section>
 		<section>
-			<h2>Замовити електровелосипед у нас</h2>
-			<img src="img/bike-constructor-test.jpg" alt="">
-			<form action="https://formspree.io/olegcheryba@gmail.com" method="POST">
-                <input name="name" type="text" placeholder="Введіть ваше повне імя" required>
+			<h2 class="center">Замовити електровелосипед у нас</h2>
+			<img id="img-constructor" src="img/bike-constructor-test.jpg" alt="">
+			<form action="https://formspree.io/olegcheryba@gmail.com" method="POST" id="form-constructor">
+                <label>
+                    Введіть ваше повне імя
+                    <input name="name" type="text" placeholder="Ваше повне імя" required>
+                </label>
                 <br>
-                <input name="number" type="text" placeholder="Введіть ваш номер телефону" required>
-                <br>	
-                <select name="" id="">
-                    <option selected>Тип велосипеда</option>
+                <label>
+                    Введіть ваш номер телефону
+                    <input name="number" type="text" placeholder="Ваш номер телефону" required>
+                </label>
+                <br>
+                <label>Виберіть тип велосипеда</label>
+                <select name="type-bike">
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
-                <br>	
-                <select name="" id="">
-                    <option selected>Виберіть мотор-колесо</option>
+                <br>
+                <label>Виберіть мотор-колесо</label>
+                <select name="type-motor">
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
-                <br>	
-                <select name="" id="">
-                    <option selected>Виберіть акумулятор</option>
+                <br>
+                <label>Виберіть акумулятор</label>
+                <select name="type-battery">
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
-					<br>	
-                <select name="" id="">
-                    <option selected>Розмір і тип рами </option>
+				<br>
+                <label>Виберіть розмір і тип рами</label>
+                <select name="type-frame">
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
@@ -60,57 +69,57 @@
 				<label>Розмір колеса:</label>
 				<br>
 				<label>
-					<input type="radio" name="size-wheel" required value="">
+					<input type="radio" name="size-wheel" required value="20">
 					20
 				</label>
 				<label>
-					<input type="radio" name="size-wheel" required value="">
+					<input type="radio" name="size-wheel" required value="24">
 					24
 				</label>
 				<label>
-					<input type="radio" name="size-wheel" required value="">
+					<input type="radio" name="size-wheel" required value="26">
 					26
 				</label>
 				<label>
-					<input type="radio" name="size-wheel" required value="">
+					<input type="radio" name="size-wheel" required value="27.5">
 					27.5
 				</label>
 				<label>
-					<input type="radio" name="size-wheel" required value="">
+					<input type="radio" name="size-wheel" required value="29">
 					29
 				</label>
                 <br>
 				<label>Ширина колеса:</label>
 				<br>
 				<label>
-					<input type="radio" name="width-wheel" required value="">
+					<input type="radio" name="width-wheel" required value="small">
 					Мала
 				</label>
 				<label>
-					<input type="radio" name="width-wheel" required value="">
+					<input type="radio" name="width-wheel" required value="medium">
 					Середня
 				</label>
 				<label>
-					<input type="radio" name="width-wheel" required value="">
+					<input type="radio" name="width-wheel" required value="high">
 					Велика
 				</label>
 				<br>
 				<label>
-                	Тут буде динамічний опис електровелосипеда за вибраною конфігурацією
+                	Тут буде динамічний опис електровелосипеда
                 </label>
                 <br>
                 <label>Додаткові опції</label>
                 <br>
                 <label>
-                	<input type="checkbox" id="" name="" required>
+                	<input type="checkbox" name="charger">
                 	Зарядний пристрій
                 </label>
                 <label>
-                	<input type="checkbox" id="" name="" required>
+                	<input type="checkbox" name="double-pendant">
                 	Подвійна підвіска
                 </label>
                 <label>
-                	<input type="checkbox" id="" name="" required>
+                	<input type="checkbox" name="wings">
                 	Велокрила
                 </label>
 				<br>
@@ -121,60 +130,87 @@
                 <br>
                 <label>Ціна:</label>
                 <br>
-				<input type="submit" name="" value="Замовити">
+				<input type="submit" value="Замовити" class="order">
                 <br>
             </form>
 		</section>
-		<section>
-			<h2>Або виберіть один з готових варіантів</h2>
+		<section id="our-products" >
+			<h2 class="center">Або виберіть один з готових варіантів</h2>
+
 			<div class="product">
-				<img src="" alt="">
+				<img src="img/bike-offroad.jpg" alt="Велосипед для бездоріжжя">
 				<br>
-				<p></p>
-				<p></p>
-				<a href="#"><button>Замовити</button></a>
-				<img src="" alt="">
+				<p>
+                    Для бездоріжжя
+                    <br>
+                    x$
+                </p>
+				<form action="https://formspree.io/olegcheryba@gmail.com" method="POST">
+				    <input type="submit" class="order" value="Замовити">
+                </form>
+				<img src="img/bookmark.png" alt="Закладка" class="product-bookmark">
 			</div>
 			<div class="product">
-				<img src="" alt="">
+				<img src="img/bike-town.jpg" alt="Міський велосипед">
 				<br>
-				<p></p>
-				<p></p>
-				<a href="#"><button>Замовити</button></a>
-				<img src="" alt="">
+				<p>
+                    Для міста
+                    <br>
+				    y$
+                </p>
+
+                <form action="https://formspree.io/olegcheryba@gmail.com" method="POST">
+				    <input type="submit" class="order" value="Замовити">
+                </form>
+				<img src="img/bookmark.png" alt="Закладка" class="product-bookmark">
 			</div>
 		</section>
-		<article>
-			<h2>Ми у соцмережах:</h2>
-			<a href="">
-				<img src="" alt="">
-				<br>
-				<span>Link</span>
-			</a>
-			<br>
-			<a href="">
-				<img src="" alt="">
-				<br>
-				<span>Link</span>
-			</a>
-			<br>
-			<a href="">
-				<img src="" alt="">
-				<br>
-				<span>Link</span>
-			</a>
-		</article>
-		<section>
-			<h2>Є запитання?</h2>
+		<section id="question-section">
+			<h2 class="center">Є запитання?</h2>
 			<form action="https://formspree.io/olegcheryba@gmail.com" method="POST">
 				<input type="text" placeholder="Введіть ваш номер телефону">
-				<input type="submit" name="">
+				<input type="submit" value="Передзвоніть мені">
 			</form>
 		</section>
-	</section>
+	</main>
     <footer>
-        <p>Контактий номер команії: 098********</p>
-        <p lang="en">Copyright Oleg Cheryba 2019</p>
+        <div class="footer-column">
+            <h2>Ми у соцмережах</h2>
+            <a href="#">
+                <img src="img/ikon-instagram.png" alt="">
+                <span> Instagram</span>
+            </a>
+            <br>
+            <a href="#">
+                <img src="img/ikon-facebook.png" alt="">
+                <span> Facebook</span>
+            </a>
+            <br>
+            <a href="#">
+                <img src="img/ikon-linkedin.png" alt="">
+                <span> LinkedIn</span>
+            </a>
+            <br>
+            <a href="#">
+                <img src="img/ikon-twitter.png" alt="">
+                <span> Twitter</span>
+            </a>
+        </div>
+        <div class="footer-column">
+            <h2>Кoнтакти</h2>
+            <p>
+                м. Львів, Україна 98371
+            </p>
+            <p>
+                +380-98-752-69-440
+            </p>
+            <p>
+                Безкоштовний номер:
+                <br>
+                0-800-690-0900
+            </p>
+        </div>
+        <p lang="en" id="copyright">© Copyright 2019 Oleg Cheryba</p>
     </footer>
 </body>
 </html>
