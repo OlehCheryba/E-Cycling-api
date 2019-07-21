@@ -5,7 +5,13 @@ body {
 }
 
 img {
-    max-width: calc(100% - 5px);
+    max-width: calc(100% - 15px);
+}
+
+a {
+    text-decoration: none;
+}
+
 }
 
 .center {
@@ -39,7 +45,6 @@ header {
 }
 
 header a {
-    text-decoration: none;
     color: white;
 }
 
@@ -64,56 +69,60 @@ header nav a:hover {
 main {
     clear: both;
     background-color: #EAECF0;
-    padding: 20px 0 20px 0;
 }
 
 section{
     clear: both;
+    padding: 30px 4px 10px 4px;
 }
 
 #specilly-photo {
     float: left;
-    margin: 0 10px 2px 5px;
-    padding: 0;
     width: 542px;
+    padding: 0 15px 10px 0;
 }
 
 #specilly-text {
     font-size:17px;
+    padding: 0 5px 0 5px;
 }
 
 #img-constructor {
     float: left;
-    margin: 0 15px 5px 5px;
+    padding: 0 15px 10px 0;
 }
 
 #form-constructor {
     float: left;
+    padding: 0 5px 0 5px;
 }
 
 .product {
-    width: 424px;
-    padding: 5px;
-    min-height: 300px;
+    width: 414px;
+    padding: 10px;
     border: 1px solid black;
+    border-radius: 15px;
     margin: 15px 0 15px 36px;
     background-color: #e0e0e0;
     text-align: center;
     max-width: calc(100% - 84px);
     float: left;
+
 }
 
-.product img {
-    max-width: 100%;
+.product-see-more {
+	line-height: 40px;
+	color: black;
+	float: right;
 }
 
-.product-bookmark{
+.product-bookmark {
     height:40px;
-    vertical-align: middle
+    float: left;
 }
 
 #question-section {
-    padding: 20px;
+	padding: 30px 6px 40px 6px;
 }
 
 footer {
@@ -131,7 +140,6 @@ footer img {
 footer a  {
     color:#fff;
     font-weight: 500;
-    text-decoration: none;
 }
 
 .footer-column {
@@ -141,7 +149,7 @@ footer a  {
 
 #copyright {
     clear: both;
-    font-size: 12px;
+    font-size: small;
     margin: 0;
 }
 
