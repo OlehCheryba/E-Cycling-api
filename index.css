@@ -82,6 +82,7 @@ section{
 #section-specilly-photo {
     width: 542px;
     padding: 0 15px 10px 0;
+    float: left;
 }
 
 #section-specilly-text{
