@@ -96,15 +96,21 @@ section{
 }
 
 .product {
-    width: 414px;
-    padding: 10px 10px 10px 60px;
+    min-width: 278px;
+    width: 453px;
+    padding: 10px 10px 60px 10px;
     border: 1px solid black;
     border-radius: 15px;
-    margin: 15px 0 15px 36px;
+    margin: 10px;
     background-color: #e0e0e0;
     text-align: center;
-    max-width: calc(100% - 84px);
+    max-width: calc(100% - 42px);
 	position: relative;
+    float: left;
+}
+
+.product-image {
+    padding: 0;
 }
 
 .product-see-more {
