@@ -92,6 +92,7 @@ section{
 
 #section-constructor-img {
     padding: 0 15px 10px 0;
+    float: left;
 }
 
 #section-constructor-form {
