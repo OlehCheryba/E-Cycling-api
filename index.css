@@ -163,4 +163,5 @@ footer a  {
 #copyright {
     font-size: small;
     clear: both;
+    display: block;
 }
