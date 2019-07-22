@@ -76,44 +76,45 @@ section{
     padding: 30px 4px 10px 4px;
 }
 
-#specilly-photo {
+#section-specilly-photo {
     float: left;
     width: 542px;
     padding: 0 15px 10px 0;
 }
 
-#specilly-text {
+#section-specilly-text{
     font-size:17px;
     padding: 0 5px 0 5px;
 }
 
-#img-constructor {
+#section-constructor-img {
     padding: 0 15px 10px 0;
 }
 
-#form-constructor {
+#section-constructor-form {
     padding: 0 5px 0 5px;
 }
 
-.product {
+.section-our-products-product {
+    box-sizing: border-box;
     min-width: 278px;
-    width: 453px;
-    padding: 10px 10px 60px 10px;
+    width: 466px;
+    padding: 10px 10px 50px 10px;
     border: 1px solid black;
     border-radius: 15px;
-    margin: 10px;
+    margin: 30px 10px 10px 10px;
     background-color: #e0e0e0;
     text-align: center;
     max-width: calc(100% - 42px);
 	position: relative;
-    float: left;
+    /*float: left*/
 }
 
 .product-image {
     padding: 0;
 }
 
-.product-see-more {
+.section-our-products-see-more {
 	line-height: 40px;
 	color: black;
 	position: absolute;
@@ -121,14 +122,14 @@ section{
 	right: 10px;
 }
 
-.product-bookmark {
+.section-our-products-bookmark {
     height:40px;
 	position: absolute;
 	bottom: 10px;
 	left: 10px;
 }
 
-#question-section {
+#section-question {
 	padding: 30px 6px 40px 6px;
 }
 
@@ -154,9 +155,7 @@ footer a  {
 }
 
 #copyright {
-    clear: both;
     font-size: small;
-    margin: 0;
 }
 
 
