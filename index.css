@@ -97,7 +97,7 @@ section{
 
 .product {
     width: 414px;
-    padding: 10px;
+    padding: 10px 10px 10px 60px;
     border: 1px solid black;
     border-radius: 15px;
     margin: 15px 0 15px 36px;
