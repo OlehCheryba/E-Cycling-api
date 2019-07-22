@@ -110,14 +110,14 @@ section{
 .product-see-more {
 	line-height: 40px;
 	color: black;
-	position: relative;
+	position: absolute;
 	bottom: 0;
 	right: 0;
 }
 
 .product-bookmark {
     height:40px;
-	position: relative;
+	position: absolute;
 	bottom: 0;
 	left: 0;
 }
