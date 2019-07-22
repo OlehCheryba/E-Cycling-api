@@ -110,7 +110,7 @@ section{
     margin: 30px 10px 10px 10px;
     background-color: #e0e0e0;
     text-align: center;
-    max-width: calc(100% - 42px);
+    max-width: calc(100% - 22px);
     position: relative;
 }
 
