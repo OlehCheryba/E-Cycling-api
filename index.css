@@ -12,8 +12,6 @@ a {
     text-decoration: none;
 }
 
-}
-
 .center {
     text-align: center;
 }
@@ -27,6 +25,7 @@ a {
     width: 190px;
 }
 
+/* Границя між кодом для всіх стилів (для всого коду), і стилями конкретних частинок сторінки*/
 
 header {
     margin: 0;
@@ -156,9 +155,4 @@ footer a  {
 
 #copyright {
     font-size: small;
-}
-
-
-.center {
-    text-align: center;
 }
