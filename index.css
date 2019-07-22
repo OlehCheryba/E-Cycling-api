@@ -111,15 +111,15 @@ section{
 	line-height: 40px;
 	color: black;
 	position: absolute;
-	bottom: 0;
-	right: 0;
+	bottom: 10px;
+	right: 10px;
 }
 
 .product-bookmark {
     height:40px;
 	position: absolute;
-	bottom: 0;
-	left: 0;
+	bottom: 10px;
+	left: 10px;
 }
 
 #question-section {
