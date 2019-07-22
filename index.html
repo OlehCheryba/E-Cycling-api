@@ -43,25 +43,29 @@
                 </label>
                 <br>
                 <label>Виберіть тип велосипеда</label>
-                <select name="type-bike">
+                <select name="type-bike" required>
+                    <option value="">Виберіть тип велосипеда</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
                 <br>
                 <label>Виберіть мотор-колесо</label>
-                <select name="type-motor">
+                <select name="type-motor" required>
+                    <option value="">Виберіть мотор-колесо</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
                 <br>
                 <label>Виберіть акумулятор</label>
-                <select name="type-battery">
+                <select name="type-battery" required>
+                    <option value="">Виберіть акумулятор</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
 				<br>
                 <label>Виберіть розмір і тип рами</label>
-                <select name="type-frame">
+                <select name="type-frame" required>
+                    <option value="">Виберіть розмір і тип рами</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
@@ -104,7 +108,7 @@
 					Велика
 				</label>
 				<br>
-				<label>
+				<label id="section-constructor-bike-descrintion">
                 	Тут буде динамічний опис електровелосипеда
                 </label>
                 <br>
