@@ -85,7 +85,7 @@ section{
     float: left;
 }
 
-#section-specilly-text{
+#section-specilly-text {
     font-size:17px;
     padding: 0 5px 0 5px;
 }
@@ -97,6 +97,7 @@ section{
 
 #section-constructor-form {
     padding: 0 5px 0 5px;
+    float: left;
 }
 
 .section-our-products-product {
