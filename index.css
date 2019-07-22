@@ -66,7 +66,7 @@ header nav a {
 }
 
 header nav a:hover {
-	background-color: #a1a1a1;
+    background-color: #a1a1a1;
 }
 
 main {
@@ -83,7 +83,6 @@ section{
     width: 542px;
     padding: 0 15px 10px 0;
     float: left;
-    max-width: calc(100% - 8px);
 }
 
 #section-specilly-text {
@@ -94,7 +93,6 @@ section{
 #section-constructor-img {
     padding: 0 15px 10px 0;
     float: left;
-    max-width: calc(100% - 8px);
 }
 
 #section-constructor-form {
