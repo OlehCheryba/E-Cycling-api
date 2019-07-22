@@ -68,6 +68,7 @@ header nav a:hover {
 
 main {
     background-color: #EAECF0;
+    clear: both;
 }
 
 section{
