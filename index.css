@@ -104,17 +104,22 @@ section{
     background-color: #e0e0e0;
     text-align: center;
     max-width: calc(100% - 84px);
+	position: relative;
 }
 
 .product-see-more {
 	line-height: 40px;
 	color: black;
-	float: right;
+	position: relative;
+	bottom: 0;
+	right: 0;
 }
 
 .product-bookmark {
     height:40px;
-    float: left;
+	position: relative;
+	bottom: 0;
+	left: 0;
 }
 
 #question-section {
