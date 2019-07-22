@@ -9,7 +9,7 @@ html {
 }
 
 img {
-    max-width: calc(100% - 15px);
+    max-width: calc(100% - 8px);
 }
 
 a {
@@ -116,6 +116,7 @@ section{
 
 .product-image {
     padding: 0;
+    max-width: calc(100%);
 }
 
 .section-our-products-see-more {
