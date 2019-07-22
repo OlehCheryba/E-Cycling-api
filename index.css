@@ -4,6 +4,10 @@ body {
     padding: 0;
 }
 
+html {
+    background-color: white;
+}
+
 img {
     max-width: calc(100% - 15px);
 }
