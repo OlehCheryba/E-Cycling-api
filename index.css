@@ -9,7 +9,7 @@ html {
 }
 
 img {
-    max-width: calc(100% - 15px);
+    max-width: 100%;
 }
 
 a {
@@ -83,6 +83,7 @@ section{
     width: 542px;
     padding: 0 15px 10px 0;
     float: left;
+    max-width: calc(100% - 15px);
 }
 
 #section-specilly-text {
@@ -93,6 +94,7 @@ section{
 #section-constructor-img {
     padding: 0 15px 10px 0;
     float: left;
+    max-width: calc(100% - 15px);
 }
 
 #section-constructor-form {
@@ -116,7 +118,6 @@ section{
 
 .product-image {
     padding: 0;
-    max-width: 100%;
 }
 
 .section-our-products-see-more {
