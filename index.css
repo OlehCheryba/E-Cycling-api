@@ -67,7 +67,6 @@ header nav a:hover {
 }
 
 main {
-    clear: both;
     background-color: #EAECF0;
 }
 
@@ -88,12 +87,10 @@ section{
 }
 
 #img-constructor {
-    float: left;
     padding: 0 15px 10px 0;
 }
 
 #form-constructor {
-    float: left;
     padding: 0 5px 0 5px;
 }
 
@@ -106,8 +103,6 @@ section{
     background-color: #e0e0e0;
     text-align: center;
     max-width: calc(100% - 84px);
-    float: left;
-
 }
 
 .product-see-more {
@@ -143,7 +138,6 @@ footer a  {
 }
 
 .footer-column {
-    float: left;
     width: 300px;
 }
 
