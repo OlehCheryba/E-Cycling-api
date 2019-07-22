@@ -80,7 +80,6 @@ section{
 }
 
 #section-specilly-photo {
-    float: left;
     width: 542px;
     padding: 0 15px 10px 0;
 }
@@ -109,7 +108,7 @@ section{
     background-color: #e0e0e0;
     text-align: center;
     max-width: calc(100% - 42px);
-	position: relative;
+    position: relative;
     /*float: left*/
 }
 
@@ -118,22 +117,22 @@ section{
 }
 
 .section-our-products-see-more {
-	line-height: 40px;
-	color: black;
-	position: absolute;
-	bottom: 10px;
-	right: 10px;
+    line-height: 40px;
+    color: black;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 .section-our-products-bookmark {
     height:40px;
-	position: absolute;
-	bottom: 10px;
-	left: 10px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }
 
 #section-question {
-	padding: 30px 6px 40px 6px;
+    padding: 30px 6px 40px 6px;
 }
 
 footer {
