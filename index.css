@@ -116,7 +116,7 @@ main > section {
 }
 
 #section-constructor-form input[type="text"], #section-constructor-form select {
-    min-width: 216px;
+    min-width: 218px;
     display: inline-block;
     box-sizing: border-box;
 }
