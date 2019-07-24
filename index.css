@@ -47,18 +47,18 @@ header {
 }
 
 #header-text {
-    padding: 10px 10px 10px 6px;
+    padding: 6px 10px 6px 6px;
     color: white;
 }
 
 #header-name-company {
     font-size: 27px;
     font-weight: bold;
-    margin:5px;
+    margin:3px;
 }
 
 header #header-menu-ikon {
-    height: 60px;
+    height: 50px;
     padding: 10px;
 }
 
@@ -206,7 +206,7 @@ footer a  {
         border: none;
         border-right: 1px solid black;
         height: 100%;
-        line-height: 80px;
+        line-height: 70px;
         vertical-align: middle;
     }
 
