@@ -110,6 +110,11 @@ main > section {
     padding: 0 2px 0 2px;
 }
 
+#section-constructor-form .form-label {
+    min-width: 200px;
+    display: inline-block;
+}
+
 #section-our-products {
     display: grid;
     grid-gap: 13px;
