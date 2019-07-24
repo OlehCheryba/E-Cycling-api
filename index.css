@@ -115,6 +115,11 @@ main > section {
     display: inline-block;
 }
 
+#section-constructor-form input[type="text"], #section-constructor-form select {
+    min-width: 216px;
+    display: inline-block;
+}
+
 #section-our-products {
     display: grid;
     grid-gap: 13px;
