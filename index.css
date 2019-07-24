@@ -118,7 +118,7 @@ main > section {
 #section-constructor-form input[type="text"], #section-constructor-form select {
     min-width: 216px;
     display: inline-block;
-    border: 2px solid black;
+    box-sizing: border-box;
 }
 
 #section-our-products {
