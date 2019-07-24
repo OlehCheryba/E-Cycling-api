@@ -17,10 +17,6 @@ a {
     text-decoration: none;
 }
 
-a:active {
-    background-color: transparent;
-}
-
 .center {
     text-align: center;
 }
@@ -88,6 +84,10 @@ header nav a:last-child {
 
 header nav a:hover {
     background-color: #a1a1a1;
+}
+
+header nav a:active {
+    background-color: transparent;
 }
 
 main {
