@@ -263,3 +263,9 @@ footer a  {
 #section-our-office p {
     font-size: 17px;
 }
+
+/* Стилі для "Вакансії" */
+
+#section-vacancies p{
+    font-size: 17px;
+}
