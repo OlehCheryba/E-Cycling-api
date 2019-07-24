@@ -14,36 +14,41 @@
             <br>
 		    виготовлення електровелоспедів
         </a>
+        <img src="img/menu.png" alt="Кнопка меню" id="header-menu-ikon">
         <nav>
-            <a href="">Наш офіс</a>
+            <a href="our-office.html">Наш офіс</a>
             <a href="vacancies.html">Вакансії</a>
             <a href="clients.html">Клієнти</a>
         </nav>
     </header>
     <main>
-	    <section>
-            <h2>Наш офіс</h2>
+	    <section id="section-our-office">
+            <h2 class="center">Наш офіс</h2>
+            <img src="img/office.jpg" alt="Фото офісу">
+            <p>
+                Наш офіс - це одночасно робочий простір, шоу-рум і технічна лабораторія. Тут ми працюємо, тестуємо пропоновані нами рішення по оснащенню офісу і проводимо презентації для клієнтів і архітекторів. У нашому офісі представлені різні варіанти робочих місць: індивідуальні, загальні, для переговорів у великих групах і міні-просторів для неформального спілкування і нарад. Наш офіс постійно реформується, розвиваючись відповідно до головних офісними тенденціями.
+            </p>
 		</section>
 	</main>
     <footer>
         <div class="footer-column">
             <h2>Ми у соцмережах</h2>
-            <a href="" lang="en">
+            <a href="https://www.instagram.com/" target="_blank" lang="en">
                 <img src="img/ikon-instagram.png" alt="Інстаграм">
                 <span> Instagram</span>
             </a>
             <br>
-            <a href="" lang="en">
+            <a href="https://www.facebook.com/"  target="_blank" lang="en">
                 <img src="img/ikon-facebook.png" alt="Фейсбук">
                 <span> Facebook</span>
             </a>
             <br>
-            <a href="" lang="en">
+            <a href="https://www.linkedin.com/" target="_blank" lang="en">
                 <img src="img/ikon-linkedin.png" alt="ЛінкедІн">
                 <span> LinkedIn</span>
             </a>
             <br>
-            <a href="" lang="en">
+            <a href="https://twitter.com/"  target="_blank" lang="en">
                 <img src="img/ikon-twitter.png" alt="Твіттер">
                 <span> Twitter</span>
             </a>
@@ -64,5 +69,17 @@
         </div>
         <span lang="en" id="copyright">© Copyright 2019 Oleg Cheryba</span>
     </footer>
+    <script>
+        document.querySelector("#header-menu-ikon").addEventListener("click", function () {
+            let t = document.querySelector("header nav").style.display;
+            if (t == "none") {
+                document.querySelector("header nav").style.display = "block";
+            } else if  (t == "block") {
+                document.querySelector("header nav").style.display = "none"
+            } else {
+                document.querySelector("header nav").style.display = "block"
+            }
+        })
+    </script>
 </body>
 </html>
