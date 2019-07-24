@@ -133,7 +133,6 @@ main > section {
     background-color: #e0e0e0;
     text-align: center;
     max-width: 100%;
-    /*max-width: calc(100% - 22px);*/
     position: relative;
 }
 
