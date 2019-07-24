@@ -266,6 +266,24 @@ footer a  {
 
 /* Стилі для "Вакансії" */
 
-#section-vacancies p{
+#section-vacancies p {
     font-size: 17px;
+}
+
+/* Стилі для "Клієнти" */
+
+#section-clients {
+    display: grid;
+}
+
+@media (min-width: 500px) {
+    #section-clients {
+        grid-template-rows: auto auto;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 13px;
+    }
+
+    #section-clients h2 {
+        grid-column: 1/3;
+    }
 }
