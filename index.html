@@ -33,44 +33,40 @@
 			<h2 class="center">Замовити електровелосипед у нас</h2>
 			<img id="section-constructor-img" src="img/bike-constructor-test.png" alt="Макет велосипеда за вибраними параметрами">
 			<form action="https://formspree.io/olegcheryba@gmail.com" method="POST" id="section-constructor-form">
-                <label>
-                    Введіть ваше повне імя
-                    <input name="name" type="text" placeholder="Ваше повне імя" required>
-                </label>
+                <label for="name"class="form-label"> Введіть ваше повне імя</label>
+                <input id="name"name="name" type="text" placeholder="Ваше повне імя" required>
                 <br>
-                <label>
-                    Введіть ваш номер телефону
-                    <input name="number" type="text" placeholder="Ваш номер телефону" required>
-                </label>
+                <label for="number" class="form-label">Введіть ваш номер телефону</label>
+                <input id="number" name="number" type="text" placeholder="Ваш номер телефону" required>
                 <br>
-                <label>Виберіть тип велосипеда</label>
-                <select name="type-bike" required>
+                <label for="type-bike" class="form-label">Виберіть тип велосипеда</label>
+                <select id="type-bike" name="type-bike" required>
                     <option value="">Виберіть тип велосипеда</option>
                     <option value="1">Для міста</option>
                     <option value="2">Для бездоріжжя</option>
                 </select>
                 <br>
-                <label>Виберіть мотор-колесо</label>
-                <select name="type-motor" required>
+                <label for="type-motor" class="form-label">Виберіть мотор-колесо</label>
+                <select id="type-motor" name="type-motor" required>
                     <option value="">Виберіть мотор-колесо</option>
                     <option value="1" lang="en">MXUS 1000вт прямого приводу</option>
                     <option value="2" lang="en">MXUS 1500вт прямого приводу</option>
                 </select>
                 <br>
-                <label>Виберіть акумулятор</label>
-                <select name="type-battery" required>
+                <label for="type-battery" class="form-label">Виберіть акумулятор</label>
+                <select id="type-battery" name="type-battery" required>
                     <option value="">Виберіть акумулятор</option>
                     <option value="1">48в 10А/г</option>
                     <option value="2">48в 15А/г</option>
                 </select>
 				<br>
-                <label>Виберіть розмір і тип рами</label>
-                <select name="type-frame" required>
+                <label for="type-frame" class="form-label">Виберіть розмір і тип рами</label>
+                <select id="type-frame" name="type-frame" required>
                     <option value="">Виберіть розмір рами</option>
                     <option value="16">16 (зріст 158 - 172)</option>
                     <option value="18">18 (зріст 168 - 182)</option>
-		    <option value="19">19 (зріст 178 - 190)</option>
-		    <option value="20">20 (зріст 186 - 194)</option>
+		            <option value="19">19 (зріст 178 - 190)</option>
+		            <option value="20">20 (зріст 186 - 194)</option>
                 </select>
 				<br>
 				<label>Розмір колеса:</label>
