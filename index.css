@@ -17,6 +17,10 @@ a {
     text-decoration: none;
 }
 
+a:active {
+    background-color: transparent;
+}
+
 .center {
     text-align: center;
 }
