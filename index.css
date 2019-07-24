@@ -84,10 +84,6 @@ header nav a:hover {
     background-color: #a1a1a1;
 }
 
-header nav a:active {
-    background-color: transparent;
-}
-
 main {
     padding-top: 80px;
     background-color: #EAECF0;
