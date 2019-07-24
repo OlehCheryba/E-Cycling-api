@@ -64,7 +64,6 @@ header #header-menu-ikon {
 
 header nav {
     grid-column: 1/3;
-    /*margin: auto;*/
     background-color: #2e2e2e;
     font-size: 20px;
     display:none
@@ -73,7 +72,6 @@ header nav {
 header nav a {
     padding: 5px 0;
     border-bottom: 2px solid #131313;
-    /*border-right: 1px solid black;*/
     color: white;
     display: block;
 }
@@ -95,7 +93,7 @@ main {
     background-color: #EAECF0;
 }
 
-main > * {
+main > section {
     padding: 1px 3px 5px 3px;
 }
 
@@ -204,7 +202,7 @@ footer a  {
     }
 
     header nav a {
-        margin-left: -4px;
+        margin-left: -5px;
         display: inline-block;
         padding:0 20px;
         border: none;
