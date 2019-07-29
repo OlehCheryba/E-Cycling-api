@@ -115,6 +115,11 @@ main > section {
     display: inline-block;
 }
 
+#section-constructor-form .form-label-small {
+    min-width: 60px;
+    display: inline-block;
+}
+
 #section-constructor-form input[type="text"], #section-constructor-form select {
     min-width: 218px;
     display: inline-block;
