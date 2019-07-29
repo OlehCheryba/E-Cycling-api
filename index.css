@@ -111,12 +111,12 @@ main > section {
 }
 
 #section-constructor-form .form-label {
-    min-width: 220px;
+    min-width: 210px;
     display: inline-block;
 }
 
 #section-constructor-form .form-label-small {
-    min-width: 100px;
+    min-width: 84px;
     display: inline-block;
 }
 
