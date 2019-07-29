@@ -116,7 +116,7 @@ main > section {
 }
 
 #section-constructor-form .form-label-small {
-    min-width: 60px;
+    min-width: 100px;
     display: inline-block;
 }
 
