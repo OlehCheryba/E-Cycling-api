@@ -111,7 +111,7 @@ main > section {
 }
 
 #section-constructor-form .form-label {
-    min-width: 200px;
+    min-width: 210px;
     display: inline-block;
 }
 
@@ -249,7 +249,7 @@ footer a  {
     }
     
     #section-constructor-form {
-       max-width: 440px;
+       max-width: 460px;
     }
     
     #section-constructor h2 {
