@@ -36,4 +36,23 @@ document.querySelector('#section-question-form').addEventListener('submit', (e) 
         })
     })
         .then(response => response.text()).then(str => console.log(str))
-})
+});
+
+document.querySelector('#owner').addEventListener("click", () => {
+    document.querySelector('#auto').style.display = 'block';
+});
+
+document.querySelector('#auto').addEventListener("submit", (e) => {
+    e.preventDefault();
+    fetch('login', {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            login: document.querySelector('#login').value,
+            password: document.querySelector('#login').value
+        })
+    })
+        .then(response => response.text()).then(str => console.log(str))
+});

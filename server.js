@@ -25,5 +25,17 @@ app.post('/call-me', (req, res) => {
     //res.send(a);
 })
 
+app.post('/login', (req, res) => {
+    let a= 'good'
+    const fs = require('fs');
+    fs.appendFile('.call-me.txt', JSON.stringify(req.body) + '\n', () => {
+    })
+    if (req.body.login == 'admin' && req.body.password == 'admin') {
+        a = true;
+        res.send(a)
+    }
+    //res.send(a);
+})
+
 
 app.listen(process.env.port || 3000, process.env.IP || '0.0.0.0');
