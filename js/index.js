@@ -2,7 +2,8 @@ const nav = document.querySelector("header nav").style;
 document.querySelector("#header-menu-ikon").addEventListener('click', () => {
     nav.display = nav.display === 'block' ? 'none' : 'block';
 });
-document.querySelector("#section-constructor-form").addEventListener('submit', () => {
+document.querySelector("#section-constructor-form").addEventListener('submit', (e) => {
+    e.preventDefault();
     fetch('add-order', {
         method: 'POST',
         headers:{
@@ -23,7 +24,8 @@ document.querySelector("#section-constructor-form").addEventListener('submit', (
         })
     })
 });
-document.querySelector('#section-question-form').addEventListener('submit', () => {
+document.querySelector('#section-question-form').addEventListener('submit', (e) => {
+    e.preventDefault();
     fetch('call-me', {
         method: 'POST',
         headers:{
@@ -33,4 +35,5 @@ document.querySelector('#section-question-form').addEventListener('submit', () =
             number: document.querySelector('#CallMeNumber').value
         })
     })
+        .then(response => response.text()).then(str => console.log(str))
 })

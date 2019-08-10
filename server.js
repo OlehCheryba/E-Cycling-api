@@ -14,10 +14,15 @@ app.post('/add-order', (req, res) => {
 })
 
 app.post('/call-me', (req, res) => {
+    let a= 'good'
     const fs = require('fs');
     fs.appendFile('.call-me.txt', JSON.stringify(req.body) + '\n', () => {
-        res.send('good');
     })
+    if (req.body.number == 'bad') {
+        a = true;
+        res.send(a)
+    }
+    //res.send(a);
 })
 
 
