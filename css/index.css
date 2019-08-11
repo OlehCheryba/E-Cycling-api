@@ -201,8 +201,8 @@ footer a  {
     display: block;
 }
 
-#auto {
-    display: none
+#owner {
+    display: block;
 }
 
 @media (min-width: 630px) {

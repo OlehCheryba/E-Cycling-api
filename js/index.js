@@ -1,4 +1,14 @@
 const nav = document.querySelector("header nav").style;
+function loadItems() {
+    fetch('items.html')
+        .then(response => response.text())
+        .then(html => document.querySelector('#section-our-products').innerHTML = `
+            <h2 class="center">Або виберіть один з готових варіантів</h2>
+            ${html}
+            `)
+}
+loadItems();
+
 document.querySelector("#header-menu-ikon").addEventListener('click', () => {
     nav.display = nav.display === 'block' ? 'none' : 'block';
 });
@@ -39,20 +49,72 @@ document.querySelector('#section-question-form').addEventListener('submit', (e) 
 });
 
 document.querySelector('#owner').addEventListener("click", () => {
-    document.querySelector('#auto').style.display = 'block';
+    document.querySelector('footer').innerHTML += '<form id="auto"><input type="text" id="login"><input type="text" id="password"><input type="submit"></form>';
+    document.querySelector('#auto').addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch('login', {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                login: document.querySelector('#login').value,
+                password: document.querySelector('#password').value
+            })
+        })
+            .then(response => response.text())
+            .then(str => {
+                if (str == 'true') {
+                    document.querySelector('#auto').style.display = 'none';
+                    document.querySelector('footer').innerHTML += `
+                    <button id="ownerButtonAdd">Add bike</button>
+                    <input id="addBikeName" type="text">`;
+                    document.querySelector('#ownerButtonAdd').addEventListener('click', () => {
+                        fetch('addItem', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                name: document.querySelector('#addBikeName').value
+                            })
+                        })
+                            //.then(() => {
+                            //   loadItems();
+                            //})
+                    });
+
+
+
+                }
+            })
+    });
 });
 
-document.querySelector('#auto').addEventListener("submit", (e) => {
-    e.preventDefault();
-    fetch('login', {
-        method: 'POST',
-        headers:{
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            login: document.querySelector('#login').value,
-            password: document.querySelector('#login').value
-        })
-    })
-        .then(response => response.text()).then(str => console.log(str))
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+                    document.querySelector('footer').innerHTML += `
+                    <button id="ownerButton">Add bike</button>
+                    <input id="addBikeName" type="text">`;
+                    addBikeName = document.querySelector('#addBikeName');
+                    document.querySelector('#ownerButton').addEventListener('click', () => {
+                        document.querySelector('#section-our-products').innerHTML += `
+                        <div class="section-our-products-product">
+                            ${addBikeName.value}
+                        </div>`;
+                    });
+                    */

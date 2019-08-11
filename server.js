@@ -14,28 +14,30 @@ app.post('/add-order', (req, res) => {
 })
 
 app.post('/call-me', (req, res) => {
-    let a= 'good'
     const fs = require('fs');
     fs.appendFile('.call-me.txt', JSON.stringify(req.body) + '\n', () => {
     })
-    if (req.body.number == 'bad') {
-        a = true;
-        res.send(a)
-    }
-    //res.send(a);
 })
 
 app.post('/login', (req, res) => {
-    let a= 'good'
-    const fs = require('fs');
-    fs.appendFile('.call-me.txt', JSON.stringify(req.body) + '\n', () => {
-    })
     if (req.body.login == 'admin' && req.body.password == 'admin') {
-        a = true;
-        res.send(a)
+        res.send(true)
     }
-    //res.send(a);
 })
-
-
+app.post('/addItem', (req, res) => {
+    const fs = require('fs');
+    let name = JSON.stringify(req.body.name)
+    fs.appendFile('./items.html', `
+<div class="section-our-products-product">
+	<img src="img/bike-offroad.jpg" alt="Велосипед для бездоріжжя" class="section-our-products-image">
+    <br>
+    ${name.slice(1, name.length - 1)}
+    <br>
+    x$
+	<img src="img/bookmark.png" alt="Закладка" class="section-our-products-bookmark">
+    <a href="#" class="section-our-products-see-more">більше про товар</a>
+</div>
+    `, () => {
+    })
+})
 app.listen(process.env.port || 3000, process.env.IP || '0.0.0.0');
