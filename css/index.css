@@ -196,12 +196,16 @@ footer a  {
     vertical-align: top;
 }
 
-#copyright {
-    font-size: small;
+#owner {
     display: block;
 }
 
-#owner {
+#auto {
+    display: none;
+}
+
+#copyright {
+    font-size: small;
     display: block;
 }
 
