@@ -2,10 +2,9 @@ const nav = document.querySelector("header nav").style;
 function loadItems() {
     fetch('items.html')
         .then(response => response.text())
-        .then(html => document.querySelector('#section-our-products').innerHTML = `
-            <h2 class="center">Або виберіть один з готових варіантів</h2>
-            ${html}
-            `)
+        .then(html => html.split('\\"').join( '"'))
+        .then(html => html.split('\\n').join( ''))
+        .then(html => document.querySelector('#section-our-products').innerHTML = html)
 }
 loadItems();
 
@@ -49,7 +48,12 @@ document.querySelector('#section-question-form').addEventListener('submit', (e) 
 });
 
 document.querySelector('#owner').addEventListener("click", () => {
-    document.querySelector('footer').innerHTML += '<form id="auto"><input type="text" id="login"><input type="text" id="password"><input type="submit"></form>';
+    document.querySelector('footer').innerHTML += `
+<form id="auto">
+    <input type="text" id="login" placeholder="Логін">
+    <input type="password" id="password" placeholder ="Пароль">
+    <input type="submit" value="Увійти">
+</form>`;
     document.querySelector('#auto').addEventListener("submit", (e) => {
         e.preventDefault();
         fetch('login', {
@@ -67,8 +71,12 @@ document.querySelector('#owner').addEventListener("click", () => {
                 if (str == 'true') {
                     document.querySelector('#auto').style.display = 'none';
                     document.querySelector('footer').innerHTML += `
-                    <button id="ownerButtonAdd">Add bike</button>
-                    <input id="addBikeName" type="text">`;
+                    <button id="ownerButtonAdd">Додати товар</button>
+                    <input id="addBikeName" type="text" placeholder="Ім'я товару">
+                    <input id="addBikePrice" type="text" placeholder="Ціна товару">
+                    <br>
+                    <button id="ownerButtonRemove">Видалити товар</button>
+                    <input id="removeBikeName" type="text" placeholder="Ім'я товару для видалення">`;
                     document.querySelector('#ownerButtonAdd').addEventListener('click', () => {
                         fetch('addItem', {
                             method: 'POST',
@@ -76,12 +84,25 @@ document.querySelector('#owner').addEventListener("click", () => {
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
-                                name: document.querySelector('#addBikeName').value
+                                name: document.querySelector('#addBikeName').value,
+                                price: document.querySelector('#addBikePrice').value
                             })
                         })
-                            //.then(() => {
-                            //   loadItems();
-                            //})
+                    });
+                    document.querySelector('#ownerButtonRemove').addEventListener('click', () => {
+                        let nameToRemove = document.querySelector('#removeBikeName').value;
+                        let remove = document.querySelector(`div[name ='${nameToRemove}']`)
+                        document.querySelector('#section-our-products').removeChild(remove);
+                        console.log(String(document.querySelector('#section-our-products').innerHTML))
+                        fetch('saveItems', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                htm: document.querySelector('#section-our-products').innerHTML
+                            })
+                        })
                     });
 
 
@@ -90,31 +111,3 @@ document.querySelector('#owner').addEventListener("click", () => {
             })
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-                    document.querySelector('footer').innerHTML += `
-                    <button id="ownerButton">Add bike</button>
-                    <input id="addBikeName" type="text">`;
-                    addBikeName = document.querySelector('#addBikeName');
-                    document.querySelector('#ownerButton').addEventListener('click', () => {
-                        document.querySelector('#section-our-products').innerHTML += `
-                        <div class="section-our-products-product">
-                            ${addBikeName.value}
-                        </div>`;
-                    });
-                    */
