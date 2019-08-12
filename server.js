@@ -24,17 +24,15 @@ app.post('/login', (req, res) => {
 app.post('/addItem', (req, res) => {
     const fs = require('fs');
     const html = JSON.stringify(req.body.html);
-    //const data = req.body.data;
-    //fs.writeFileSync('./' + data.photo.value, data.photo, () => {});
     fs.appendFile('./items.html', html.slice(1, html.length - 1), () => {
         res.send('true');
     });
 });
 app.post('/saveItems', (req, res) => {
     const fs = require('fs');
-    const htm = JSON.stringify(req.body.htm);
+    const html = JSON.stringify(req.body.html);
     fs.unlinkSync('./items.html');
-    fs.appendFile('./items.html', htm.slice(1, htm.length - 1), () => {
+    fs.appendFile('./items.html', html.slice(1, html.length - 1), () => {
         res.send('true');
     });
 });

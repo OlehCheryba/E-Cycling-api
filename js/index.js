@@ -9,7 +9,11 @@ const loadItems = () => {
         .then(() => {
             document.querySelectorAll('#section-our-products div').forEach(el => el.id = 'item' + id++);
             for (let i = 1; i < id; i++)
-                document.querySelector('#item' + i + ' .section-our-products-see-more').addEventListener('click', () => showHide(document.querySelector('#item' + i + ' .section-our-products-description')));
+                document.querySelector('#item' + i + ' .section-our-products-see-more').addEventListener('click', () => {
+                    showHide(document.querySelector('#item' + i + ' .section-our-products-description'));
+                    document.querySelector('#item' + i + ' .section-our-products-see-more').innerHTML =
+                        document.querySelector('#item' + i + ' .section-our-products-description').style.display === "none" ? 'більше про товар' : 'приховати деталі';
+                });
         });
 }
 const addAdminPanel = () => {
@@ -67,7 +71,7 @@ const addItem = () => {
 }
 const removeItem = () => {
     let nameToRemove = document.querySelector('#removeBikeName').value;
-    let remove = document.querySelector(`div[name ='${nameToRemove}']`)
+    let remove = document.querySelector(`div[name ='${nameToRemove}']`);
     try {
         document.querySelector('#section-our-products').removeChild(remove);
     } catch (e) { alert('Не знайдено товару з таким іменем')}
@@ -77,7 +81,7 @@ const removeItem = () => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            htm: document.querySelector('#section-our-products').innerHTML
+            html: document.querySelector('#section-our-products').innerHTML
         })
     });
 }
