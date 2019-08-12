@@ -1,13 +1,90 @@
 const nav = document.querySelector("header nav");
 const showHide = elem => elem.style.display = elem.style.display === 'block' ? 'none' : 'block';
-function loadItems() {
+const loadItems = () => {
+    let id = 1;
     fetch('items.html')
         .then(response => response.text())
-        .then(html => html.split('\\"').join('"'))
+        .then(html => html.split('\\"').join('"').split('\\n').join('')/*.split('<div ').join('<div id="' + id++ +'" ')*/)
         .then(html => document.querySelector('#section-our-products').innerHTML = html)
+        .then(() => {
+            document.querySelectorAll('#section-our-products div').forEach(el => el.id = 'item' + id++);
+            for (let i = 1; i < id; i++)
+                document.querySelector('#item' + i + ' .section-our-products-see-more').addEventListener('click', () => showHide(document.querySelector('#item' + i + ' .section-our-products-description')));
+        });
 }
+const addAdminPanel = () => {
+    document.querySelector('#auto').style.display = 'none';
+    document.querySelector('#owner').style.display = 'none';
+    document.querySelector('footer').innerHTML +=
+       `<form>
+            <input id="addBikeName" type="text" placeholder="Ім'я товару">
+            <br>
+            <input id="addBikePrice" type="text" placeholder="Ціна товару">
+            <br>
+            <input id="addBikeDescription" type="text" placeholder="Oпис товару">
+            <br>
+            <input type="submit" id="ownerButtonAdd" value="Додати товар">
+        </form>
+        <form>
+            <input id="removeBikeName" type="text" placeholder="Ім'я товару для видалення">
+            <br>
+            <input type="submit" id="ownerButtonRemove" value="Видалити товар">
+        </form>`;
+    document.querySelector('#ownerButtonAdd').addEventListener('click', e => {
+        e.preventDefault();
+        addItem();
+    });
+    document.querySelector('#ownerButtonRemove').addEventListener('click', e => {
+        e.preventDefault();
+        removeItem();
+    });
+}
+const addItem = () => {
+    const name = document.querySelector('#addBikeName').value;
+    const price = document.querySelector('#addBikePrice').value;
+    const description = document.querySelector('#addBikeDescription').value;
+    const html =
+   `<div class='section-our-products-product' name='${name}'>
+        <img src='img/bike-offroad.jpg' alt='Велосипед' class='section-our-products-image'>
+        <br>
+        ${name}
+        <br>
+        ${price}$
+        <img src='img/bookmark.png' alt='Закладка' class='section-our-products-bookmark'>
+        <span class='section-our-products-description'>${description}</span>
+        <span class='section-our-products-see-more'>більше про товар</span>
+    </div>`;
+    fetch('addItem', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            html: html
+        })
+    })
+        .then(res => loadItems());
+}
+const removeItem = () => {
+    let nameToRemove = document.querySelector('#removeBikeName').value;
+    let remove = document.querySelector(`div[name ='${nameToRemove}']`)
+    try {
+        document.querySelector('#section-our-products').removeChild(remove);
+    } catch (e) { alert('Не знайдено товару з таким іменем')}
+    fetch('saveItems', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            htm: document.querySelector('#section-our-products').innerHTML
+        })
+    });
+}
+
 loadItems();
 document.querySelector("#header-menu-ikon").addEventListener('click', () => showHide(nav));
+document.querySelector('#owner').addEventListener("click", () => showHide(document.querySelector('#auto')));
 document.querySelector("#section-constructor-form").addEventListener('submit', (e) => {
     e.preventDefault();
     fetch('add-order', {
@@ -28,7 +105,7 @@ document.querySelector("#section-constructor-form").addEventListener('submit', (
             wings: document.querySelector('#section-constructor-form input[name="wings"]').value,
             coment: document.querySelector('#section-constructor-form textarea[name="coment"]').value
         })
-    })
+    });
 });
 document.querySelector('#section-question-form').addEventListener('submit', (e) => {
     e.preventDefault();
@@ -41,14 +118,10 @@ document.querySelector('#section-question-form').addEventListener('submit', (e) 
             number: document.querySelector('#CallMeNumber').value
         })
     })
-        .then(response => response.text()).then(str => console.log(str))
-});
-document.querySelector('#owner').addEventListener("click", () => {
-    showHide(document.querySelector('#auto'));
+        .then(response => response.text()).then(str => console.log(str));
 });
 document.querySelector('#auto').addEventListener("submit", (e) => {
     e.preventDefault();
-    document.querySelector('#auto').style.display = 'none';
     fetch('login', {
         method: 'POST',
         headers:{
@@ -60,50 +133,5 @@ document.querySelector('#auto').addEventListener("submit", (e) => {
         })
     })
         .then(response => response.text())
-        .then(str => {
-            if (str == 'true') addAdminPanel();
-        })
+        .then(str => str === 'true' ? addAdminPanel() : alert('Не вірний логін або пароль'));
 });
-function addAdminPanel() {
-    document.querySelector('footer').innerHTML +=
-        `<input id="addBikeName" type="text" placeholder="Ім'я товару">
-        <br>
-        <input id="addBikePrice" type="text" placeholder="Ціна товару">
-        <br>
-        <button id="ownerButtonAdd">Додати товар</button>
-        <br>
-        <input id="removeBikeName" type="text" placeholder="Ім'я товару для видалення">
-        <br>
-        <button id="ownerButtonRemove">Видалити товар</button>`;
-    document.querySelector('#ownerButtonAdd').addEventListener('click', () => {
-        const name = document.querySelector('#addBikeName').value;
-        const price = document.querySelector('#addBikePrice').value;
-        const html = "<div class='section-our-products-product' name='" + name + "'><img src='img/bike-offroad.jpg' alt='Велосипед' class='section-our-products-image' name='" + name + "'><br>" + name + "<br>" + price + "$<img src='img/bookmark.png' alt='Закладка' class='section-our-products-bookmark'><a href='#' class='section-our-products-see-more'>більше про товар</a></div>";
-        fetch('addItem', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                html: html
-            })
-        })
-            .then(res => {
-                loadItems()
-            })
-    });
-    document.querySelector('#ownerButtonRemove').addEventListener('click', () => {
-        let nameToRemove = document.querySelector('#removeBikeName').value;
-        let remove = document.querySelector(`div[name ='${nameToRemove}']`)
-        document.querySelector('#section-our-products').removeChild(remove);
-        fetch('saveItems', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                htm: document.querySelector('#section-our-products').innerHTML
-            })
-        })
-    });
-}
