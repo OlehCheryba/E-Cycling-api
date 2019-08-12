@@ -21,18 +21,18 @@ const addAdminPanel = () => {
     document.querySelector('#owner').style.display = 'none';
     document.querySelector('footer').innerHTML +=
        `<form>
-            <input id="addBikeName" type="text" placeholder="Ім'я товару">
+            <input id="addBikeName" type="text" class="form-control" placeholder="Ім'я товару">
             <br>
-            <input id="addBikePrice" type="text" placeholder="Ціна товару">
+            <input id="addBikePrice" type="text" class="form-control" placeholder="Ціна товару">
             <br>
-            <input id="addBikeDescription" type="text" placeholder="Oпис товару">
+            <input id="addBikeDescription" class="form-control" type="text" placeholder="Oпис товару">
             <br>
-            <input type="submit" id="ownerButtonAdd" value="Додати товар">
+            <input type="submit" class="btn btn-primary" id="ownerButtonAdd" value="Додати товар">
         </form>
         <form>
-            <input id="removeBikeName" type="text" placeholder="Ім'я товару для видалення">
+            <input id="removeBikeName" class="form-control" type="text" placeholder="Ім'я товару для видалення">
             <br>
-            <input type="submit" id="ownerButtonRemove" value="Видалити товар">
+            <input type="submit" class="btn btn-primary" id="ownerButtonRemove" value="Видалити товар">
         </form>`;
     document.querySelector('#ownerButtonAdd').addEventListener('click', e => {
         e.preventDefault();
