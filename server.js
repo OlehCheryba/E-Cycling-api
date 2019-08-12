@@ -7,13 +7,13 @@ app.use(express.static(path.resolve(__dirname, './')));
 app.post('/add-order', (req, res) => {
     const fs = require('fs');
     fs.appendFile('./orders.txt', JSON.stringify(req.body) + '\n', () => {
-        res.send('true');
+        res.send('Ваші дані прийнято. Дякуємо за покупку.');
     });
 });
 app.post('/call-me', (req, res) => {
     const fs = require('fs');
     fs.appendFile('.call-me.txt', JSON.stringify(req.body) + '\n', () => {
-        res.send('true');
+        res.send('Ваші дані прийнято. Зачекайте трохи, ми з вами звяжемося.');
     })
 });
 app.post('/login', (req, res) => {

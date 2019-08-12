@@ -91,6 +91,7 @@ document.querySelector("#header-menu-ikon").addEventListener('click', () => show
 document.querySelector('#owner').addEventListener("click", () => showHide(document.querySelector('#auto')));
 document.querySelector("#section-constructor-form").addEventListener('submit', (e) => {
     e.preventDefault();
+    document.querySelector("#section-constructor-form").reset();
     fetch('add-order', {
         method: 'POST',
         headers:{
@@ -109,10 +110,13 @@ document.querySelector("#section-constructor-form").addEventListener('submit', (
             wings: document.querySelector('#section-constructor-form input[name="wings"]').value,
             coment: document.querySelector('#section-constructor-form textarea[name="coment"]').value
         })
-    });
+    })
+        .then(response => response.text())
+        .then(str => alert(str));
 });
 document.querySelector('#section-question-form').addEventListener('submit', (e) => {
     e.preventDefault();
+    document.querySelector("#section-question-form").reset();
     fetch('call-me', {
         method: 'POST',
         headers:{
@@ -122,7 +126,8 @@ document.querySelector('#section-question-form').addEventListener('submit', (e) 
             number: document.querySelector('#CallMeNumber').value
         })
     })
-        .then(response => response.text()).then(str => console.log(str));
+        .then(response => response.text())
+        .then(str => alert(str));
 });
 document.querySelector('#auto').addEventListener("submit", (e) => {
     e.preventDefault();
