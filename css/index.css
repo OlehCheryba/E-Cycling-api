@@ -20,16 +20,16 @@ a {
 input[type="text"], input[type="password"], input:active {
     background-color: #00BFFF;
     border: 1px solid black;
-    border-radius: 8px;
+    border-radius: 15px;
     text-align: center;
-    font-size: 22px;
-    box-shadow: 0 0 1px black;
+    font-size: 18px;
+    box-shadow: 0 0 5px black;
     margin: 5px;
     padding 5px;
 }
 
 input:active {
-    box-shadow: 0 0 1px #00FFFF
+    box-shadow: 0 0 5px #00FFFF
 }
 
 form {
