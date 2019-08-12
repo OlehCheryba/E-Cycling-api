@@ -33,7 +33,7 @@ input:active {
 }
 
 form {
-    line-height: 20px;
+    line-height: 40px;
 }
 
 .center {
@@ -130,7 +130,7 @@ main > section {
 }
 
 #section-constructor-form .form-label {
-    min-width: 210px;
+    min-width: 200px;
     display: inline-block;
 }
 
@@ -140,7 +140,7 @@ main > section {
 }
 
 #section-constructor-form input[type="text"], #section-constructor-form select {
-    min-width: 218px;
+    min-width: 200px;
     display: inline-block;
     box-sizing: border-box;
 }
