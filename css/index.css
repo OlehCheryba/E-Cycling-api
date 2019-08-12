@@ -109,7 +109,7 @@ main {
 }
 
 main > section {
-    padding: 1px 3px 5px 3px;
+    padding: 0 3px 5px 3px;
 }
 
 #section-specilly-photo {
