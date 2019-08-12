@@ -44,10 +44,10 @@ const addAdminPanel = () => {
     });
 }
 const addItem = () => {
-    const name = document.querySelector('#addBikeName').value;
-    const price = document.querySelector('#addBikePrice').value;
-    const description = document.querySelector('#addBikeDescription').value;
-    const html =
+    const name = document.querySelector('#addBikeName').value,
+        price = document.querySelector('#addBikePrice').value,
+        description = document.querySelector('#addBikeDescription').value,
+        html =
    `<div class='section-our-products-product' name='${name}'>
         <img src='img/bike-offroad.jpg' alt='Велосипед' class='section-our-products-image'>
         <br>
@@ -70,8 +70,8 @@ const addItem = () => {
         .then(res => loadItems());
 }
 const removeItem = () => {
-    let nameToRemove = document.querySelector('#removeBikeName').value;
-    let remove = document.querySelector(`div[name ='${nameToRemove}']`);
+    let nameToRemove = document.querySelector('#removeBikeName').value,
+        remove = document.querySelector(`div[name ='${nameToRemove}']`);
     try {
         document.querySelector('#section-our-products').removeChild(remove);
     } catch (e) { alert('Не знайдено товару з таким іменем')}
