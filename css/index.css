@@ -17,13 +17,21 @@ a {
     text-decoration: none;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input:active {
     background-color: #00BFFF;
-    border: 3px solid #00FFFF;
-    border-radius: 3px;
+    border: none;
+    border-radius: 8px;
     text-align: center;
     font-size: 1.25 em;
-    box-shadow: 0 0 5px #00FFFF;
+    box-shadow: 0 0 1px #00FFFF;
+}
+
+input:active {
+    box-shadow: 0 0 1px #00FFFF
+}
+
+form {
+    line-height: 10px;
 }
 
 .center {
