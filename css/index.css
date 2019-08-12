@@ -150,6 +150,7 @@ main > section {
     grid-gap: 13px;
     grid-template-columns: minmax(300px, 466px);
     justify-content: center;
+    align-items: flex-start
 }
 
 .section-our-products-product {
@@ -263,7 +264,6 @@ footer a  {
 
     #section-our-products {
         grid-template-columns: repeat(2, minmax(300px, 466px));
-        justify-content: center;
     }
 
     #section-our-products h2 {
@@ -272,8 +272,6 @@ footer a  {
 
     #section-our-products div {
         max-width: 100%;
-        justify-content: flex-end;
-        align-items: flex-start;
     }
 }
 
@@ -297,7 +295,6 @@ footer a  {
         grid-gap: 13px;
         grid-template-rows: auto;
         grid-template-columns: repeat(3, minmax(300px, 466px));
-        justify-content: center;
     }
 
     #section-our-products h2 {
