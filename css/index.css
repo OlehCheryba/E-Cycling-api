@@ -17,6 +17,15 @@ a {
     text-decoration: none;
 }
 
+input[type="text"], input[type="password"] {
+    background-color: #00BFFF;
+    border: 3px solid #00FFFF;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 1.25 em;
+    box-shadow: 0 0 5px #00FFFF;
+}
+
 .center {
     text-align: center;
 }
