@@ -19,11 +19,11 @@ a {
 
 input[type="text"], input[type="password"], input:active {
     background-color: #00BFFF;
-    border: none;
+    border: 1px solid black;
     border-radius: 8px;
     text-align: center;
-    font-size: 1.4 em;
-    box-shadow: 0 0 1px #00FFFF;
+    font-size: 22px;
+    box-shadow: 0 0 1px black;
     margin: 5px;
     padding 5px;
 }
