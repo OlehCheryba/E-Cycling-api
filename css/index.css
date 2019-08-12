@@ -19,7 +19,7 @@ a {
 
 input[type="text"], input[type="password"], input:active {
     background-color: #00BFFF;
-    border: 1px solid black;
+    border: none;
     border-radius: 15px;
     text-align: center;
     font-size: 18px;
@@ -29,7 +29,7 @@ input[type="text"], input[type="password"], input:active {
 }
 
 input:active {
-    box-shadow: 0 0 5px #00FFFF
+    background-color: #FFFACD
 }
 
 form {
