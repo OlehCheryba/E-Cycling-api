@@ -149,7 +149,7 @@ main > section {
     display: grid;
     grid-gap: 13px;
     grid-template-columns: minmax(300px, 466px);
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .section-our-products-product {
@@ -272,6 +272,8 @@ footer a  {
 
     #section-our-products div {
         max-width: 100%;
+        justify-content: flex-end;
+        align-items: flex-start;
     }
 }
 
