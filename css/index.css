@@ -28,7 +28,7 @@ input[type="text"], input[type="password"], input:active {
     padding 5px;
 }
 
-input:active {
+input:focus {
     background-color: #FFFACD
 }
 
