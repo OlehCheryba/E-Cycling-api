@@ -36,25 +36,16 @@
 			<form id="section-constructor-form">
                 <input id="name" class="form-control" name="name" type="text" placeholder="Ваше повне імя" required>
                 <input id="number" class="form-control" name="number" type="text" placeholder="Ваш номер телефону" required>
-                <br>
-                <select id="type-bike" name="type-bike" required>
-                    <option value="">Виберіть тип велосипеда</option>
-                    <option value="1">Для міста</option>
-                    <option value="2">Для бездоріжжя</option>
-                </select>
-                <br>
-                <select id="type-motor" name="type-motor" required>
+                <select id="type-motor" name="type-motor" class="form-control select" required>
                     <option value="">Виберіть мотор-колесо</option>
                     <option value="1" lang="en">MXUS 1000вт прямого приводу</option>
                     <option value="2" lang="en">MXUS 1500вт прямого приводу</option>
                 </select>
-                <br>
-                <select id="type-battery" name="type-battery" required>
+                <select id="type-battery" name="type-battery" class="form-control select" required>
                     <option value="">Виберіть акумулятор</option>
                     <option value="1">48в 10А/г</option>
                     <option value="2">48в 15А/г</option>
                 </select>
-				<br>
 				<label>Розмір колеса:</label>
 				<br>
 				<label class="form-label-small">
@@ -129,8 +120,8 @@
 		<section id="section-question">
 			<h2 class="center">Є запитання?</h2>
 			<form id="section-question-form">
-				<input class="form-control" type="text" placeholder="Введіть ваш номер телефону" name="number" id="CallMeNumber" required>
-				<input type="submit" class="btn-primary" value="Передзвоніть мені" id="sendCallMeNumber">
+				<input class="form-control input" type="text" placeholder="Введіть ваш номер телефону" name="number" id="CallMeNumber" required>
+				<input type="submit" class="btn-primary input" value="Передзвоніть мені" id="sendCallMeNumber">
 			</form>
 		</section>
 	</main>
@@ -174,10 +165,8 @@
         <span lang="en" id="copyright">© Copyright 2019 Oleg Cheryba</span>
         <span id="owner">Я власник</span>
         <form id="auto">
-            <input type="text" id="inpLogin" class="form-control" placeholder="Логін">
-            <br>
-            <input type="password" id="inpPassword" class="form-control" placeholder ="Пароль">
-            <br>
+            <input type="text" id="inpLogin" class="form-control input" placeholder="Логін">
+            <input type="password" id="inpPassword" class="form-control input" placeholder ="Пароль">
             <input type="submit" class="btn btn-primary" value="Увійти">
         </form>
     </footer>
