@@ -100,7 +100,6 @@ document.querySelector("#section-constructor-form").addEventListener('submit', (
         body: JSON.stringify({
             name: document.querySelector('#section-constructor-form #name').value,
             number: document.querySelector('#section-constructor-form #number').value,
-            typeBike: document.querySelector('#section-constructor-form #type-bike').value,
             typeMotor: document.querySelector('#section-constructor-form #type-motor').value,
             typeBattery: document.querySelector('#section-constructor-form #type-battery').value,
             sizeWheel: document.querySelector('#section-constructor-form input[name="size-wheel"]').value,
