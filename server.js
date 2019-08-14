@@ -10,15 +10,6 @@ const app         = express();
 const url = 'mongodb://localhost:27017/site-datas';
 const monClient = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
-monClient.connect((err, db) => {
-	if (err) return console.log('fail');
-	console.log('all is good');
-
-
-
-    db.close();
-});
-
 /* 
 const url = "mongodb://localhost:27017/";
 const mongoClient = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -45,10 +36,19 @@ app.post('/add-order', (req, res) => {
     });
 });
 app.post('/call-me', (req, res) => {
-    const fs = require('fs');
-    fs.appendFile('.call-me.txt', JSON.stringify(req.body.number) + '\n', () => {
-        res.send('Ваші дані прийнято. Зачекайте трохи, ми з вами звяжемося.');
-    })
+	/*
+    MongoClient.connect(url, (err, db) => {
+		if (err) return console.log('fail');
+		console.log('all is good');
+
+		let collection = db.collection('call-me');
+
+		collection.insertOne( JSON.stringify(req.body.number), () => {
+			if (err) return console.log('fail');
+			db.close();
+		});
+	});
+	*/
 });
 app.post('/login', (req, res) => {
     if (req.body.login == 'admin' && req.body.password == 'admin') {
