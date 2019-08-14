@@ -16,6 +16,7 @@ img {
 
 a, a:hover {
     text-decoration: none;
+    color: white;
 }
 
 form {
@@ -71,7 +72,7 @@ header {
 #header-name-company {
     font-size: 27px;
     font-weight: bold;
-    margin:3px;
+    margin:0 3px;
 }
 
 header #header-menu-ikon {
@@ -80,7 +81,7 @@ header #header-menu-ikon {
 }
 
 header nav {
-    background-color: #2e2e2e;
+    /*background-color: #2e2e2e;*/
     font-size: 20px;
     display:none;
     width: 100%;
@@ -89,13 +90,9 @@ header nav {
 
 header nav a {
     padding: 5px 0;
-    border-bottom: 2px solid #131313;
+    border-top: 1px solid white;
     color: white;
     display: block;
-}
-
-header nav a:last-child {
-    border: none;
 }
 
 header nav a:hover {
@@ -249,10 +246,10 @@ footer a  {
         margin-left: -5px;
         display: inline-block;
         padding:0 20px;
-        border: none;
-        border-right: 1px solid black;
+        border-top: none;
+        border-left: 1px solid white;
         height: 100%;
-        line-height: 70px;
+        line-height: 75px;
         vertical-align: middle;
     }
 
