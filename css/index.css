@@ -289,6 +289,9 @@ footer a  {
         width: 35%;
         display: inline-block;
     }
+    #auto .input[type="text"], #auto .input[type="password"] {
+        margin-right: 5%;
+    }
 }
 
 @media (min-width: 930px) {
