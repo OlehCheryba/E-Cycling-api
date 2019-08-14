@@ -3,10 +3,13 @@
 }
 
 body {
-    max-width: 980px;
-    margin: auto;
     padding: 0;
     font-family: sans-serif;
+}
+
+main, footer {
+    max-width: 980px;
+    margin: auto;
 }
 
 img {
@@ -289,6 +292,7 @@ footer a  {
         width: 35%;
         display: inline-block;
     }
+
     #auto .input[type="text"], #auto .input[type="password"] {
         margin-right: 5%;
     }
@@ -322,12 +326,6 @@ footer a  {
 
     #section-our-products h2 {
         grid-column: 1/4;
-    }
-}
-
-@media (min-width: 980px) {
-    header {
-        width: 980px;
     }
 }
 
