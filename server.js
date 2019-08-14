@@ -1,12 +1,39 @@
-﻿const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const http = require('http');
-const https = require('https');
-const app = express();
-const dbName = 'site-data';
+const assert      = require('assert');
+const express     = require('express');
+const bodyParser  = require('body-parser');
+const path        = require('path');
+const http        = require('http');
+const MongoClient = require('mongodb').MongoClient;
+const format      = require('util').format;
+const app         = express();
+
+const url = 'mongodb://localhost:27017/site-datas';
+const monClient = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+
+monClient.connect((err, db) => {
+	if (err) return console.log('fail');
+	console.log('all is good');
+
+
+
+    db.close();
+});
+
+/* 
+const url = "mongodb://localhost:27017/";
+const mongoClient = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+ 
+mMongoClient.connect((err, client) => {
+    const db = client.db("usersdb");
+    const collection = db.collection("users");
+    let user = {name: "Tom", age: 23};
+    if (err) return console.log('fail');
+    console.log('all is good');
+
+    client.close();
+});
+*/
+
 
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, './')));
@@ -43,4 +70,4 @@ app.post('/saveItems', (req, res) => {
         res.send('true');
     });
 });
-app.listen(process.env.port || 3000, process.env.IP || '0.0.0.0');
+app.listen(process.env.port || 80, process.env.IP || '10.156.0.3');
