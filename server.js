@@ -1,30 +1,8 @@
-const assert      = require('assert');
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const path        = require('path');
 const http        = require('http');
-const MongoClient = require('mongodb').MongoClient;
-const format      = require('util').format;
 const app         = express();
-
-const url = 'mongodb://localhost:27017/site-datas';
-const monClient = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
-
-/* 
-const url = "mongodb://localhost:27017/";
-const mongoClient = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
- 
-mMongoClient.connect((err, client) => {
-    const db = client.db("usersdb");
-    const collection = db.collection("users");
-    let user = {name: "Tom", age: 23};
-    if (err) return console.log('fail');
-    console.log('all is good');
-
-    client.close();
-});
-*/
-
 
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, './')));
@@ -36,24 +14,14 @@ app.post('/add-order', (req, res) => {
     });
 });
 app.post('/call-me', (req, res) => {
-	/*
-    MongoClient.connect(url, (err, db) => {
-		if (err) return console.log('fail');
-		console.log('all is good');
-
-		let collection = db.collection('call-me');
-
-		collection.insertOne( JSON.stringify(req.body.number), () => {
-			if (err) return console.log('fail');
-			db.close();
-		});
-	});
-	*/
+	const fs = require('fs');
+	fs.appendFile('.call-me.txt', JSON.stringify(req.body.number) + '\n', () => {
+       	res.send('Ваші дані прийнято. Зачекайте трохи, ми з вами звяжемося.');	
+    });
 });
 app.post('/login', (req, res) => {
-    if (req.body.login == 'admin' && req.body.password == 'admin') {
-        res.send('true');
-    } else res.send('false');
+    if (req.body.login == 'admin' && req.body.password == 'admin') res.send('true'); 
+    else res.send('false');
 });
 app.post('/addItem', (req, res) => {
     const fs = require('fs');
