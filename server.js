@@ -1,9 +1,26 @@
+﻿const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const http = require('http');
+const https = require('https');
 const app = express();
+const url = 'mongodb://localhost:27017';
+const dbName = 'site-data';
+
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, './')));
+
+mongoose.connect("mongodb://localhost:27017/site-data", { useNewUrlParser: true }, { useUnifiedTopology: true });
+
+MongoClient.connect(url, function(err, client) {
+	if (err) console.log('Fail')
+	const db = client.db(dbName);
+	console.log("Good connected to server");
+	client.close();
+});
+
 app.post('/add-order', (req, res) => {
     const fs = require('fs');
     fs.appendFile('./orders.txt', JSON.stringify(req.body) + '\n', () => {
@@ -12,8 +29,8 @@ app.post('/add-order', (req, res) => {
 });
 app.post('/call-me', (req, res) => {
     const fs = require('fs');
-    fs.appendFile('.call-me.txt', JSON.stringify(req.body) + '\n', () => {
-        res.send('Ваші дані прийнято. Зачекайте трохи, ми з вами звяжемося.');
+    fs.appendFile('.call-me.txt', JSON.stringify(req.body.number) + '\n', () => {
+        res.send('Ваші дані прийнято. Зачекайте трохи, ми з вами звяжемося.');	
     })
 });
 app.post('/login', (req, res) => {
@@ -36,4 +53,4 @@ app.post('/saveItems', (req, res) => {
         res.send('true');
     });
 });
-app.listen(process.env.port || 3000, process.env.IP || '0.0.0.0');
+app.listen(process.env.port || 80, process.env.IP || '10.156.0.3');
