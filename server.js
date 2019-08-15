@@ -2,11 +2,28 @@ const express     = require('express');
 const bodyParser  = require('body-parser');
 const path        = require('path');
 const http        = require('http');
+var formidable    = require('formidable');
 const app         = express();
 
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, './')));
 
+app.post('/fileupload', (req, res) => {
+	const fs = require('fs');
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+    	try {
+	    	var oldpath = files.filetoupload.path;
+	    	var newpath = 'img/' + files.filetoupload.name;
+	    	fs.rename(oldpath, newpath, function (err) {
+	        	res.send('ok');
+	        });
+    	} catch (e){
+    		fs.rename('bike-offroad.jpg', 'bike-offroad.jpg', err => {});
+    		res.send('ok');
+    	}
+    });
+});
 app.post('/add-order', (req, res) => {
     const fs = require('fs');
     fs.appendFile('./orders.txt', JSON.stringify(req.body) + '\n', () => {
