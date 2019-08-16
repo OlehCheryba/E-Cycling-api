@@ -2,19 +2,36 @@
     scroll-behavior: smooth;
 }
 
+body .visible {
+    display: block;
+}
+
+.themebgcol {
+    background-color: black;
+}
+
+.themecol {
+    color: white;
+}
+
 body {
     padding: 0;
     font-family: sans-serif;
 }
 
-main, footer {
-    max-width: 980px;
+main, #footer {
+    max-width: 1100px;
     margin: auto;
 }
 
 img {
     max-width: 100%;
     display: block;
+}
+
+hr {
+    background-color: white;
+    margin: 1px;
 }
 
 a, a:hover {
@@ -30,28 +47,17 @@ form {
     text-align: center;
 }
 
-input, select {
+input, select, button {
     margin: 5px 0;
 }
 
-input[type="submit"] {
-    border-radius: 14px;
+input[type="submit"], button {
+    border-radius: 12px;
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
     background-color: #FFFACD;
 }
-
-.order {
-    background-color: red;
-    color: white;
-    border: 2px dashed black;
-    border-radius: 5px;
-    height: 40px;
-    width: 190px;
-}
-
-/* Границя між кодом для всіх стилів (для всого коду), і стилями конкретних частинок сторінки*/
 
 header {
     background-color: #131313;
@@ -84,19 +90,32 @@ header #header-menu-ikon {
     padding: 10px 8px 10px 0;
 }
 
-header nav {
-    /*background-color: #2e2e2e;*/
-    font-size: 20px;
-    display:none;
+#header-div {
     width: 100%;
     grid-column: 1/3;
 }
 
+header div {
+    display:none;
+}
+
+#header-div button {
+    margin: 5px;
+}
+
+header nav {
+    font-size: 20px;
+}
+
 header nav a {
-    padding: 5px 0;
+    padding: 5px;
     border-top: 1px solid white;
     color: white;
     display: block;
+}
+
+header nav a:last-child {
+    border-bottom: 1px solid white;
 }
 
 header nav a:hover {
@@ -106,14 +125,19 @@ header nav a:hover {
 main {
     padding-top: 80px;
     background-color: #EAECF0;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 }
 
 main > section {
-    padding: 0 3px 5px 3px;
+    padding: 0px 3px 15px 3px;
 }
 
 #section-specilly-photo {
     padding: 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #section-specilly-text {
@@ -129,6 +153,18 @@ main > section {
     padding: 0 2px 0 2px;
 }
 
+.order {
+    background-color: red;
+    color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 40px;
+    width: 190px;
+    margin-right: 30px;
+    position: relative;
+    left: calc(100% - 200px);
+}
+
 #section-our-products {
     display: grid;
     grid-gap: 13px;
@@ -137,7 +173,7 @@ main > section {
     align-items: flex-start
 }
 
-.section-our-products-product {
+#section-our-products .section-our-products-product {
     box-sizing: border-box;
     min-width: 278px;
     width: 466px;
@@ -149,11 +185,13 @@ main > section {
     text-align: center;
     max-width: 100%;
     position: relative;
+    color: black;
 }
 
-.product-image {
+.section-our-products-image {
     padding: 0;
     max-width: 100%;
+    margin: auto;
 }
 
 .section-our-products-see-more {
@@ -164,7 +202,7 @@ main > section {
     right: 10px;
 }
 
-.section-our-products-description {
+.description {
     display: none;
 }
 
@@ -176,7 +214,7 @@ main > section {
 }
 
 #section-question {
-    padding: 0 3px 30px 3px;
+    padding-bottom: 30px;
     text-align: center;
 }
 
@@ -202,6 +240,10 @@ footer a  {
     font-weight: 500;
 }
 
+#footer button, #footer input[type="submit"] {
+    margin-bottom: 20px;
+}
+
 .footer-column {
     margin-top: 20px;
     width: 300px;
@@ -209,19 +251,19 @@ footer a  {
     vertical-align: top;
 }
 
-#owner {
-    display: block;
+.auto {
+    display: none
 }
 
 #auto {
+    margin-top: 20px;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    display: none
 }
 
-#auto input {
+#footer input, #footer button {
     padding: 2px 15px;
 }
 
@@ -230,7 +272,7 @@ footer a  {
     display: block;
 }
 
-@media (min-width: 630px) {
+@media (min-width: 705px) {
     input[type="text"], input[type="password"], .select {
         width: 49%;
         display: inline-block;
@@ -240,10 +282,18 @@ footer a  {
         display: none;
     }
 
-    header nav {
+    #header-div {
         display: block;
         height: 100%;
         grid-column: 2/3;
+    }
+
+    #header-div nav {
+        display: inline;
+    }
+
+    #header-div button {
+        margin: 0 10px 0 6px;
     }
 
     header nav a {
@@ -257,8 +307,17 @@ footer a  {
         vertical-align: middle;
     }
 
+    header nav a:last-child {
+        border-bottom: none;
+        border-right: 1px solid white;
+    }
+
     header nav a:first-child {
         margin-left: 0;
+    }
+
+    #section-specilly-text {
+        padding: 10px 22px 0 22px;
     }
 
     #section-constructor img {
@@ -269,6 +328,8 @@ footer a  {
 
     #section-our-products {
         grid-template-columns: repeat(2, minmax(300px, 466px));
+        padding-left: 8px;
+        padding-right: 8px;
     }
 
     #section-our-products h2 {
@@ -287,6 +348,12 @@ footer a  {
 
     #auto {
         max-width: 100%;
+    }
+
+    #auto input {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     #auto .input {
