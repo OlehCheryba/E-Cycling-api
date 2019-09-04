@@ -3,24 +3,25 @@ const bodyParser  = require('body-parser');
 const path        = require('path');
 const http        = require('http');
 var formidable    = require('formidable');
+var mv = require('mv');
 const app         = express();
 
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, './')));
 
 app.post('/fileupload', (request, res) => {
-	const fs = require('fs');
     var form = new formidable.IncomingForm();
     form.parse(request, function (err, fields, files) {
     	try {
 	    	var oldpath = files.filetoupload.path;
 	    	var newpath = 'img/' + files.filetoupload.name;
-	    	fs.rename(oldpath, newpath, err => {
-	        	res.redirect('/index.html');
-	        });
+	    	mv(oldpath, newpath, e => {
+                res.send()
+            });
     	} catch (e) {
-    		fs.rename('bike-offroad.jpg', 'bike-offroad.jpg', err => {});
-    		res.redirect('/index.html');
+    		mv('bike-offroad.jpg', 'bike-offroad.jpg', e => {
+                res.send()
+            });
     	}
     });
 });
@@ -33,11 +34,11 @@ app.post('/addorder', (req, res) => {
 app.post('/callme', (req, res) => {
 	const fs = require('fs');
 	fs.appendFile('callme.txt', JSON.stringify(req.body)+ '\n', () => {
-       	res.send('Ваші дані прийнято. Зачекайте трохи, ми з вами звяжемося.');	
+       	res.send('Ваші дані прийнято. Зачекайте трохи, ми з вами звяжемося.');
     });
 });
 app.post('/login', (req, res) => {
-    if (req.body.login == 'admin' && req.body.password == 'admin') res.send('true'); 
+    if (req.body.login == 'admin' && req.body.password == 'admin') res.send('true');
     else res.send('false');
 });
 app.post('/removeItems', (req, res) => {
@@ -78,4 +79,4 @@ app.post('/delSomething', (req, res) => {
     });
 });
 
-app.listen(process.env.port || 80, process.env.IP || '10.156.0.3');
+app.listen(process.env.port || 3000, process.env.IP || '0.0.0.0');

@@ -1,16 +1,4 @@
 const footer = document.querySelector('#footer');
-const delSomething = file => {
-    fetch('delSomething', {
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            file: file
-        })
-    })
-        .then(_ => prepareAdminPanel());
-}
 async function prepareAdminPanel() {
     let results = [];
     const ordersResponse = await fetch('../orders.txt');
@@ -26,8 +14,8 @@ async function prepareAdminPanel() {
 }
 const renderAdminPanel = results => {
     document.querySelector('#adminPanel').innerHTML =
-       `<form id='form-files' action='fileupload' method='post' enctype='multipart/form-data'>
-            <input type='file' name='filetoupload' id='file'>
+       `<form id='form-files'>
+            <input type='file' name='filetoupload' id='filetoupload'>
         </form>
         <form id='ownerFormAdd'>
             <input id='addBikeName' type='text' class='form-control' placeholder='Назва товару'>
@@ -75,7 +63,7 @@ const addItem = () => {
     const name = document.querySelector('#addBikeName').value;
     const price = document.querySelector('#addBikePrice').value;
     const description = document.querySelector('#addBikeDescription').value;
-    const fileSrc = document.querySelector('#file').value;
+    const fileSrc = document.querySelector('#filetoupload').value;
     let imgSrc = fileSrc.split('\\');
     imgSrc = imgSrc[imgSrc.length - 1];
     if (imgSrc === '') imgSrc = 'bike-offroad.jpg';
@@ -95,8 +83,12 @@ const addItem = () => {
             products: products
         })
     })
-        .then(() => document.querySelector('#form-files').submit())
-        .then(() => loadItems());
+        .then(_ => {
+            fetch('fileupload', {
+                method: 'POST',
+                body: new FormData(document.querySelector('#form-files'))
+            }).then(_ => loadItems());
+        });
 }
 const removeItem = () => {
     let nameToRemove = document.querySelector('#removeBikeName').value;
@@ -111,6 +103,18 @@ const removeItem = () => {
         })
     })
         .then(() => loadItems());
+}
+const delSomething = file => {
+    fetch('delSomething', {
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            file: file
+        })
+    })
+        .then(_ => prepareAdminPanel());
 }
 
 document.querySelector('#owner').addEventListener('click', () => showHide(document.querySelector('#auto')));
