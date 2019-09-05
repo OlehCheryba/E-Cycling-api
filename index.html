@@ -3,171 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="icon" href="img/fav-ikon.jpg" type="image/png">
-	<link rel="stylesheet" href="css/index.css">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="icon" href="img/fav-ikon.jpg" type="image/png">
+  <link rel="stylesheet" href="css/index.css">
   <title>E-Cycling Lviv</title>
 </head>
 <body>
   <header>
-		<a href="index.html" id="header-text">
-		<span id="header-name-company">E-Cycling Lviv</span>
-		<br>
-		Продаж електровелоспедів
-		</a>
-		<img src="img/menu.png" alt="Кнопка меню" id="header-menu-ikon">
-		<div id="header-div">
-			<nav>
-				<a href="our-office.html">Наш офіс</a>
-				<a href="vacancies.html">Вакансії</a>
-				<a href="clients.html">Клієнти</a>
-			</nav>
-			<button id="switch-theme">Темна тема</button>
-		</div>
-	</header>
-	<main>
-	  <section id="section-specilly">
-		<h2 class="center">Особливості електровелосипеда</h2>
-			<img src="img/article-bike.jpg" alt="" id="section-specilly-photo">
-		<p id="section-specilly-text">
-		  Електричний велосипед відкриває нові горизонти: це швидше і зручніше на дорозі і пропонує нові можливості для гастролей, поїздок на дорогу або відпочинку. Більше того, ви можете насолоджуватися підйомом на гору і їздити на велосипедному причепі без виснаження ... Електро-двигун подає енергію, як тільки вершник починає крутити педалі. Ця підтримка потужності може регулюватися так, як вам потрібно.
-		</p>
-	  </section>
-	<section id="section-constructor">
-	  <h2 class="center">Замовити електровелосипед у нас</h2>
-	  <img id="section-constructor-img" src="img/bike-constructor-test.png" alt="Макет велосипеда за вибраними параметрами">
-	  <form id="section-constructor-form">
-			<input id="name" class="form-control" name="name" type="text" placeholder="Ваше повне імя" required>
-			<input id="number" class="form-control" name="number" type="text" placeholder="Ваш номер телефону" required>
-			<select id="type-motor" name="type-motor" class="form-control select" required>
-				<option value="">Виберіть мотор-колесо</option>
-				<option value="1" lang="en">MXUS 1000вт прямого приводу</option>
-				<option value="2" lang="en">MXUS 1500вт прямого приводу</option>
-			</select>
-			<select id="type-battery" name="type-battery" class="form-control select" required>
-				<option value="">Виберіть акумулятор</option>
-				<option value="1">48в 10А/г</option>
-				<option value="2">48в 15А/г</option>
-			</select>
-			<label>Розмір колеса:</label>
-			<br>
-			<label class="form-label-small">
-				<input type="radio" name="size-wheel" required value="24">
-				24
-			</label>
-			<label class="form-label-small">
-				<input type="radio" name="size-wheel" required value="26">
-				26
-			</label>
-			<label class="form-label-small">
-				<input type="radio" name="size-wheel" required value="27.5">
-				27.5
-			</label>
-			<label class="form-label-small">
-				<input type="radio" name="size-wheel" required value="29">
-				29
-			</label>
-					<br>
-			<label>Ширина колеса:</label>
-			<br>
-			<label class="form-label-small">
-				<input type="radio" name="width-wheel" required value="small">
-				Мала
-			</label>
-			<label class="form-label-small">
-				<input type="radio" name="width-wheel" required value="medium">
-				Середня
-			</label>
-			<label class="form-label-small">
-				<input type="radio" name="width-wheel" required value="high">
-				Велика
-			</label>
-			<br>
-			<label>Додаткові опції</label>
-			<br>
-			<label class='form-label'>
-				<input type="checkbox" name="charger">
-				Зарядний пристрій
-			</label>
-			<label class='form-label'>
-			  <input type="checkbox" name="double-pendant">
-			  Подвійна підвіска
-			</label>
-			<label class='form-label'>
-			  <input type="checkbox" name="wings">
-			  Велокрила
-			</label>
-			<br>
-			<textarea cols="35" rows="2" name="coment" placeholder="Ваш коментар до замовлення"></textarea>
-			<br>
-			<input type="submit" value="Замовити" class="order" id="orderConstructuredBike">
-		</form>
-	</section>
-		<h2 class="center">Або виберіть готовий електровелосипед</h2>
-	<section id="section-our-products" >
-	</section>
-	<section id="section-question">
-	  <h2 class="center">Є запитання?</h2>
-	  <form id="section-question-form">
-		<input class="form-control input" type="text" placeholder="Введіть ваш номер телефону" name="number" id="CallMeNumber" required>
-		<input type="submit" class="btn-primary input" value="Передзвоніть мені" id="sendCallMeNumber">
-	  </form>
-	</section>
+    <a href="index.html" id="header-text">
+    <span id="header-name-company">E-Cycling Lviv</span>
+    <br>
+    Продаж електровелоспедів
+    </a>
+    <img src="img/menu.png" alt="Кнопка меню" id="header-menu-ikon">
+    <div id="header-div">
+      <nav>
+        <a href="our-office.html">Наш офіс</a>
+        <a href="vacancies.html">Вакансії</a>
+        <a href="clients.html">Клієнти</a>
+      </nav>
+      <button id="switch-theme">Темна тема</button>
+    </div>
+  </header>
+  <main>
+    <section id="section-specilly">
+    <h2 class="center">Особливості електровелосипеда</h2>
+      <img src="img/article-bike.jpg" alt="" id="section-specilly-photo">
+    <p id="section-specilly-text">
+      Електричний велосипед відкриває нові горизонти: це швидше і зручніше на дорозі і пропонує нові можливості для гастролей, поїздок на дорогу або відпочинку. Більше того, ви можете насолоджуватися підйомом на гору і їздити на велосипедному причепі без виснаження ... Електро-двигун подає енергію, як тільки вершник починає крутити педалі. Ця підтримка потужності може регулюватися так, як вам потрібно.
+    </p>
+    </section>
+  <section id="section-constructor">
+    <h2 class="center">Замовити електровелосипед у нас</h2>
+    <img id="section-constructor-img" src="img/bike-constructor-test.png" alt="Макет велосипеда за вибраними параметрами">
+    <form id="section-constructor-form">
+      <input id="name" class="form-control" name="name" type="text" placeholder="Ваше повне імя" required>
+      <input id="number" class="form-control" name="number" type="text" placeholder="Ваш номер телефону" required>
+      <select id="type-motor" name="type-motor" class="form-control select" required>
+        <option value="">Виберіть мотор-колесо</option>
+        <option value="1" lang="en">MXUS 1000вт прямого приводу</option>
+        <option value="2" lang="en">MXUS 1500вт прямого приводу</option>
+      </select>
+      <select id="type-battery" name="type-battery" class="form-control select" required>
+        <option value="">Виберіть акумулятор</option>
+        <option value="1">48в 10А/г</option>
+        <option value="2">48в 15А/г</option>
+      </select>
+      <label>Розмір колеса:</label>
+      <br>
+      <label class="form-label-small">
+        <input type="radio" name="size-wheel" required value="24">
+        24
+      </label>
+      <label class="form-label-small">
+        <input type="radio" name="size-wheel" required value="26">
+        26
+      </label>
+      <label class="form-label-small">
+        <input type="radio" name="size-wheel" required value="27.5">
+        27.5
+      </label>
+      <label class="form-label-small">
+        <input type="radio" name="size-wheel" required value="29">
+        29
+      </label>
+          <br>
+      <label>Ширина колеса:</label>
+      <br>
+      <label class="form-label-small">
+        <input type="radio" name="width-wheel" required value="small">
+        Мала
+      </label>
+      <label class="form-label-small">
+        <input type="radio" name="width-wheel" required value="medium">
+        Середня
+      </label>
+      <label class="form-label-small">
+        <input type="radio" name="width-wheel" required value="high">
+        Велика
+      </label>
+      <br>
+      <label>Додаткові опції</label>
+      <br>
+      <label class='form-label'>
+        <input type="checkbox" name="charger">
+        Зарядний пристрій
+      </label>
+      <label class='form-label'>
+        <input type="checkbox" name="double-pendant">
+        Подвійна підвіска
+      </label>
+      <label class='form-label'>
+        <input type="checkbox" name="wings">
+        Велокрила
+      </label>
+      <br>
+      <textarea cols="35" rows="2" name="coment" placeholder="Ваш коментар до замовлення"></textarea>
+      <br>
+      <input type="submit" value="Замовити" class="order" id="orderConstructuredBike">
+    </form>
+  </section>
+    <h2 class="center">Або виберіть готовий електровелосипед</h2>
+  <section id="section-our-products" >
+  </section>
+  <section id="section-question">
+    <h2 class="center">Є запитання?</h2>
+    <form id="section-question-form">
+    <input class="form-control input" type="text" placeholder="Введіть ваш номер телефону" name="number" id="CallMeNumber" required>
+    <input type="submit" class="btn-primary input" value="Передзвоніть мені" id="sendCallMeNumber">
+    </form>
+  </section>
   </main>
-	<footer>
-		<div id="footer">
-			<div class="footer-column">
-				<h2>Ми у соцмережах</h2>
-				<a href="https://www.instagram.com/" target="_blank" lang="en">
-					<img src="img/ikon-instagram.png" alt="Інстаграм">
-					<span> Instagram</span>
-				</a>
-				<br>
-				<a href="https://www.facebook.com/"  target="_blank" lang="en">
-					<img src="img/ikon-facebook.png" alt="Фейсбук">
-					<span> Facebook</span>
-				</a>
-				<br>
-				<a href="https://www.linkedin.com/" target="_blank" lang="en">
-					<img src="img/ikon-linkedin.png" alt="ЛінкедІн">
-					<span> LinkedIn</span>
-				</a>
-				<br>
-				<a href="https://twitter.com/"  target="_blank" lang="en">
-					<img src="img/ikon-twitter.png" alt="Твіттер">
-					<span> Twitter</span>
-				</a>
-			</div>
-			<div class="footer-column">
-				<h2>Кoнтакти</h2>
-				<p>
-					м. Львів, Україна 98371
-				</p>
-				<p>
-					+380-98-752-69-440
-				</p>
-				<p>
-					Безкоштовний номер:
-					<br>
-					0-800-690-0900
-				</p>
-			</div>
-			<span lang="en" id="copyright">© Copyright 2019 Oleg Cheryba</span>
-			<span id="owner">Я власник</span>
-			<form id="auto" class="auto">
-				<input type="text" id="inpLogin" class="form-control input" placeholder="Логін">
-				<input type="password" autocomplete="password" id="inpPassword" class="form-control input" placeholder ="Пароль">
-				<input type="submit" class="btn btn-primary" value="Увійти">
-			</form>
-		</div>
-	</footer>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<script src="js/index.js"></script>
-	<script src="js/load-items.js"></script>
-	<script src="js/forms.js"></script>
-	<script src="js/admin-panel.js"></script>
+  <footer>
+    <div id="footer">
+      <div class="footer-column">
+        <h2>Ми у соцмережах</h2>
+        <a href="https://www.instagram.com/" target="_blank" lang="en">
+          <img src="img/ikon-instagram.png" alt="Інстаграм">
+          <span> Instagram</span>
+        </a>
+        <br>
+        <a href="https://www.facebook.com/"  target="_blank" lang="en">
+          <img src="img/ikon-facebook.png" alt="Фейсбук">
+          <span> Facebook</span>
+        </a>
+        <br>
+        <a href="https://www.linkedin.com/" target="_blank" lang="en">
+          <img src="img/ikon-linkedin.png" alt="ЛінкедІн">
+          <span> LinkedIn</span>
+        </a>
+        <br>
+        <a href="https://twitter.com/"  target="_blank" lang="en">
+          <img src="img/ikon-twitter.png" alt="Твіттер">
+          <span> Twitter</span>
+        </a>
+      </div>
+      <div class="footer-column">
+        <h2>Кoнтакти</h2>
+        <p>
+          м. Львів, Україна 98371
+        </p>
+        <p>
+          +380-98-752-69-440
+        </p>
+        <p>
+          Безкоштовний номер:
+          <br>
+          0-800-690-0900
+        </p>
+      </div>
+      <span lang="en" id="copyright">© Copyright 2019 Oleg Cheryba</span>
+      <span id="owner">Я власник</span>
+      <form id="auto" class="auto">
+        <input type="text" id="inpLogin" class="form-control input" placeholder="Логін">
+        <input type="password" autocomplete="password" id="inpPassword" class="form-control input" placeholder ="Пароль">
+        <input type="submit" class="btn btn-primary" value="Увійти">
+      </form>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="js/index.js"></script>
+  <script src="js/load-items.js"></script>
+  <script src="js/forms.js"></script>
+  <script src="js/admin-panel.js"></script>
 </body>
 </html>
