@@ -8,7 +8,7 @@ const loadItems = () => {
 			for (let i in response) {
 				let el = response[i];
 				document.querySelector('#section-our-products').innerHTML += 
-				     `<div class='section-our-products-product' id= ${el.name.split(' ').join('')} >
+				   `<div class='section-our-products-product' id= ${el.name.split(' ').join('')} >
 						<img src=${el.imgSrc} alt='Картинка товару' class='section-our-products-image'>
 						<br>
 						${el.name}
