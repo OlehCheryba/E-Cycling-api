@@ -1,20 +1,19 @@
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const path        = require('path');
-const http        = require('http');
-var formidable    = require('formidable');
-var mv = require('mv');
+const formidable    = require('formidable');
+const mv            = require('mv');
 const app         = express();
 
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, './')));
 
 app.post('/fileupload', (request, res) => {
-    var form = new formidable.IncomingForm();
+    const form = new formidable.IncomingForm();
     form.parse(request, function (err, fields, files) {
     	try {
-	    	var oldpath = files.filetoupload.path;
-	    	var newpath = 'img/' + files.filetoupload.name;
+	    	const oldpath = files.filetoupload.path;
+	    	const newpath = 'img/' + files.filetoupload.name;
 	    	mv(oldpath, newpath, e => {
                 res.send()
             });
@@ -72,7 +71,6 @@ app.post('/addOrd', (req, res) => {
 app.post('/delSomething', (req, res) => {
     const fs = require('fs');
     const file = req.body.file;
-    console.log(req.body.file);
     fs.unlinkSync(file);
     fs.appendFile(file, ' ', () => {
         res.send('true');
