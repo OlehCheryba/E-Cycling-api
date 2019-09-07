@@ -70,9 +70,9 @@ app.post('/addOrd', (req, res) => {
 
 app.post('/delSomething', (req, res) => {
 	const fs = require('fs');
-	const file = req.body.file;
-	fs.unlinkSync(file);
-	fs.appendFile(file, ' ', () => {
+	const fileName = req.body.fileName;
+	fs.unlinkSync(fileName);
+	fs.appendFile(fileName, ' ', () => {
 		res.send('true');
 	});
 });
