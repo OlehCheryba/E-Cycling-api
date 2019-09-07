@@ -1,434 +1,426 @@
 :root {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
-body .visible {
-    display: block;
+.hidden {
+  display: none;
 }
 
 .themebgcol {
-    background-color: black;
+  background-color: black;
 }
 
 .themecol {
-    color: white;
+  color: white;
 }
 
 body {
-    padding: 0;
-    font-family: sans-serif;
+  padding: 0;
+  font-family: sans-serif;
 }
 
 main, #footer {
-    max-width: 1100px;
-    margin: auto;
+  max-width: 1100px;
+  margin: auto;
 }
 
 img {
-    max-width: 100%;
-    display: block;
+  max-width: 100%;
+  display: block;
 }
 
 hr {
-    background-color: white;
-    margin: 1px;
+  background-color: white;
+  margin: 1px;
 }
 
 a, a:hover {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
 form {
-    line-height: 25px;
+  line-height: 25px;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 input, select, button {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 input[type="submit"], button {
-    border-radius: 12px;
+  border-radius: 12px;
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
-    background-color: #FFFACD;
+  background-color: #FFFACD;
 }
 
 header {
-    background-color: #131313;
-    margin: 0;
-    padding: 0;
-    color: white;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-    box-shadow: 0 3px 4px black;
+  background-color: #131313;
+  margin: 0;
+  padding: 0;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  box-shadow: 0 3px 4px black;
 }
 
 #header-text {
-    padding: 6px 10px 6px 6px;
-    color: white;
+  padding: 6px 10px 6px 6px;
+  color: white;
 }
 
 #header-name-company {
-    font-size: 27px;
-    font-weight: bold;
-    margin:0 3px;
+  font-size: 27px;
+  font-weight: bold;
+  margin:0 3px;
 }
 
 header #header-menu-ikon {
-    height: 70px;
-    padding: 10px 8px 10px 0;
+  height: 70px;
+  padding: 10px 8px 10px 0;
 }
 
 #header-div {
-    width: 100%;
-    grid-column: 1/3;
-}
-
-header div {
-    display:none;
+  width: 100%;
+  grid-column: 1/3;
 }
 
 #header-div button {
-    margin: 5px;
+  margin: 5px;
 }
 
 header nav {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 header nav a {
-    padding: 5px;
-    border-top: 1px solid white;
-    color: white;
-    display: block;
+  padding: 5px;
+  border-top: 1px solid white;
+  color: white;
+  display: block;
 }
 
 header nav a:last-child {
-    border-bottom: 1px solid white;
+  border-bottom: 1px solid white;
 }
 
 header nav a:hover {
-    background-color: #a1a1a1;
+  background-color: #a1a1a1;
 }
 
 main {
-    padding-top: 80px;
-    background-color: #EAECF0;
+  padding-top: 80px;
+  background-color: #EAECF0;
 }
 
 main > section {
-    padding: 0px 3px 15px 3px;
+  padding: 0px 3px 15px 3px;
 }
 
 #section-specilly-photo {
-    padding: 0;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+  padding: 0;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #section-specilly-text {
-    font-size: 17px;
-    padding: 0 2px 0 2px;
+  font-size: 17px;
+  padding: 0 2px 0 2px;
 }
 
 #section-constructor-img {
-    padding: 0 0 10px 0;
+  padding: 0 0 10px 0;
 }
 
 #section-constructor-form {
-    padding: 0 2px 0 2px;
+  padding: 0 2px 0 2px;
 }
 
 .order {
-    background-color: red;
-    color: white;
-    border: 2px solid black;
-    border-radius: 5px;
-    height: 40px;
-    width: 190px;
-    margin-right: 30px;
-    position: relative;
-    left: calc(100% - 200px);
+  background-color: red;
+  color: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  height: 40px;
+  width: 190px;
+  margin-right: 30px;
+  position: relative;
+  left: calc(100% - 200px);
 }
 
 #section-our-products {
-    display: grid;
-    grid-gap: 13px;
-    grid-template-columns: minmax(300px, 466px);
-    justify-content: center;
-    align-items: flex-start
+  display: grid;
+  grid-gap: 13px;
+  grid-template-columns: minmax(300px, 466px);
+  justify-content: center;
+  align-items: flex-start
 }
 
 #section-our-products .section-our-products-product {
-    box-sizing: border-box;
-    min-width: 278px;
-    width: 466px;
-    padding: 10px 10px 50px 10px;
-    border: 1px solid black;
-    border-radius: 15px;
-    margin: 0;
-    background-color: white;
-    text-align: center;
-    max-width: 100%;
-    position: relative;
-    color: black;
+  box-sizing: border-box;
+  min-width: 278px;
+  width: 466px;
+  padding: 10px 10px 50px 10px;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin: 0;
+  background-color: white;
+  text-align: center;
+  max-width: 100%;
+  position: relative;
+  color: black;
 }
 
 .section-our-products-image {
-    padding: 0;
-    max-width: 100%;
-    margin: auto;
+  padding: 0;
+  max-width: 100%;
+  margin: auto;
 }
 
 .section-our-products-see-more {
-    line-height: 40px;
-    color: black;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+  line-height: 40px;
+  color: black;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 .description {
-    display: none;
+  display: none;
 }
 
 .section-our-products-bookmark {
-    height:40px;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
+  height:40px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }
 
 #section-question {
-    padding-bottom: 30px;
-    text-align: center;
+  padding-bottom: 30px;
+  text-align: center;
 }
 
 #section-question input {
-    padding: 2px 15px;
+  padding: 2px 15px;
 }
 
 footer {
-    background-color: #131313;
-    color: #fff;
-    padding: 18px 14px 14px 14px;
+  background-color: #131313;
+  color: #fff;
+  padding: 18px 14px 14px 14px;
 }
 
 footer img {
-    display: inline;
-    height: 20px;
-    vertical-align: middle;
-    background-color: #fff;
+  display: inline;
+  height: 20px;
+  vertical-align: middle;
+  background-color: #fff;
 }
 
 footer a  {
-    color:#fff;
-    font-weight: 500;
+  color:#fff;
+  font-weight: 500;
 }
 
 #footer button, #footer input[type="submit"] {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .footer-column {
-    margin-top: 20px;
-    width: 300px;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.auto {
-    display: none
+  margin-top: 20px;
+  width: 300px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 #auto {
-    margin-top: 20px;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
+  margin-top: 20px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
 #footer input, #footer button {
-    padding: 2px 15px;
+  padding: 2px 15px;
 }
 
 #copyright {
-    font-size: small;
-    display: block;
+  font-size: small;
+  display: block;
 }
 
 @media (min-width: 720px) {
-    input[type="text"], input[type="password"], .select {
-        width: 49%;
-        display: inline-block;
-    }
+  input[type="text"], input[type="password"], .select {
+    width: 49%;
+    display: inline-block;
+  }
 
-    header img {
-        display: none;
-    }
+  header img {
+    display: none;
+  }
 
-    #header-div {
-        display: block;
-        height: 100%;
-        grid-column: 2/3;
-    }
+  #header-div {
+    display: block;
+    height: 100%;
+    grid-column: 2/3;
+  }
 
-    #header-div nav {
-        display: inline;
-    }
+  #header-div nav {
+    display: inline;
+  }
 
-    #header-div button {
-        margin: 0 10px 0 6px;
-    }
+  #header-div button {
+    margin: 0 10px 0 6px;
+  }
 
-    header nav a {
-        margin-left: -5px;
-        display: inline-block;
-        padding:0 20px;
-        border-top: none;
-        border-left: 1px solid white;
-        height: 100%;
-        line-height: 75px;
-        vertical-align: middle;
-    }
+  header nav a {
+    margin-left: -5px;
+    display: inline-block;
+    padding:0 20px;
+    border-top: none;
+    border-left: 1px solid white;
+    height: 100%;
+    line-height: 75px;
+    vertical-align: middle;
+  }
 
-    header nav a:last-child {
-        border-bottom: none;
-        border-right: 1px solid white;
-    }
+  header nav a:last-child {
+    border-bottom: none;
+    border-right: 1px solid white;
+  }
 
-    header nav a:first-child {
-        margin-left: 0;
-    }
+  header nav a:first-child {
+    margin-left: 0;
+  }
 
-    #section-specilly-text {
-        padding: 10px 22px 0 22px;
-    }
+  #section-specilly-text {
+    padding: 10px 22px 0 22px;
+  }
 
-    #section-constructor img {
-        position: relative;
-        left: 50%;
-        transform: translate(-50%)
-    }
+  #section-constructor img {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%)
+  }
 
-    #section-our-products {
-        grid-template-columns: repeat(2, minmax(300px, 466px));
-        padding-left: 8px;
-        padding-right: 8px;
-    }
+  #section-our-products {
+    grid-template-columns: repeat(2, minmax(300px, 466px));
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 
-    #section-our-products h2 {
-        grid-column: 1/3;
-    }
+  #section-our-products h2 {
+    grid-column: 1/3;
+  }
 
-    #section-our-products div {
-        text-align: center
-    }
+  #section-our-products div {
+    text-align: center
+  }
 
-    #section-question .input[type="text"] {
-        display: inline-block;
-        width: 65%;
-        margin-right: 5%;
-    }
+  #section-question .input[type="text"] {
+    display: inline-block;
+    width: 65%;
+    margin-right: 5%;
+  }
 
-    #auto {
-        max-width: 100%;
-    }
+  #auto {
+    max-width: 100%;
+  }
 
-    #auto input {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+  #auto input {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-    #auto .input {
-        width: 35%;
-        display: inline-block;
-    }
+  #auto .input {
+    width: 35%;
+    display: inline-block;
+  }
 
-    #auto .input[type="text"], #auto .input[type="password"] {
-        margin-right: 5%;
-    }
+  #auto .input[type="text"], #auto .input[type="password"] {
+    margin-right: 5%;
+  }
 }
 
 @media (min-width: 950px) {
-    input[type="text"], input[type="password"], .select {
-        width: 100%;
-    }
+  input[type="text"], input[type="password"], .select {
+    width: 100%;
+  }
 
-    #section-constructor {
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-template-rows: auto auto;
-    }
+  #section-constructor {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+  }
 
-    #section-constructor-form {
-       max-width: 420px;
-    }
+  #section-constructor-form {
+        max-width: 420px;
+  }
 
-    #section-constructor h2 {
-        grid-column: 1/3;
-    }
+  #section-constructor h2 {
+    grid-column: 1/3;
+  }
 
-    #section-our-products {
-        display: grid;
-        grid-gap: 13px;
-        grid-template-rows: auto;
-        grid-template-columns: repeat(3, minmax(300px, 466px));
-    }
+  #section-our-products {
+    display: grid;
+    grid-gap: 13px;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(3, minmax(300px, 466px));
+  }
 
-    #section-our-products h2 {
-        grid-column: 1/4;
-    }
+  #section-our-products h2 {
+    grid-column: 1/4;
+  }
 }
 
 @media (min-width: 1100px) {
-    main {
-        border-left: 1px solid black;
-        border-right: 1px solid black;
+  main {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 
-    }
+  }
 }
 
 /* Стилі для "Наш офіс" */
 
 #section-our-office p {
-    font-size: 17px;
+  font-size: 17px;
 }
 
 /* Стилі для "Вакансії" */
 
 #section-vacancies p {
-    font-size: 17px;
+  font-size: 17px;
 }
 
 /* Стилі для "Клієнти" */
 
 #section-clients {
-    display: grid;
+  display: grid;
 }
 
 @media (min-width: 500px) {
-    #section-clients {
-        grid-template-rows: auto auto;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 13px;
-    }
+  #section-clients {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 13px;
+  }
 
-    #section-clients h2 {
-        grid-column: 1/3;
-    }
+  #section-clients h2 {
+    grid-column: 1/3;
+  }
 }

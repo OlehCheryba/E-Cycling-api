@@ -40,17 +40,7 @@ app.post('/login', (req, res) => {
 	if (req.body.login == 'admin' && req.body.password == 'admin') res.send('true');
 	else res.send('false');
 });
-app.post('/removeItems', (req, res) => {
-	const fs = require('fs');
-	let products = JSON.stringify(req.body.products);
-	products[0] = '{';
-	products[products.length - 1] = '}';
-	fs.unlinkSync('./items.json');
-	fs.appendFile('./items.json', products, () => {
-		res.send('true');
-	});
-});
-app.post('/addItem', (req, res) => {
+app.post('/changeItemList', (req, res) => {
 	const fs = require('fs');
 	let products = JSON.stringify(req.body.products);
 	products[0] = '{';

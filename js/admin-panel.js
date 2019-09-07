@@ -1,7 +1,8 @@
 class AdminPanel {
-  constructor(productList) {
+  constructor(productList, div) {
+    this.div = div;
     this.productList = productList
-    this.addAutorization()
+    this.addAutorization();
   }
   async prepareAdminPanel() {
     let results = [];
@@ -16,8 +17,8 @@ class AdminPanel {
     results.push(callme);
     this.renderAdminPanel(results);
   }
-  renderAdminPanel = results => {
-    document.querySelector('#adminPanel').innerHTML =
+  renderAdminPanel(results) {
+    this.div.innerHTML =
       `<form id='form-files'>
         <input type='file' name='filetoupload' id='filetoupload'>
       </form>
@@ -62,7 +63,7 @@ class AdminPanel {
       this.removeItem();
     });
   }
-  addItem = () => {
+  addItem() {
     const name = document.querySelector('#addBikeName').value;
     const price = document.querySelector('#addBikePrice').value;
     const description = document.querySelector('#addBikeDescription').value;
@@ -71,43 +72,45 @@ class AdminPanel {
     imgSrc = imgSrc[imgSrc.length - 1];
     if (imgSrc === '') imgSrc = 'bike-offroad.jpg';
     imgSrc = 'img/' + imgSrc;
-    productList.products[name] = {
+    this.productList.products[name] = {
       name: name,
       price: price,
       description: description,
       imgSrc: imgSrc
     };
-    fetch('addItem', {
+    fetch('changeItemList', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        products: productList.products
+        products: this.productList.products
       })
     })
       .then(_ => {
         fetch('fileupload', {
           method: 'POST',
           body: new FormData(document.querySelector('#form-files'))
-        }).then(_ => productList.loadItems());
+        }).then(_ => this.productList.loadItems());
       });
   }
-  removeItem = () => {
+  removeItem() {
     let nameToRemove = document.querySelector('#removeBikeName').value;
-    delete products[nameToRemove];
-    fetch('removeItems', {
+    console.log(this.productList.products)
+    delete this.productList.products[nameToRemove];
+    console.log(this.productList.products)
+    fetch('changeItemList', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        products: products
+        products: this.productList.products
       })
     })
-      .then(() => loadItems());
+      .then(() => this.productList.loadItems());
   }
-  delSomething = fileName => {
+  delSomething(fileName) {
     fetch('delSomething', {
       method:'POST',
       headers: {
@@ -121,7 +124,13 @@ class AdminPanel {
   }
   addAutorization() {
     const footer = document.querySelector('#footer');
-    document.querySelector('#owner').addEventListener('click', () => showHide(document.querySelector('#auto')));
+    this.div.innerHTML = 
+     `<form id="auto" class="auto">
+        <input type="text" id="inpLogin" class="form-control input" placeholder="Логін">
+        <input type="password" autocomplete="password" id="inpPassword" class="form-control input" placeholder ="Пароль">
+        <input type="submit" class="btn btn-primary" value="Увійти">
+      </form>`;
+    //document.querySelector('#owner').addEventListener('click', () => showHide(document.querySelector('#auto')));
     document.querySelector('#auto').addEventListener('submit', e => {
       e.preventDefault();
       fetch('login', {
@@ -137,9 +146,6 @@ class AdminPanel {
         .then(response => response.text())
         .then(str => {
           if (str === 'true') {
-            footer.removeChild(document.querySelector('#auto'));
-            footer.removeChild(document.querySelector('#owner'));
-            footer.innerHTML += `<div id='adminPanel'></div>`
             this.prepareAdminPanel();
           } else document.querySelector('#auto').reset();
           alert(str === 'true' ? 'Доброго дня, адміністратор сайту': 'Не вірний логін або пароль');

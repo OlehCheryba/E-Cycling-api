@@ -6,7 +6,7 @@ class ProductList {
   }
   loadItems() {
     fetch('items.json')
-      .then(response =>  response.json())
+      .then(response => response.json())
       .then(response => {
         this.products = response;
         document.querySelector('#section-our-products').innerHTML = '';
@@ -22,7 +22,7 @@ class ProductList {
               <br>
               <img src='img/bookmark.png' alt='Закладка' class='section-our-products-bookmark'>
               <button class='buy btn-primary'>Замовити</button>
-              <span class='description'>${el.description}</span><span class='section-our-products-see-more'>більше про товар ▼</span>
+              <span class='description hidden'>${el.description}</span><span class='section-our-products-see-more'>більше про товар ▼</span>
             </div>`;
         }
       });
@@ -44,7 +44,7 @@ class ProductList {
       }
       if (event.target.classList.contains('section-our-products-see-more')) {
         showHide(event.target.previousSibling);
-        event.target.innerHTML = event.target.previousSibling.classList.contains('visible') 
+        event.target.innerHTML = event.target.previousSibling.classList.contains('hidden') 
           ? 'приховати деталі ▲' : 'більше про товар ▼';
       }
     });
