@@ -9,13 +9,23 @@ const app        = express();
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, './')));
 
-app.post('/fileupload', (request, res) => {
+app.post('/addItem', (req, res) => {
 	const form = new formidable.IncomingForm();
-	form.parse(request, function (err, fields, files) {
+	form.parse(req, function (err, fields, files) {
 		const oldpath = files.filetoupload.path;
 		const newpath = 'img/products/' + files.filetoupload.name;
 		mv(oldpath, newpath, e => {
-			res.send('true')
+			/*fields.products[0] = '{';
+	    fields.products[fields.products.length - 1] = '}'*/
+      fs.readFile('items.json', 'utf8', function(err, contents) {
+        let a = fields.item
+        console.log(a);
+        //let a = fields.item.name 
+        contents = Object(contents)
+        contents[a.name] = a
+        console.log(contents);
+        fs.writeFile('items.json', contents, e => {});
+      });
 		});
 	});
 });
@@ -33,7 +43,7 @@ app.post('/login', (req, res) => {
 	if (req.body.login === '' && req.body.password === '') res.send('true');
 	else res.send('false');
 });
-app.post('/changeItemList', (req, res) => {
+app.post('/delItem', (req, res) => {
 	let products = JSON.stringify(req.body.products);
 	products[0] = '{';
 	products[products.length - 1] = '}'

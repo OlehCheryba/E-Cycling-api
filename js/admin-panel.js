@@ -19,18 +19,16 @@ class AdminPanel {
   }
   renderAdminPanel(results) {
     this.div.innerHTML =
-      `<form id='form-files'>
+      `<form id='ownerFormAdd'>
         <input type='file' name='filetoupload' id='filetoupload'>
-      </form>
-      <form id='ownerFormAdd'>
-        <input id='addBikeName' type='text' class='form-control' placeholder='Назва товару'>
-        <input id='addBikePrice' type='text' class='form-control' placeholder='Ціна товару'>
-        <input id='addBikeDescription' class='form-control' type='text' placeholder='Oпис товару'>
+        <input id='addBikeName' type='text' class='form-control' placeholder='Назва товару' required>
+        <input id='addBikePrice' type='text' class='form-control' placeholder='Ціна товару' required>
+        <input id='addBikeDescription' class='form-control' type='text' placeholder='Oпис товару' required>
         <br>
         <input type='submit' class='btn btn-primary' id='ownerButtonAdd' value='Додати товар'>
       </form>
       <form>
-        <input id='removeBikeName' class='form-control' type='text' placeholder='Назва товару для видалення'>
+        <input id='removeBikeName' class='form-control' type='text' placeholder='Назва товару для видалення' required>
         <br>
         <input type='submit' class='btn btn-primary' id='ownerButtonRemove' value='Видалити товар'>
       </form>
@@ -64,42 +62,32 @@ class AdminPanel {
     });
   }
   addItem() {
+    document.querySelector('#ownerFormAdd').append('name', document.querySelector('#addBikeName').value);
     const name = document.querySelector('#addBikeName').value;
     const price = document.querySelector('#addBikePrice').value;
     const description = document.querySelector('#addBikeDescription').value;
-    const fileSrc = document.querySelector('#filetoupload').value;
-    let imgSrc = fileSrc.match(/[^\\]+$/g);
-    console.log(imgSrc)
-    imgSrc = imgSrc[imgSrc.length - 1];
-    if (imgSrc === '') imgSrc = 'bike-offroad.jpg';
-    imgSrc = 'img/products/' + imgSrc;
-    this.productList.products[name] = {
-      name: name,
-      price: price,
-      description: description,
-      imgSrc: imgSrc
+    let fileName = document.querySelector('#filetoupload').value.match(/[^\\]+$/);
+    const item = {
+      name, price, description,
+      fileName: fileName ? [0] : 'bike-offroad.jpg'
     };
-    fetch('changeItemList', {
+    this.productList.products[name] = item;
+
+    const form = new FormData(document.querySelector('#ownerFormAdd'))
+    form.append('item', JSON.stringify(item))
+    /*form.append('name', document.querySelector('#addBikeName').value);
+    form.append('price', document.querySelector('#addBikePrice').value);
+    form.append('description', document.querySelector('#addBikeDescription').value);
+    form.append('fileName', fileName ? [0] : 'bike-offroad.jpg');*/
+    fetch('addItem', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        products: this.productList.products
-      })
+      body: form
     })
-      .then(_ => {
-        fetch('fileupload', {
-          method: 'POST',
-          body: new FormData(document.querySelector('#form-files'))
-        }).then(_ => this.productList.loadItems());
-      });
+      .then(() => this.productList.renderItem(item));
   }
   removeItem() {
     let nameToRemove = document.querySelector('#removeBikeName').value;
-    console.log(this.productList.products)
     delete this.productList.products[nameToRemove];
-    console.log(this.productList.products)
     fetch('changeItemList', {
       method: 'POST',
       headers: {
@@ -109,7 +97,9 @@ class AdminPanel {
         products: this.productList.products
       })
     })
-      .then(() => this.productList.loadItems());
+      .then(() => {
+        this.productList.div.removeChild(document.getElementById(nameToRemove.replace(/ /g, '-')))
+      });
   }
   delSomething(fileName) {
     fetch('delSomething', {
@@ -124,14 +114,12 @@ class AdminPanel {
       .then(() => this.prepareAdminPanel());
   }
   addAutorization() {
-    const footer = document.querySelector('#footer');
     this.div.innerHTML = 
      `<form id="auto" class="auto">
         <input type="text" id="inpLogin" class="form-control input" placeholder="Логін">
         <input type="password" autocomplete="password" id="inpPassword" class="form-control input" placeholder ="Пароль">
         <input type="submit" class="btn btn-primary" value="Увійти">
       </form>`;
-    //document.querySelector('#owner').addEventListener('click', () => showHide(document.querySelector('#auto')));
     document.querySelector('#auto').addEventListener('submit', e => {
       e.preventDefault();
       fetch('login', {
@@ -145,12 +133,7 @@ class AdminPanel {
         })
       })
         .then(response => response.text())
-        .then(str => {
-          if (str === 'true') {
-            this.prepareAdminPanel();
-          }
-          alert(str === 'true' ? 'Доброго дня, адміністратор сайту': 'Не вірний логін або пароль');
-        });
+        .then(str => str === 'true' ? this.prepareAdminPanel() : alert('Не вірний логін або пароль'));
     });
   }
 }
