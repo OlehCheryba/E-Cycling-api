@@ -68,10 +68,11 @@ class AdminPanel {
     const price = document.querySelector('#addBikePrice').value;
     const description = document.querySelector('#addBikeDescription').value;
     const fileSrc = document.querySelector('#filetoupload').value;
-    let imgSrc = fileSrc.split('\\');
+    let imgSrc = fileSrc.match(/[^\\]+$/g);
+    console.log(imgSrc)
     imgSrc = imgSrc[imgSrc.length - 1];
     if (imgSrc === '') imgSrc = 'bike-offroad.jpg';
-    imgSrc = 'img/' + imgSrc;
+    imgSrc = 'img/products/' + imgSrc;
     this.productList.products[name] = {
       name: name,
       price: price,
@@ -147,7 +148,7 @@ class AdminPanel {
         .then(str => {
           if (str === 'true') {
             this.prepareAdminPanel();
-          } else document.querySelector('#auto').reset();
+          }
           alert(str === 'true' ? 'Доброго дня, адміністратор сайту': 'Не вірний логін або пароль');
         });
     });
