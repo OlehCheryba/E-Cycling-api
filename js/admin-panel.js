@@ -33,21 +33,30 @@ class AdminPanel {
         <input type='submit' class='btn btn-primary' id='ownerButtonRemove' value='Видалити товар'>
       </form>
       Замовлення:
-      <br>
-      ${results[0].split('\"').join('').split(',').join(' ').split('{').join('<hr>').split('}').join('').split(':').join(' = ')}
-      <hr>
+      <table>
+        <tbody>
+          <tr><th>Номер</th></tr>
+          ${results[0].replace(/:/g,'').replace(/{(.+?)}/g, `<tr>$1</tr>`).replace(/\"(.+?)\"/g, `<td>$1</td>`)}
+        </tbody>
+      </table>
       <button id='delOrders' class='btn btn-primary'>Очистити список замовлень</button>
       <br>
       Замовлення по імені товару:
-      <br>
-      ${results[1].split('\"').join('').split(',').join(' ').split('{').join('<hr>').split('}').join('').split(':').join(' = ')}
-      <hr>
+      <table>
+        <tbody>
+          <tr><th>Номер</th></tr>
+          ${results[1].replace(/:/g,'').replace(/{(.+?)}/g, `<tr>$1</tr>`).replace(/\"(.+?)\"/g, `<td>$1</td>`)}
+        </tbody>
+      </table>
       <button id='delFastOrders' class='btn btn-primary'>Очистити список замовлень по імені товару</button>
       <br>
       Передзвоніть мені:
-      <br>
-      ${results[2].split('\"').join('').split(',').join(' ').split('{').join('<hr>').split('}').join('').split(':').join(' = ')}
-      <hr>
+      <table>
+        <tbody>
+          <tr><th>Номер</th></tr>
+          ${results[2].replace(/:/g,'').replace(/{(.+?)}/g, `<tr>$1</tr>`).replace(/\"(.+?)\"/g, `<td>$1</td>`)}
+        </tbody>
+      </table>
       <button id='delCallMe' class='btn btn-primary'>Очистити список передзвоніть мені</button>`;
     document.querySelector('#delOrders').addEventListener('click', () => this.delSomething('orders.txt'));
     document.querySelector('#delFastOrders').addEventListener('click', () => this.delSomething('fastorders.txt'));
@@ -69,16 +78,11 @@ class AdminPanel {
     let fileName = document.querySelector('#filetoupload').value.match(/[^\\]+$/);
     const item = {
       name, price, description,
-      fileName: fileName ? [0] : 'bike-offroad.jpg'
+      fileName: fileName ? fileName[0] : 'bike-offroad.jpg'
     };
     this.productList.products[name] = item;
-
-    const form = new FormData(document.querySelector('#ownerFormAdd'))
-    form.append('item', JSON.stringify(item))
-    /*form.append('name', document.querySelector('#addBikeName').value);
-    form.append('price', document.querySelector('#addBikePrice').value);
-    form.append('description', document.querySelector('#addBikeDescription').value);
-    form.append('fileName', fileName ? [0] : 'bike-offroad.jpg');*/
+    const form = new FormData(document.querySelector('#ownerFormAdd'));
+    form.append('products', JSON.stringify(this.productList.products));
     fetch('addItem', {
       method: 'POST',
       body: form

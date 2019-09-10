@@ -15,17 +15,11 @@ app.post('/addItem', (req, res) => {
 		const oldpath = files.filetoupload.path;
 		const newpath = 'img/products/' + files.filetoupload.name;
 		mv(oldpath, newpath, e => {
-			/*fields.products[0] = '{';
-	    fields.products[fields.products.length - 1] = '}'*/
-      fs.readFile('items.json', 'utf8', function(err, contents) {
-        let a = fields.item
-        console.log(a);
-        //let a = fields.item.name 
-        contents = Object(contents)
-        contents[a.name] = a
-        console.log(contents);
-        fs.writeFile('items.json', contents, e => {});
-      });
+			fields.products[0] = '{';
+	    fields.products[fields.products.length - 1] = '}'
+	    fs.writeFile('items.json', fields.products, () => {
+		    res.send();
+	    });
 		});
 	});
 });

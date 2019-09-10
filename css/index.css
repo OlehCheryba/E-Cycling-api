@@ -219,7 +219,7 @@ footer {
 }
 
 footer img {
-  display: inline;
+  display: inline-block;
   height: 20px;
   vertical-align: middle;
   background-color: #fff;
