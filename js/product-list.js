@@ -20,15 +20,14 @@ class ProductList {
   addEventListeners() {
     this.div.on('click', event => {
       if(event.target.classList.contains('buy')) {
-        let number = prompt('Введіть ваш номер телефону і ми вам зателефонуємо:');
         fetch('addOrd', {
           method:'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             productName: event.target.parentNode.id,
-            number: number
+            number: prompt('Введіть ваш номер телефону і ми вам зателефонуємо:')
           })
         });
       }
