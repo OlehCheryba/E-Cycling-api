@@ -1,5 +1,5 @@
 {
-  "name": "E-Cycling",
+  "name": "e-cycling",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -25,6 +25,9 @@
     "mongodb": "^3.3.0",
     "mv": "^2.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1"
+  },
   "description": ""
 }
