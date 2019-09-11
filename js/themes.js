@@ -8,7 +8,7 @@ function addThemeSwitcher(button) {
     mainClassList.add('themebgcol')
     button.innerHTML = 'Світла тема'
   }
-  button.addEventListener('click', () => {
+  button.on('click', () => {
     ok = ok === 'yes' ? 'no' : 'yes';
     bodyClassList.contains('themecol') ? bodyClassList.remove('themecol') : bodyClassList.add('themecol');
     bodyClassList.contains('themebgcol') ? bodyClassList.remove('themebgcol') : bodyClassList.add('themebgcol');

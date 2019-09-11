@@ -182,6 +182,11 @@ main > section {
   color: black;
 }
 
+#section-our-products button {
+  display: block;
+  margin: auto;
+}
+
 .section-our-products-image {
   padding: 0;
   max-width: 100%;

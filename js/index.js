@@ -1,6 +1,6 @@
-addThemeSwitcher(document.querySelector('#switch-theme'));
-const showHide = elem => elem.classList.contains('hidden') ? elem.classList.remove('hidden') : elem.classList.add('hidden');
-const productList = new ProductList(document.querySelector('#section-our-products'));
-const adminPanel = new AdminPanel(productList, document.querySelector('#owner-panel'));
-document.querySelector('#header-menu-ikon').addEventListener('click', () => showHide(document.querySelector('#header-div')));
-document.querySelector('#owner').addEventListener('click', () => showHide(document.querySelector('#owner-panel')));
+addThemeSwitcher($('#switch-theme'));
+const showHide = elem => elem.prop('classList').contains('hidden') ? elem.prop("classList").remove('hidden') : elem.prop("classList").add('hidden');
+const productList = new ProductList($('#section-our-products'));
+const adminPanel = new AdminPanel(productList, $('#owner-panel'));
+$('#header-menu-ikon').on('click', () => showHide($('#header-div')));
+$('#owner').on('click', () => showHide($('#owner-panel')));

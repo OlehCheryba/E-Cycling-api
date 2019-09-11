@@ -1,28 +1,25 @@
 class ProductList {
   constructor(div) {
-    this.div = div;
-    this.products = {};
-    fetch('items.json')
+    fetch('getProducts')
       .then(response => response.json())
-      .then(response => {
-        this.products = response;
-        Object.values(response).forEach(item => this.renderItem(item));
-      });
+      .then(response => response.forEach(el => this.renderItem(el)));
+    this.div = div;
     this.addEventListeners();
   }
   renderItem(el) {
-    this.div.innerHTML += 
+    this.div.append(
      `<div class='section-our-products-product' id=${el.name.replace(/ /g, '-')}>
         <img src='img/products/${el.fileName}' alt='Картинка товару' class='section-our-products-image'>
-        <br>${el.name}<br>${el.price}$<br>
-        <img src='img/bookmark.png' alt='Закладка' class='section-our-products-bookmark'>
+        ${el.name}<br>${el.price}$
+        <div class='description hidden'>${el.description}</div>
         <button class='buy btn-primary'>Замовити</button>
-        <p class='description hidden'>${el.description}</p><span class='section-our-products-see-more'>більше про товар ▼</span>
-      </div>`;
+        <img src='img/bookmark.png' alt='Закладка' class='section-our-products-bookmark'>
+        <span class='section-our-products-see-more'>більше про товар ▼</span>
+      </div>`);
   }
   addEventListeners() {
-    this.div.addEventListener('click', event => {
-      if(event.target.nodeName.toLowerCase() === 'button') {
+    this.div.on('click', event => {
+      if(event.target.classList.contains('buy')) {
         let number = prompt('Введіть ваш номер телефону і ми вам зателефонуємо:');
         fetch('addOrd', {
           method:'POST',
@@ -36,8 +33,8 @@ class ProductList {
         });
       }
       if (event.target.classList.contains('section-our-products-see-more')) {
-        showHide(event.target.previousSibling);
-        event.target.innerHTML = event.target.previousSibling.classList.contains('hidden') 
+        showHide($(`#${event.target.parentNode.id} .description`));
+        event.target.innerHTML = $(`#${event.target.parentNode.id} .description`).prop("classList").contains('hidden') 
           ? 'більше про товар ▼' : 'приховати деталі ▲';
       }
     });
