@@ -1,5 +1,8 @@
 const gulp = require('gulp');
 const concat = require('gulp-concat');
+const autoprefixer = require('gulp-autoprefixer');
+const cleanCSS = require('gulp-clean-css');
+const uglify = require('gulp-uglify-es').default;
 
 const cssFiles = [
   './src/css/index.scss',
@@ -13,14 +16,25 @@ const jsFiles = [
   './src/js/forms.js'
 ];
 
-gulp.task('styles', () => {
-  return gulp.src(cssFiles)
-    .pipe(concat('index.css'))
-    .pipe(gulp.dest('./css'));
-});
+gulp.task('default', () => {
+  gulp.watch('./src/css/**/*.scss', () => {
+    return gulp.src(cssFiles)
+      .pipe(concat('index.css'))
+      .pipe(autoprefixer({
+        cascade: false
+      }))
+      .pipe(cleanCSS({
+        level: 2
+      }))
+      .pipe(gulp.dest('./css'));
+  });
 
-gulp.task('scripts', () => {
-  return gulp.src(jsFiles)
-    .pipe(concat('index.js'))
-    .pipe(gulp.dest('./js'));
+  gulp.watch('./src/js/**/*.js', () => {
+    return gulp.src(jsFiles)
+      .pipe(concat('index.js'))
+      .pipe(uglify({
+        toplevel: true
+      }))
+      .pipe(gulp.dest('./js'));
+  });
 });
