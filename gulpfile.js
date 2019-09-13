@@ -32,9 +32,9 @@ gulp.task('default', () => {
   gulp.watch('./src/js/**/*.js', () => {
     return gulp.src(jsFiles)
       .pipe(concat('index.js'))
-      /*.pipe(uglify({
-        toplevel: true
-      }))*/
+      //.pipe(uglify({
+      //  toplevel: true
+      //}))
       .pipe(gulp.dest('./js'));
   });
 });
