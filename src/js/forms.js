@@ -19,7 +19,7 @@ $('#section-constructor-form').on('submit', e => {
     })
   })
     .then(() => alert('Ми вам зателефонуємо'), () => alert('Виникла помилка. Спробуйте пізніше.'))
-    $('#section-constructor-form').reset();
+    $('#section-constructor-form')[0].reset();
 });
 $('#section-question-form').on('submit', e => {
   e.preventDefault();
@@ -33,5 +33,5 @@ $('#section-question-form').on('submit', e => {
     })
   })
     .then(() => alert('Ми вам зателефонуємо'), () => alert('Виникла помилка. Спробуйте пізніше.'))
-  $('#section-question-form').reset();
+  $('#section-question-form')[0].reset();
 });

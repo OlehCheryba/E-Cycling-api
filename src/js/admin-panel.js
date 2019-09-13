@@ -2,7 +2,7 @@ class AdminPanel {
   constructor(productList, div) {
     this.div = div;
     this.productList = productList;
-    this.addAutorize();
+    this.renderAdminPanel();
   }
   addAutorize() {
     this.div.html(
@@ -49,9 +49,9 @@ class AdminPanel {
       Передзвоніть мені:
       <table id='call-me'></table>
       <button id='delCallMe' class='btn btn-primary d-block'>Очистити список передзвоніть мені</button>`);
-    this.prepareTable('getOrders', $('#orders'));
-    this.prepareTable('getFastOrders', $('#fast-orders'));
-    this.prepareTable('getCallMe', $('#call-me'));
+    this.prepareTable('orders', $('#orders'));
+    this.prepareTable('fast-orders', $('#fast-orders'));
+    this.prepareTable('call-me', $('#call-me'));
     this.addEventListeners();
   }
   async prepareTable(url, table) {
@@ -61,7 +61,7 @@ class AdminPanel {
     dataArr.forEach(obj => {
       delete obj._id;
       result += '<tr>';
-      for (let el of obj) result += `<td>${el}</td>`;
+      for (let el in obj) result += `<td>${obj[el]}</td>`;
       result += '</tr>';
     })
     table.append(result);
@@ -72,50 +72,43 @@ class AdminPanel {
     $('#delCallMe').on('click', () => this.delData('call-me'));
     $('#ownerFormAdd').on('submit', e => {
       e.preventDefault();
-      this.addItem();
+      const item = {
+        name: $('#addBikeName').prop('value'),
+        price: $('#addBikePrice').prop('value'),
+        description: $('#addBikeDescription').prop('value'),
+        fileName: $('#filetoupload').prop('value') ? $('#filetoupload').prop('value').match(/[^\\]+$/)[0] : 'bike-offroad.jpg'
+      };
+      const form = new FormData(e.target);
+      form.append('item', JSON.stringify(item));
+      fetch('products', {
+        method: 'POST',
+        body: form
+      });
+      e.target.reset()
+      this.productList.renderItem(item);
     });
     $('#ownerFormRemove').on('submit', e => {
       e.preventDefault();
-      this.removeItem();
+      const nameToRemove = $('#removeBikeName').prop('value')
+      fetch('products', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({nameToRemove})
+      });
+      e.target.reset();
+      $(`#${nameToRemove.replace(/ /g, '-')}`).remove();
     });
-  }
-  addItem() {
-    const item = {
-      name: $('#addBikeName').prop('value'),
-      price: $('#addBikePrice').prop('value'),
-      description: $('#addBikeDescription').prop('value'),
-      fileName: $('#filetoupload').prop('value') ? $('#filetoupload').prop('value').match(/[^\\]+$/)[0] : 'bike-offroad.jpg'
-    };
-    const form = new FormData(document.querySelector('#ownerFormAdd'));
-    form.append('item', JSON.stringify(item));
-    fetch('addItem', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      },
-      body: form
-    });
-    this.productList.renderItem(item);
-  }
-  removeItem() {
-    const nameToRemove = $('#removeBikeName').prop('value')
-    fetch('delItem', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({nameToRemove})
-    });
-    $(`#${nameToRemove.replace(/ /g, '-')}`).remove();
   }
   delData(nameToRemove) {
-    fetch('delData', {
-      method:'POST',
+    fetch('data', {
+      method:'DELETE',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({nameToRemove})
     });
-    $(`#${nameToRemove}`).remove();
+    $(`#${nameToRemove}`)[0].remove();
   }
 }

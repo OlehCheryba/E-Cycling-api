@@ -1,6 +1,6 @@
 class ProductList {
   constructor(div) {
-    fetch('getProducts')
+    fetch('products')
       .then(response => response.json())
       .then(response => response.forEach(el => this.renderItem(el)));
     this.div = div;

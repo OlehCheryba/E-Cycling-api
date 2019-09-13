@@ -33,26 +33,30 @@ const getData = (collectionName, res) => {
   });
 }
 
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+app.get('/our-office', (req, res) => res.sendFile(path.join(__dirname, 'our-office.html')));
+app.get('/vacancies', (req, res) => res.sendFile(path.join(__dirname, 'vacancies.html')));
+app.get('/clients', (req, res) => res.sendFile(path.join(__dirname, 'clients.html')));
+app.get('/products', (req, res) => getData('products', res));
+app.get('/orders', (req, res) => getData('orders', res));
+app.get('/fast-orders', (req, res) => getData('fast-orders', res));
+app.get('/call-me', (req, res) => getData('call-me', res));
+
 app.post('/addOrder', (req, res) => saveData('orders', req.body, res));
 app.post('/callMe', (req, res) => saveData('call-me', req.body, res));
 app.post('/addFastOrder', (req, res) => saveData('fast-orders', req.body, res));
-
-app.get('/getProducts', (req, res) => getData('products', res));
-app.get('/getOrders', (req, res) => getData('orders', res));
-app.get('/getFastOrders', (req, res) => getData('fast-orders', res));
-app.get('/getCallMe', (req, res) => getData('call-me', res));
 
 app.post('/login', (req, res) => {
 	req.body.login === '' && req.body.password === '' ? res.send('true') : res.send('false');
 });
 
-app.post('/addItem', (req, res) => {
+app.post('/products', (req, res) => {
 	const form = new formidable.IncomingForm();
 	form.parse(req, function (err, fields, files) {
-    let ok = JSON.parse(fields.item)
+    if (err) return console.log(err)
+    let ok = JSON.parse(fields.item);
 		const oldpath = files.filetoupload.path;
     const newpath = 'img/products/' + files.filetoupload.name;
-    console.log(newpath)
 		mv(oldpath, newpath, e => {
       console.log(ok.name)
       saveData('products', ok, res);
@@ -60,7 +64,7 @@ app.post('/addItem', (req, res) => {
 	});
 });
 
-app.post('/delItem', (req, res) => {
+app.delete('/products', (req, res) => {
 	MongoClient.connect("mongodb://localhost:27017/", { useNewUrlParser: true, useUnifiedTopology: true }, async (err, client) => {
     await client.db('e-cycling').collection('products').deleteOne({name: req.body.nameToRemove});
     res.send();
@@ -68,7 +72,7 @@ app.post('/delItem', (req, res) => {
   });
 });
 
-app.post('/delData', (req, res) => {
+app.delete('/data', (req, res) => {
 	MongoClient.connect("mongodb://localhost:27017/", { useNewUrlParser: true, useUnifiedTopology: true }, async (err, client) => {
     await client.db('e-cycling').collection(req.body.nameToRemove).deleteMany();
     res.send();
