@@ -7,20 +7,22 @@ class ProductList {
     this.addEventListeners();
   }
   renderItem(el) {
-    this.div.append(
-     `<div class='section-our-products-product' id=${el.name.replace(/ /g, '-')}>
-        <img src='img/products/${el.fileName}' alt='Картинка товару' class='section-our-products-image'>
-        ${el.name}<br>${el.price}$
-        <div class='description hidden'>${el.description}</div>
-        <button class='buy btn-primary'>Замовити</button>
-        <img src='img/bookmark.png' alt='Закладка' class='section-our-products-bookmark'>
-        <span class='section-our-products-see-more'>більше про товар ▼</span>
-      </div>`);
+    this.div.innerHTML +=
+     `<div class="product" id=${el.name.replace(/ /g, '-')}>
+        <a class="image-link" herf="#"><img src="img/products/${el.fileName}" alt="Фото товару"></a>
+        <a href="#">${el.name}</a>
+        <b>${el.price}$</b> 
+        <div class='description d-none'>${el.description}</div>
+        <span class='section-our-products-see-more'>більше про товар ▼</span> 
+        <section>
+          <i class="fas fa-cart-plus buy fa-lg"></i>
+        </section>
+      </div>`;
   }
   addEventListeners() {
     this.div.on('click', event => {
       if(event.target.classList.contains('buy')) {
-        fetch('addOrd', {
+        fetch('fast-orders', {
           method:'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -33,7 +35,7 @@ class ProductList {
       }
       if (event.target.classList.contains('section-our-products-see-more')) {
         showHide($(`#${event.target.parentNode.id} .description`));
-        event.target.innerHTML = $(`#${event.target.parentNode.id} .description`).prop("classList").contains('hidden') 
+        event.target.innerHTML = $(`#${event.target.parentNode.id} .description`).classList.contains('hidden') 
           ? 'більше про товар ▼' : 'приховати деталі ▲';
       }
     });

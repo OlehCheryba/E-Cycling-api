@@ -18,7 +18,6 @@ const saveData = (collectionName, data, res) => {
     const collection = db.collection(collectionName);
     collection.insertOne(data, function(err, result){
       if (err) return console.log(err);
-      console.log(result.ops);
       client.close();
       res.send();
     });
@@ -42,9 +41,9 @@ app.get('/orders', (req, res) => getData('orders', res));
 app.get('/fast-orders', (req, res) => getData('fast-orders', res));
 app.get('/call-me', (req, res) => getData('call-me', res));
 
-app.post('/addOrder', (req, res) => saveData('orders', req.body, res));
-app.post('/callMe', (req, res) => saveData('call-me', req.body, res));
-app.post('/addFastOrder', (req, res) => saveData('fast-orders', req.body, res));
+app.post('/orders', (req, res) => saveData('orders', req.body, res));
+app.post('/fast-orders', (req, res) => saveData('fast-orders', req.body, res));
+app.post('/call-me', (req, res) => saveData('call-me', req.body, res));
 
 app.post('/login', (req, res) => {
 	req.body.login === '' && req.body.password === '' ? res.send('true') : res.send('false');
@@ -58,7 +57,6 @@ app.post('/products', (req, res) => {
 		const oldpath = files.filetoupload.path;
     const newpath = 'img/products/' + files.filetoupload.name;
 		mv(oldpath, newpath, e => {
-      console.log(ok.name)
       saveData('products', ok, res);
 		});
 	});

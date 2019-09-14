@@ -1,6 +1,6 @@
 $('#section-constructor-form').on('submit', e => {
   e.preventDefault();
-  fetch('addOrder', {
+  fetch('orders', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ $('#section-constructor-form').on('submit', e => {
 });
 $('#section-question-form').on('submit', e => {
   e.preventDefault();
-  fetch('callMe', {
+  fetch('call-me', {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'

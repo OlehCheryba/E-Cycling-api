@@ -3,6 +3,7 @@ const concat = require('gulp-concat');
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify-es').default;
+const sass = require('gulp-sass');
 
 const cssFiles = [
   './src/css/index.scss',
@@ -20,12 +21,13 @@ gulp.task('default', () => {
   gulp.watch('./src/css/**/*.scss', () => {
     return gulp.src(cssFiles)
       .pipe(concat('index.css'))
-      .pipe(autoprefixer({
-        cascade: false
-      }))
-      .pipe(cleanCSS({
-        level: 2
-      }))
+      .pipe(sass.sync().on('error', sass.logError))
+      //.pipe(autoprefixer({
+      //  cascade: false
+      //}))
+      //.pipe(cleanCSS({
+      //  level: 2
+      //}))
       .pipe(gulp.dest('./css'));
   });
 
