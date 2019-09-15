@@ -6,5 +6,4 @@ const showHide = elem => {
 const productList = new ProductList($('#product-list'));
 const adminPanel = new AdminPanel(productList, $('#owner-panel'));
 $('#owner').on('click', () => showHide($('#owner-panel')));
-
 $('header img.menu').on('click', () => showHide($('header div')))

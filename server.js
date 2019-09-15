@@ -3,7 +3,6 @@ const bodyParser  = require('body-parser');
 const path        = require('path');
 const formidable  = require('formidable');
 const mv          = require('mv');
-const fs          = require('fs');
 const MongoClient = require("mongodb").MongoClient;
 const app         = express();
 
@@ -13,22 +12,18 @@ app.use(express.static(path.resolve(__dirname, './')));
 const mongoClient = new MongoClient("mongodb://localhost:27017", {useNewUrlParser: true, useUnifiedTopology: true});
 
 const saveData = (collectionName, data, res) => {
-  mongoClient.connect(function(err, client){
-    const db = client.db("e-cycling");
-    const collection = db.collection(collectionName);
-    collection.insertOne(data, function(err, result){
-      if (err) return console.log(err);
-      client.close();
-      res.send();
-    });
+  MongoClient.connect("mongodb://localhost:27017/", { useNewUrlParser: true, useUnifiedTopology: true }, async (err, client) => {
+    await client.db("e-cycling").collection(collectionName).insertOne(data)
+    client.close();
+    res.send();
   });
 }
 
 const getData = (collectionName, res) => {
   MongoClient.connect("mongodb://localhost:27017/", { useNewUrlParser: true, useUnifiedTopology: true }, async (err, client) => {
     let docs = await client.db('e-cycling').collection(collectionName).find().toArray()
-    res.send(docs)
     client.close();
+    res.send(docs);
   });
 }
 

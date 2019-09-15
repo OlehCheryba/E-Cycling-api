@@ -1,3 +1,5 @@
+$product-border: 1px solid #d6d6d6;
+
 :root {
   scroll-behavior: smooth;
 }
@@ -5,50 +7,35 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Arial', 'sans-serif';
+}
+
+input[type="text"], input[type="password"] {
+  min-width: 160px;
+  line-height: 21px;
+  padding: 4px;
+  border: 1px solid black;
+  display: inline-block;
+  margin: 10px;
+}
+
+input[type="submit"], button {
+  line-height: 30px;
+  border: none;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 10px;
+  background: rgb(51, 153, 248);
 }
 
 a {
   text-decoration: none;
 }
-/*main, #footer {
-  max-width: 1100px;
-  margin: auto;
-}*/
 
-/*img {
-  max-width: 100%;
-  display: block;
-}
-
-hr {
-  background-color: white;
-  margin: 1px;
-}
-
-a, a:hover {
-  text-decoration: none;
-  color: white;
-}
-
-form {
-  line-height: 25px;
-}
-
-input, select, button {
-  margin: 5px 0;
-}
-
-input[type="submit"], button {
-  border-radius: 12px;
-}
-
-input[type="text"]:focus, input[type="password"]:focus {
-  background-color: #FFFACD;
-}*/
 /* ______________________________________________________________________________ лінія */
 
 header.sm {
+  color: white;
   background-color: black;
   position: sticky;
   top: 0;
@@ -96,17 +83,28 @@ header.lg {
   display: none;
 }
 
+aside {
+  display: none;
+  nav {
+    a {
+      color:#3B6D9A;
+    }
+  }
+}
+
 main {
   margin: 0 5px;
+  >section {
+    margin-bottom: 20px;
+  }
   #product-list {
     .product {
+      border-bottom: $product-border;
       padding: 9px;
-      border-right: 1px solid #eaeaea;
-      border-left: 1px solid #eaeaea;
-      border-bottom: 1px solid #eaeaea;
       line-height: 40px;
       position: relative;
       a.image-link {
+        margin: 14px auto;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -119,7 +117,7 @@ main {
         max-width: 100%
       }
       a {
-        color: steelblue;
+        color:#3B6D9A;
         font-size: 20px;
         text-decoration: none;
       }
@@ -128,222 +126,53 @@ main {
         display: block;
       }
       section {
-        border-top: 1px solid #eaeaea;
+        width: 84%;
+        margin: 5px auto auto auto;
+        border-top: $product-border;
         display: flex;
         justify-content: space-around;
         align-items: center;
         i {
           display: block;
           padding-top: 15px;
+          padding-bottom: 5px;
         }
       }
     }
   }
 }
-/*header {
-  background-color: #131313;
-  margin: 0;
-  padding: 0;
-  color: white;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  position: fixed;
-  z-index: 1;
-  box-shadow: 0 3px 4px black;
-}
-
-#header-text {
-  padding: 6px 10px 6px 6px;
-  color: white;
-}
-
-#header-name-company {
-  font-size: 27px;
-  font-weight: bold;
-  margin:0 3px;
-}
-
-header #header-menu-ikon {
-  height: 70px;
-  padding: 10px 8px 10px 0;
-}
-
-#header-div {
-  width: 100%;
-  grid-column: 1/3;
-}
-
-#header-div button {
-  margin: 5px;
-}
-
-header nav {
-  font-size: 20px;
-}
-
-header nav a {
-  padding: 5px;
-  border-top: 1px solid white;
-  color: white;
-  display: block;
-}
-
-header nav a:last-child {
-  border-bottom: 1px solid white;
-}
-
-header nav a:hover {
-  background-color: #a1a1a1;
-}*/
-
-/*main {
-  padding-top: 80px;
-  background-color: #EAECF0;
-}
-
-main > section {
-  padding: 0px 3px 15px 3px;
-}
-
-#section-specilly-photo {
-  padding: 0;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-#section-specilly-text {
-  font-size: 17px;
-  padding: 0 2px 0 2px;
-}
-
-#section-constructor-img {
-  padding: 0 0 10px 0;
-}
-
-#section-constructor-form {
-  padding: 0 2px 0 2px;
-}
-
-.order {
-  background-color: red;
-  color: white;
-  border: 2px solid black;
-  border-radius: 5px;
-  height: 40px;
-  width: 190px;
-  margin-right: 30px;
-  position: relative;
-  left: calc(100% - 200px);
-}
-
-#section-our-products {
-  display: grid;
-  grid-gap: 13px;
-  grid-template-columns: minmax(300px, 466px);
-  justify-content: center;
-  align-items: flex-start
-}
-
-#section-our-products .section-our-products-product {
-  box-sizing: border-box;
-  min-width: 278px;
-  width: 466px;
-  padding: 10px 10px 50px 10px;
-  border: 1px solid black;
-  border-radius: 15px;
-  margin: 0;
-  background-color: white;
-  text-align: center;
-  max-width: 100%;
-  position: relative;
-  color: black;
-}
-
-#section-our-products button {
-  display: block;
-  margin: auto;
-}
-
-.section-our-products-image {
-  padding: 0;
-  max-width: 100%;
-  margin: auto;
-}
-
-.section-our-products-see-more {
-  line-height: 40px;
-  color: black;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-
-.section-our-products-bookmark {
-  height:40px;
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-}
-
-#section-question {
-  padding-bottom: 30px;
-  text-align: center;
-}
-
-#section-question input {
-  padding: 2px 15px;
-}*/
 
 footer {
   background-color: #131313;
   color: #fff;
-  padding: 18px 14px 14px 14px;
+  padding: 14px 10px;
+  .column {
+    margin-top: 20px;
+    width: 280px;
+    display: inline-block;
+    vertical-align: top;
+    a  {
+      color:#fff;
+      font-weight: 500;
+    }
+    img {
+      display: inline-block;
+      height: 20px;
+      vertical-align: middle;
+      background-color: #fff;
+    }
+  }
+  #owner-panel {
+    margin-top: 20px;
+    input, button {
+      display: block;
+    }
+  }
+  #copyright {
+    font-size: small;
+    display: block;
+  }
 }
-
-footer img {
-  display: inline-block;
-  height: 20px;
-  vertical-align: middle;
-  background-color: #fff;
-}
-
-footer a  {
-  color:#fff;
-  font-weight: 500;
-}
-
-#footer button, #footer input[type="submit"] {
-  margin-bottom: 20px;
-}
-
-.footer-column {
-  margin-top: 20px;
-  width: 300px;
-  display: inline-block;
-  vertical-align: top;
-}
-
-#auto {
-  margin-top: 20px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-
-#footer input, #footer button {
-  padding: 2px 15px;
-}
-
-#copyright {
-  font-size: small;
-  display: block;
-}
-
 
 i.switch-theme {
   display: none;

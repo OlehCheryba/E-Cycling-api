@@ -1,4 +1,4 @@
-$('#section-constructor-form').on('submit', e => {
+/*$('section#constructor form').on('submit', function(e) => {
   e.preventDefault();
   fetch('orders', {
     method: 'POST',
@@ -6,22 +6,22 @@ $('#section-constructor-form').on('submit', e => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: $(`#section-constructor-form #name`).prop('value'),
-      number: $(`#section-constructor-form #number`).prop('value'),
-      typeMotor: $(`#section-constructor-form #type-motor`).prop('value'),
-      typeBattery: $(`#section-constructor-form #type-battery`).prop('value'),
-      sizeWheel: $(`input[name='size-wheel']:checked`).prop('value'),
-      widthWheel: $(`input[name='width-wheel']:checked`).prop('value'),
-      charger: $(`input[name='charger']`).prop('checked'),
-      doublePendant: $(`input[name='double-pendant']`).prop('checked'),
-      wings: $(`input[name='wings']`).prop('checked'),
-      coment: $(`textarea[name='coment']`).prop('value')
+      name: $(`#section-constructor-form #name`).value,
+      number: $(`#section-constructor-form #number`).value,
+      typeMotor: $(`#section-constructor-form #type-motor`).value,
+      typeBattery: $(`#section-constructor-form #type-battery`).value,
+      sizeWheel: $(`input[name='size-wheel']:checked`).value,
+      widthWheel: $(`input[name='width-wheel']:checked`).value,
+      charger: $(`input[name='charger']`).checked,
+      doublePendant: $(`input[name='double-pendant']`).checked,
+      wings: $(`input[name='wings']`).checked,
+      coment: $(`textarea[name='coment']`).value
     })
   })
-    .then(() => alert('Ми вам зателефонуємо'), () => alert('Виникла помилка. Спробуйте пізніше.'))
-    $('#section-constructor-form')[0].reset();
-});
-$('#section-question-form').on('submit', e => {
+    .then(() => alert('Замовлення прийняте.'), () => alert('Виникла помилка. Спробуйте пізніше.'))
+  this.reset();
+});*/
+$('section#question form').on('submit', function(e) {
   e.preventDefault();
   fetch('call-me', {
     method: 'POST',
@@ -29,9 +29,9 @@ $('#section-question-form').on('submit', e => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      number: $('#CallMeNumber').prop('value')
+      number: this.number.value
     })
   })
     .then(() => alert('Ми вам зателефонуємо'), () => alert('Виникла помилка. Спробуйте пізніше.'))
-  $('#section-question-form')[0].reset();
+  this.reset();
 });
