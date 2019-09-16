@@ -219,24 +219,18 @@ i.switch-theme {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
   #cart {
-    background: white;
-    border-radius: 7px;
-    box-shadow: 0 0 12px white;
-    padding: 13px;
+    background: red;
+    border-radius: 6px;
+    padding: 10px;
     width: 80%;
     position: absolute;
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    .cart-header {
-      line-height: 30px;
-      vertical-align: center;
-    }
     .cart-body {
-      margin: 15px 0 10px 0;
-      table {
+      table{
         border-collapse: collapse;
       }
       td {
@@ -250,10 +244,6 @@ i.switch-theme {
       top: 10px;
       right: 10px;
     }
-  }
-  .cart-footer {
-    display: flex;
-    justify-content: space-between;
   }
 }
 

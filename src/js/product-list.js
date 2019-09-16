@@ -21,8 +21,19 @@ class ProductList {
   addEventListeners() {
     this.div.on('click', event => {
       if(event.target.classList.contains('buy')) {
+        console.log(this)
         this.cart.addItem(event.target.parentNode.parentNode.id);
-        alert('Товар додано в корзину');
+        this.cart.renderCart();
+        /*fetch('fast-orders', {
+          method:'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            productName: event.target.parentNode.parentNode.id,
+            number: prompt('Введіть ваш номер телефону і ми вам зателефонуємо:')
+          })
+        });*/
       }
     });
   }
