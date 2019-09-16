@@ -11,6 +11,7 @@ const cssFiles = [
 ];
 const jsFiles = [
   './src/js/themes.js',
+  './src/js/cart.js',
   './src/js/product-list.js',
   './src/js/admin-panel.js',
   './src/js/index.js',

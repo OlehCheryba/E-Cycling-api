@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/mini-bootstrap.css">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
   <link rel="stylesheet" href="css/index.css">
   <script src="https://kit.fontawesome.com/da3f0a4e93.js"></script>
   <link rel="icon" href="img/fav-ikon.jpg" type="image/png">
@@ -14,7 +13,7 @@
   <header class="sm fluid">
     <img src="img/menu.png" alt="Кнопка меню" class="menu">
     <input type="text" placeholder="Пошук">
-    <i class="fas fa-shopping-cart fa-2x cart"></i>
+    <i class="fas fa-shopping-cart fa-2x open-cart"></i>
     <div class="d-none">
       <a href="/">
         <b>E-Cycling</b>
@@ -54,7 +53,7 @@
       <a href="#">
         <button>Вхід</button>
       </a>
-      <i class="fas fa-shopping-cart fa-2x cart"></i>
+      <i class="fas fa-shopping-cart fa-2x open-cart"></i>
     </section>
   </header>
   <section class="container">
@@ -67,14 +66,14 @@
       </nav>
     </aside>
     <main>
-      <section id="our-products" class="text-center">
-        <h2>Або виберіть готовий електровелосипед</h2>
+      <section id="our-products">
+        <h2 class="text-center">Готові електровелосипеди</h2>
         <section id="product-list">
         </section>
       </section>
-      <section id="question" class="text-center">
-        <h2>Є запитання?</h2>
-        <form>
+      <section id="question">
+        <h2 class="text-center">Є запитання?</h2>
+        <form class="text-center">
           <input type="text" name="number" placeholder="Ваш номер телефону" required>
           <input type="submit" value="Передзвоніть мені" id="sendCallMeNumber">
         </form>
@@ -124,6 +123,19 @@
       <div id="owner-panel" class="hidden"></div>
     </div>
   </footer>
+  <section id="cart-container" class="d-none">
+    <div id="cart">
+      <div class="cart-header">
+        <h4>Корзина</h4>
+      </div>
+      <div class="cart-body">
+      </div>
+      <div class="cart-footer">
+        <button id="order">Оформити замовленя</button>
+      </div>
+      <i class="fas fa-times fa-2x"></i>
+    </div>
+  </section>
   <script src="js/mini-jquery.js"></script>
   <script src="js/index.js"></script>
 </body>

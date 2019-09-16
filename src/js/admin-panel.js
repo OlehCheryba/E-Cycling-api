@@ -1,5 +1,5 @@
 class AdminPanel {
-  constructor(productList, div) {
+  constructor(div, productList) {
     this.div = div;
     this.productList = productList;
     this.addAutorize();

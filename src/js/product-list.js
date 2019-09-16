@@ -1,9 +1,10 @@
 class ProductList {
-  constructor(div) {
+  constructor(div, cart) {
     fetch('products')
       .then(response => response.json())
       .then(response => response.forEach(el => this.renderItem(el)));
     this.div = div;
+    this.cart = cart;
     this.addEventListeners();
   }
   renderItem(el) {
@@ -20,7 +21,10 @@ class ProductList {
   addEventListeners() {
     this.div.on('click', event => {
       if(event.target.classList.contains('buy')) {
-        fetch('fast-orders', {
+        console.log(this)
+        this.cart.addItem(event.target.parentNode.parentNode.id);
+        this.cart.renderCart();
+        /*fetch('fast-orders', {
           method:'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -29,7 +33,7 @@ class ProductList {
             productName: event.target.parentNode.parentNode.id,
             number: prompt('Введіть ваш номер телефону і ми вам зателефонуємо:')
           })
-        });
+        });*/
       }
     });
   }

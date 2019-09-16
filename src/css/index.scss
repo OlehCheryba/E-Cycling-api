@@ -10,13 +10,42 @@ body {
   font-family: 'Arial', 'sans-serif';
 }
 
+img {
+  display: block
+}
+
+.container {
+  max-width: 1240px;
+  margin: auto;
+}
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.c-white {
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
 input[type="text"], input[type="password"] {
   min-width: 160px;
   line-height: 21px;
   padding: 4px;
   border: 1px solid black;
   display: inline-block;
-  margin: 10px;
+  margin: 8px;
 }
 
 input[type="submit"], button {
@@ -24,7 +53,7 @@ input[type="submit"], button {
   border: none;
   border-radius: 4px;
   display: inline-block;
-  margin: 10px;
+  margin: 8px;
   background: rgb(51, 153, 248);
 }
 
@@ -33,6 +62,12 @@ a {
 }
 
 /* ______________________________________________________________________________ лінія */
+
+header {
+  button {
+    min-width: 60px;
+  }
+}
 
 header.sm {
   color: white;
@@ -56,7 +91,7 @@ header.sm {
     border: none;
     border-radius: 5px;
   }
-  i.cart {
+  i.open-cart {
     margin: 0;
     height: 40px;
     padding: 6px;
@@ -102,7 +137,6 @@ main {
       border-bottom: $product-border;
       padding: 9px;
       line-height: 40px;
-      position: relative;
       a.image-link {
         margin: 14px auto;
         display: flex;
@@ -176,6 +210,41 @@ footer {
 
 i.switch-theme {
   display: none;
+}
+
+#cart-container {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  #cart {
+    background: red;
+    border-radius: 6px;
+    padding: 10px;
+    width: 80%;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    .cart-body {
+      table{
+        border-collapse: collapse;
+      }
+      td {
+        padding: 4px;
+        font-size: 18px;
+        border: 1px solid black;
+      }
+    }
+    i {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
 }
 
 /* Стилі для "Наш офіс" */
