@@ -1,6 +1,6 @@
 /*$('section#constructor form').on('submit', function(e) => {
   e.preventDefault();
-  fetch('orders', {
+  fetch('constructor-orders', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -32,6 +32,6 @@ $('section#question form').on('submit', function(e) {
       number: this.number.value
     })
   })
-    .then(() => alert('Ми вам зателефонуємо'), () => alert('Виникла помилка. Спробуйте пізніше.'))
+    .then(() => alert('Ми вам зателефонуємо.'), () => alert('Виникла помилка.'))
   this.reset();
 });

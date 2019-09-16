@@ -33,11 +33,11 @@ app.get('/vacancies', (req, res) => res.sendFile(path.join(__dirname, 'vacancies
 app.get('/clients', (req, res) => res.sendFile(path.join(__dirname, 'clients.html')));
 app.get('/products', (req, res) => getData('products', res));
 app.get('/orders', (req, res) => getData('orders', res));
-app.get('/fast-orders', (req, res) => getData('fast-orders', res));
+app.get('/constructor-orders', (req, res) => getData('constructor-orders', res));
 app.get('/call-me', (req, res) => getData('call-me', res));
 
 app.post('/orders', (req, res) => saveData('orders', req.body, res));
-app.post('/fast-orders', (req, res) => saveData('fast-orders', req.body, res));
+app.post('/constructor-orders', (req, res) => saveData('constructor-orders', req.body, res));
 app.post('/call-me', (req, res) => saveData('call-me', req.body, res));
 
 app.post('/login', (req, res) => {
