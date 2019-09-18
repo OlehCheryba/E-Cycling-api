@@ -46,15 +46,15 @@ class AdminPanel {
         Замовлення:
         <table id='orders'></table>
         <button id='del-orders'>Очистити список</button>
-        Замовлення по імені товару:
-        <table id='fast-orders'></table>
-        <button id='del-fast-orders'>Очистити список</button>
+        Замовлення з конструкторa:
+        <table id='constructor-orders'></table>
+        <button id='del-constructor-orders'>Очистити список</button>
         Передзвоніть мені:
         <table id='call-me'></table>
         <button id='del-call-me'>Очистити список</button>
       <div>`;
     this.prepareTable('orders', $('#orders'));
-    this.prepareTable('fast-orders', $('#fast-orders'));
+    this.prepareTable('constructor-orders', $('#constructor-orders'));
     this.prepareTable('call-me', $('#call-me'));
     this.addEventListeners();
   }
@@ -72,7 +72,7 @@ class AdminPanel {
   }
   addEventListeners() {
     $('#del-orders').on('click', () => this.delData('orders'));
-    $('#del-fast-orders').on('click', () => this.delData('fast-orders'));
+    $('#del-constructor-orders').on('click', () => this.delData('constructor-orders'));
     $('#del-call-me').on('click', () => this.delData('call-me'));
     $('#ownerFormAdd').on('submit', e => {
       e.preventDefault();
@@ -106,12 +106,8 @@ class AdminPanel {
     });
   }
   delData(nameToRemove) {
-    fetch('data', {
-      method:'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({nameToRemove})
+    fetch(nameToRemove, {
+      method: 'DELETE'
     });
     $(`#${nameToRemove}`).innerHTML = '';
   }

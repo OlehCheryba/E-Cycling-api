@@ -10,51 +10,27 @@
   <title>E-Cycling Lviv</title>
 </head>
 <body>
-  <header class="sm fluid">
+  <header class="fluid">
     <img src="img/menu.png" alt="Кнопка меню" class="menu">
-    <input type="text" placeholder="Пошук">
-    <i class="fas fa-shopping-cart fa-2x open-cart"></i>
-    <div class="d-none">
-      <a href="/">
-        <b>E-Cycling</b>
-        <br>
-        Продаж електровелоспедів
-      </a>
+    <i class="fas fa-lightbulb fa-2x switch-theme bulb"></i>
+    <a href="/" class="name">
+      <b>E-Cycling</b>
       <br>
-      <a href="#">
-        <button>Реєстрація</button>
-      </a>
-      <a href="#">
-        <button>Вхід</button>
-      </a>
-      <h4>Фільтри</h4>
-      <nav>
-        <a href="our-office">Наш офіс</a>
-        <a href="vacancies">Вакансії</a>
-        <a href="clients">Клієнти</a>
-      </nav>
-      <button class="switch-theme">Темна тема</button>
-    </div>
-  </header>
-  <header class="lg fluid">
-    <span>
-      <i class="fas fa-lightbulb fa-2x switch-theme bulb"></i>
-      <a href="/" class="text">
-        <b>E-Cycling</b>
-        <br>
-        Продаж електровелоспедів
-      </a>
-    </span>
+      Продаж електровелоспедів
+    </a>
     <input type="text" placeholder="Пошук">
-    <section>
-      <a href="#">
-        <button>Реєстрація</button>
-      </a>
-      <a href="#">
-        <button>Вхід</button>
-      </a>
-      <i class="fas fa-shopping-cart fa-2x open-cart"></i>
-    </section>
+    <nav>
+      <a href="our-office">Наш офіс</a>
+      <a href="vacancies">Вакансії</a>
+      <a href="clients">Клієнти</a>
+    </nav>
+    <a href="#">
+      <button>Реєстрація</button>
+    </a>
+    <a href="#">
+      <button>Вхід</button>
+    </a>
+    <i class="fas fa-shopping-cart fa-2x open-cart"><span class="cart-counter"></span></i>
   </header>
   <section class="container">
     <aside>
@@ -126,12 +102,13 @@
   <section id="cart-container" class="d-none">
     <div id="cart">
       <div class="cart-header">
-        <h4>Корзина</h4>
+        <b>Корзина</b>
       </div>
       <div class="cart-body">
       </div>
       <div class="cart-footer">
-        <button id="order">Оформити замовленя</button>
+        <button class="clear">Очистити корзину</button>
+        <button class="order">Замовити</button>
       </div>
       <i class="fas fa-times fa-2x"></i>
     </div>

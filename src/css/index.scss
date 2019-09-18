@@ -10,7 +10,7 @@ body {
   font-family: 'Arial', 'sans-serif';
 }
 
-img {
+img { 
   display: block
 }
 
@@ -69,53 +69,53 @@ header {
   }
 }
 
-header.sm {
+header {
   color: white;
   background-color: black;
   position: sticky;
   top: 0;
   z-index: 1;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
-  justify-content: space-between;
   img.menu {
     height: 32px;
     padding: 10px;
   }
+  i.switch-theme {
+    display: none;
+  }
+  a {
+    display: none;
+  } 
   input {
     font-weight: 600;
     padding: 8px 15px;
     margin: 0;
-    height: 22px;
+    height: 26px;
     border: none;
     border-radius: 5px;
   }
   i.open-cart {
-    margin: 0;
-    height: 40px;
-    padding: 6px;
+    padding: 8px 18px 8px 4px;
     display: flex;
     align-items: center;
     color: white;
+    position: relative;
   }
-  div {
-    text-align: center;
-    font-size: large;
-    grid-column: 1/4;
-    a {
-      color: white;
-      padding: 14px;
-    }
-    nav a {
-      color: white;
-      padding: 7px;
-    }
+  .cart-counter {
+    font-size: 15px;
+    font-weight: 900;
+    color: black;
+    background: yellow;
+    border: 1px solid black;
+    padding: 1px 5px;
+    border-radius: 50px;
+    position: absolute;
+    margin: 0;
+    top: 0;
+    right: 2px;
   }
-}
-
-header.lg {
-  display: none;
 }
 
 aside {
@@ -230,7 +230,8 @@ i.switch-theme {
     left: 50%;
     transform: translateX(-50%);
     .cart-body {
-      table{
+      table {
+        min-height: 10px;
         border-collapse: collapse;
       }
       td {
@@ -238,6 +239,10 @@ i.switch-theme {
         font-size: 18px;
         border: 1px solid black;
       }
+    }
+    .cart-footer {
+      display: flex;
+      justify-content: space-between;
     }
     i {
       position: absolute;
