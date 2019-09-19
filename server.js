@@ -31,10 +31,12 @@ const delData = (collectionName, res) => {
   });
 }
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
-app.get('/our-office', (req, res) => res.sendFile(path.join(__dirname, 'our-office.html')));
-app.get('/vacancies', (req, res) => res.sendFile(path.join(__dirname, 'vacancies.html')));
-app.get('/clients', (req, res) => res.sendFile(path.join(__dirname, 'clients.html')));
+app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
+app.get('/login', (req, res) => res.sendFile(__dirname + '/login.html'));
+app.get('/registration', (req, res) => res.sendFile(__dirname + '/registration.html'));
+app.get('/our-office', (req, res) => res.sendFile(__dirname + '/our-office.html'));
+app.get('/vacancies', (req, res) => res.sendFile(__dirname + '/vacancies.html'));
+app.get('/clients', (req, res) => res.sendFile(__dirname + '/clients.html'));
 app.get('/products', (req, res) => getData('products', res));
 app.get('/orders', (req, res) => getData('orders', res));
 app.get('/constructor-orders', (req, res) => getData('constructor-orders', res));

@@ -41,6 +41,15 @@
       border: none;
       border-radius: 5px;
     }
+    a.login {
+      display: flex;
+      align-items: center;
+      padding: 0 7px;
+      color: skyblue;
+      i {
+        padding-right: 4px;
+      }
+    }
   }
 
   body>section {
