@@ -1,4 +1,4 @@
-class AdminPanel {
+export default class {
   constructor(div, productList) {
     this.div = div;
     this.productList = productList;

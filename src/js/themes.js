@@ -1,4 +1,4 @@
-function addThemeSwitcher(button) {
+export default button => {
   let ok = localStorage.getItem('ok');
   const bodyClassList = $('body').classList;
   if (ok === 'yes') {

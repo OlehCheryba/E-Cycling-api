@@ -4,6 +4,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify-es').default;
 const sass = require('gulp-sass');
+const browserify = require('gulp-browserify');
 
 const cssFiles = [
   './src/css/index.scss',
@@ -33,8 +34,7 @@ gulp.task('default', () => {
   });
 
   gulp.watch('./src/js/**/*.js', () => {
-    return gulp.src(jsFiles)
-      .pipe(concat('index.js'))
+   return gulp.src(jsFiles)
       //.pipe(uglify({
       //  toplevel: true
       //}))

@@ -1,4 +1,4 @@
-class ProductList {
+export default class {
   constructor(div, cart) {
     fetch('products')
       .then(response => response.json())
