@@ -1,6 +1,6 @@
 /*$('section#constructor form').on('submit', function(e) => {
   e.preventDefault();
-  fetch('orders', {
+  fetch('selected-orders', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

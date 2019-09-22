@@ -2,14 +2,17 @@ export default class {
   constructor(div, cart) {
     fetch('products')
       .then(response => response.json())
-      .then(response => response.forEach(el => this.renderItem(el)));
+      .then(response => {
+        this.productsArr = response;
+        response.forEach(el => this.renderItem(el));
+      });
     this.div = div;
     this.cart = cart;
     this.addEventListeners();
   }
   renderItem(el) {
     this.div.innerHTML +=
-     `<div class="product" id=${el.name.replace(/ /g, '-')}>
+     `<div class="product" id=${el._id}>
         <a class="image-link" href="#"><img src="img/products/${el.fileName}" alt="Фото товару"></a>
         <a href="#">${el.name}</a>
         <b>${el.price}$</b> 

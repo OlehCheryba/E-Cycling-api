@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "formidable": "^1.2.1",
     "mongodb": "^3.3.0",
+    "mongoose": "^5.7.1",
     "mv": "^2.1.1"
   },
   "devDependencies": {

@@ -47,14 +47,14 @@ export default class {
         <table id='orders'></table>
         <button id='del-orders'>Очистити список</button>
         Замовлення з конструкторa:
-        <table id='constructor-orders'></table>
-        <button id='del-constructor-orders'>Очистити список</button>
+        <table id='selected-orders'></table>
+        <button id='del-selected-orders'>Очистити список</button>
         Передзвоніть мені:
         <table id='call-me'></table>
         <button id='del-call-me'>Очистити список</button>
       <div>`;
     this.prepareTable('orders', $('#orders'));
-    this.prepareTable('constructor-orders', $('#constructor-orders'));
+    this.prepareTable('selected-orders', $('#selected-orders'));
     this.prepareTable('call-me', $('#call-me'));
     this.addEventListeners();
   }
@@ -72,7 +72,7 @@ export default class {
   }
   addEventListeners() {
     $('#del-orders').on('click', () => this.delData('orders'));
-    $('#del-constructor-orders').on('click', () => this.delData('constructor-orders'));
+    $('#del-selected-orders').on('click', () => this.delData('selected-orders'));
     $('#del-call-me').on('click', () => this.delData('call-me'));
     $('#ownerFormAdd').on('submit', e => {
       e.preventDefault();
@@ -93,15 +93,11 @@ export default class {
     });
     $('#ownerFormRemove').on('submit', e => {
       e.preventDefault();
-      const nameToRemove = $('#removeBikeName').value
-      fetch('products', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({nameToRemove})
+      const id = this.productList.productsArr.find(el => el.name === $('#removeBikeName').value)._id;
+      fetch('products/' + id, {
+        method: 'DELETE'
       })
-        .then(() => $(`#${nameToRemove.replace(/ /g, '-')}`).remove());
+        .then(() => document.getElementById(id).remove());
       e.target.reset();
     });
   }

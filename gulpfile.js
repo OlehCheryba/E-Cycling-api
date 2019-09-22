@@ -4,7 +4,6 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify-es').default;
 const sass = require('gulp-sass');
-const browserify = require('gulp-browserify');
 
 const cssFiles = [
   './src/css/index.scss',
