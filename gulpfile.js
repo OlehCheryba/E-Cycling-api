@@ -30,7 +30,7 @@ gulp.task('default', () => {
       //.pipe(cleanCSS({
       //  level: 2
       //}))
-      .pipe(gulp.dest('./css'));
+      .pipe(gulp.dest('./public/css'));
   });
 
   gulp.watch('./src/js/**/*.js', () => {
@@ -38,6 +38,6 @@ gulp.task('default', () => {
       //.pipe(uglify({
       //  toplevel: true
       //}))
-      .pipe(gulp.dest('./js'));
+      .pipe(gulp.dest('./public/js'));
   });
 });

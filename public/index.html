@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+  <link rel="stylesheet" href="css/index.css">
+  <script src="https://kit.fontawesome.com/da3f0a4e93.js"></script>
+  <link rel="icon" href="img/fav-ikon.jpg" type="image/jpg">
+  <title>E-Cycling Lviv</title>
+</head>
+<body>
+  <header class="fluid">
+    <img src="img/menu.png" alt="Кнопка меню" class="menu">
+    <i class="fas fa-lightbulb fa-2x switch-theme bulb"></i>
+    <a href="/" class="name">
+      <b>E-Cycling</b>
+      <br>
+      Продаж електровелоспедів
+    </a>
+    <input type="text" placeholder="Пошук">
+    <nav>
+      <a href="our-office">Наш офіс</a>
+      <a href="vacancies">Вакансії</a>
+      <a href="clients">Клієнти</a>
+    </nav>
+    <a href="login" class="login">
+      <i class="fas fa-user fa-2x"></i>
+      Вхід в кабінет
+    </a>
+    <i class="fas fa-shopping-cart fa-2x open-cart"><span class="cart-counter"></span></i>
+  </header>
+  <section class="container">
+    <aside>
+      <h4>Фільтри</h4>
+      <nav>
+        <a href="our-office">Наш офіс</a>
+        <a href="vacancies">Вакансії</a>
+        <a href="clients">Клієнти</a>
+      </nav>
+    </aside>
+    <main>
+      <section id="our-products">
+        <h2 class="text-center">Готові електровелосипеди</h2>
+        <section id="product-list">
+        </section>
+      </section>
+      <section id="question">
+        <h2 class="text-center">Є запитання?</h2>
+        <form class="text-center">
+          <input type="text" name="number" placeholder="Ваш номер телефону" required>
+          <input type="submit" value="Передзвоніть мені" id="sendCallMeNumber">
+        </form>
+      </section>
+    </main>
+  </section>
+  <footer>
+    <div class="container">
+      <div class="column">
+        <h2>Ми у соцмережах</h2>
+        <a href="https://www.instagram.com/" target="_blank" lang="en">
+          <img src="img/ikon-instagram.png" alt="Інстаграм">
+          <span> Instagram</span>
+        </a>
+        <br>
+        <a href="https://www.facebook.com/"  target="_blank" lang="en">
+          <img src="img/ikon-facebook.png" alt="Фейсбук">
+          <span> Facebook</span>
+        </a>
+        <br>
+        <a href="https://www.linkedin.com/" target="_blank" lang="en">
+          <img src="img/ikon-linkedin.png" alt="ЛінкедІн">
+          <span> LinkedIn</span>
+        </a>
+        <br>
+        <a href="https://twitter.com/"  target="_blank" lang="en">
+          <img src="img/ikon-twitter.png" alt="Твіттер">
+          <span> Twitter</span>
+        </a>
+      </div>
+      <div class="column">
+        <h2>Кoнтакти</h2>
+        <p>
+          м. Львів, Україна 98371
+        </p>
+        <p>
+          +380-98-752-69-440
+        </p>
+        <p>
+          Безкоштовний номер:
+          <br>
+          0-800-690-0900
+        </p>
+      </div>
+      <span lang="en" id="copyright">© Copyright 2019 Oleg Cheryba</span>
+      <span id="owner">Я власник</span>
+      <div id="owner-panel" class="hidden"></div>
+    </div>
+  </footer>
+  <section id="cart-container" class="d-none">
+    <div class="cart">
+      <div class="cart-header">
+        <b>Корзина</b>
+      </div>
+      <div class="cart-body">
+      </div>
+      <div class="cart-footer">
+        <button class="clear">Очистити корзину</button>
+        <button class="order">Замовити</button>
+      </div>
+      <i class="fas fa-times fa-2x close"></i>
+    </div>
+  </section>
+  <script src="js/mini-jquery.js"></script>
+  <script src="js/index.js" type="module"></script>
+</body>
+</html>

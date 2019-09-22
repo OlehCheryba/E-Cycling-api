@@ -1,13 +1,15 @@
 const express     = require('express');
+const app         = express();
 const bodyParser  = require('body-parser');
 const path        = require('path');
 const formidable  = require('formidable');
 const mv          = require('mv');
-const MongoClient = require("mongodb").MongoClient;
-const app         = express();
+const MongoClient = require('mongodb').MongoClient;
+const homeRouter  = require('./routes/home-router.js');
 
 app.use(bodyParser.json());
-app.use(express.static(path.resolve(__dirname, './')));
+app.use(express.static('public'));
+app.use('/', homeRouter);
 
 const saveData = (collectionName, data, res) => {
   MongoClient.connect("mongodb://localhost:27017/", { useNewUrlParser: true, useUnifiedTopology: true }, async (err, client) => {
@@ -31,12 +33,7 @@ const delData = (collectionName, res) => {
   });
 }
 
-app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
-app.get('/login', (req, res) => res.sendFile(__dirname + '/login.html'));
-app.get('/registration', (req, res) => res.sendFile(__dirname + '/registration.html'));
-app.get('/our-office', (req, res) => res.sendFile(__dirname + '/our-office.html'));
-app.get('/vacancies', (req, res) => res.sendFile(__dirname + '/vacancies.html'));
-app.get('/clients', (req, res) => res.sendFile(__dirname + '/clients.html'));
+
 app.get('/products', (req, res) => getData('products', res));
 app.get('/orders', (req, res) => getData('orders', res));
 app.get('/constructor-orders', (req, res) => getData('constructor-orders', res));
