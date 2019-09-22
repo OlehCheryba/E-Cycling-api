@@ -32,9 +32,9 @@ export default class {
      `<div class="column">
         <form id='ownerFormAdd'>
           <input type='file' name='filetoupload' id='filetoupload'>
-          <input id='addBikeName' type='text' placeholder='Назва товару' required>
-          <input id='addBikePrice' type='text' placeholder='Ціна товару' required>
-          <input id='addBikeDescription' type='text' placeholder='Oпис товару' required>
+          <input id='addBikeName' type='text' placeholder='Назва товару'>
+          <input id='addBikePrice' type='text' placeholder='Ціна товару'>
+          <input id='addBikeDescription' type='text' placeholder='Oпис товару'>
           <input type='submit' value='Додати товар'>
         </form>
         <form id='ownerFormRemove'>
@@ -82,8 +82,11 @@ export default class {
         description: $('#addBikeDescription').value,
         fileName: $('#filetoupload').value ? $('#filetoupload').value.match(/[^\\]+$/)[0] : 'bike-offroad.jpg'
       };
-      const form = new FormData(e.target);
-      form.append('item', JSON.stringify(item));
+      const form = new FormData(e.target)
+      form.append('name', item.name)
+      form.append('price', item.price)
+      form.append('description', item.description)
+      form.append('fileName', item.fileName);
       fetch('products', {
         method: 'POST',
         body: form
