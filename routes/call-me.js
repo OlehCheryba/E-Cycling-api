@@ -1,6 +1,5 @@
-const express          = require('express');
+const callMeRouter     = require('express').Router();
 const callMeController = require('../controllers/call-me');
-const callMeRouter     = express.Router();
 
 callMeRouter.get('/', callMeController.getCallMe);
 callMeRouter.post('/', callMeController.addCallMe);

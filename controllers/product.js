@@ -10,7 +10,10 @@ const upload = multer({
     filename: (req, file, cb) => {
       cb(null, file.originalname);
     }
-  })
+  }),
+  limits: {
+    fileSize: 2048 * 2048 * 5
+  }
 });
 
 module.exports = {

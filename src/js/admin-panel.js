@@ -63,7 +63,6 @@ export default class {
     const dataArr = await res.json();
     let result = '';
     dataArr.forEach(obj => {
-      delete obj._id;
       result += '<tr>';
       for (let el in obj) result += `<td>${obj[el]}</td>`;
       result += '</tr>';

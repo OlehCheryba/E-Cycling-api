@@ -1,7 +1,7 @@
-const express    = require('express');
-const app        = express();
-const bodyParser = require('body-parser');
-const mongoose   = require('mongoose');
+const express             = require('express');
+const app                 = express();
+const bodyParser          = require('body-parser');
+const mongoose            = require('mongoose');
 
 const homeRouter          = require('./routes/home');
 const productRouter       = require('./routes/product');
