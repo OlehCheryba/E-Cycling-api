@@ -8,6 +8,7 @@ const productRouter       = require('./routes/product');
 const orderRouter         = require('./routes/order');
 const selectedOrderRouter = require('./routes/selected-order');
 const callMeRouter        = require('./routes/call-me');
+const userRouter          = require('./routes/user');
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -16,6 +17,7 @@ app.use('/products', productRouter);
 app.use('/orders', orderRouter);
 app.use('/selected-orders', selectedOrderRouter);
 app.use('/call-me', callMeRouter);
+app.use('/user', userRouter);
 
 app.post('/login', (req, res) => {
 	req.body.login === '' && req.body.password === '' ? res.send('true') : res.send('false');
