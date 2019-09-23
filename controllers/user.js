@@ -5,9 +5,9 @@ const User     = require('../models/user');
 
 module.exports = {
   signup: (req, res) => {
-    User.find({ email: req.body.email }).exec()
+    User.findOne({ email: req.body.email }).exec()
       .then(user => {
-        if (user.length >= 1) return res.json({ message: "Mail has already used" });
+        if (user !== null) return res.json({ message: "Mail has already used" });
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           if (err) return res.json({ error: err });
           const user = new User({
@@ -15,16 +15,22 @@ module.exports = {
             email: req.body.email,
             password: hash
           });
-          user.save().then(result => {
+          user.save()
+            .then(result => {
               res.json({ message: "User created" });
             });
         });
       });
   },
   login: (req, res) => {
-    console.log(req.body);
-    res.json({
-      massage: 'Login successful'
-    });
+    User.findOne({ email: req.body.email }).exec()
+      .then(user => {
+        if (user === null) return res.json({ message: "Login failed" });
+        bcrypt.compare(req.body.password, user.password, (err, result) => {
+          if (err) return res.json({ message: "Login failed" });
+          if (!result) return res.json({ message: "Login failed" });
+          return res.json({ message: "Login successful" });
+        });
+      });
   }
 }
