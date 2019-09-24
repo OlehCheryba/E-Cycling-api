@@ -1,7 +1,6 @@
-export default class {
-  constructor(div, productList) {
+class {
+  constructor(div) {
     this.div = div;
-    this.productList = productList;
     this.addAutorize();
   }
   addAutorize() {
@@ -92,8 +91,7 @@ export default class {
           "Authorization": localStorage.getItem('token')
         },
         body: form
-      })
-        .then(() => this.productList.renderItem(item));
+      });
       e.target.reset();
     });
     $('#ownerFormRemove').on('submit', e => {
@@ -104,8 +102,7 @@ export default class {
         headers: {
           "Authorization": localStorage.getItem('token')
         }
-      })
-        .then(() => document.getElementById(id).remove());
+      });
       e.target.reset();
     });
   }

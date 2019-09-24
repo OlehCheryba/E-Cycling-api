@@ -34,7 +34,7 @@ module.exports = {
     product.save()
       .then(product => {
         console.log(product);
-        res.send();
+        res.send('Succesfully');
       })
       .catch(e => console.log(e));
   },

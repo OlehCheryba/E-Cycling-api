@@ -6,14 +6,16 @@ const uglify = require('gulp-uglify-es').default;
 const sass = require('gulp-sass');
 
 const cssFiles = [
-  './src/css/index.scss',
-  './src/css/media.scss'
+  './src/css/main.scss',
+  './src/css/main-media.scss',
+  './src/css/admin.scss',
+  './src/css/admin-media.scss'
 ];
 const jsFiles = [
   './src/js/themes.js',
   './src/js/cart.js',
   './src/js/product-list.js',
-  './src/js/admin-panel.js',
+  './src/js/admin.js',
   './src/js/index.js',
   './src/js/forms.js'
 ];
@@ -21,7 +23,7 @@ const jsFiles = [
 gulp.task('default', () => {
   gulp.watch('./src/css/**/*.scss', () => {
     return gulp.src(cssFiles)
-      .pipe(concat('index.css'))
+      //.pipe(concat('index.css'))
       .pipe(sass.sync().on('error', sass.logError))
       //.pipe(autoprefixer({
       //  cascade: false

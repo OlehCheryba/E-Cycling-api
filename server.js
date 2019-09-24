@@ -2,8 +2,8 @@ const express             = require('express');
 const app                 = express();
 const bodyParser          = require('body-parser');
 const mongoose            = require('mongoose');
-
 require('dotenv').config({ path: "/"});
+
 const homeRouter          = require('./server/routes/home');
 const productRouter       = require('./server/routes/product');
 const orderRouter         = require('./server/routes/order');

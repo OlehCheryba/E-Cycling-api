@@ -153,10 +153,6 @@ footer {
       height: 20px;
       vertical-align: middle;
       background-color: #fff; }
-  footer #owner-panel {
-    margin-top: 20px; }
-    footer #owner-panel input, footer #owner-panel button {
-      display: block; }
   footer #copyright {
     font-size: small;
     display: block; }
@@ -207,81 +203,3 @@ i.switch-theme {
 /* Стилі для "Клієнти" */
 #section-clients {
   display: grid; }
-
-@media (min-width: 390px) {
-  main #product-list {
-    display: grid;
-    grid-template-columns: repeat(2, 50%); }
-    main #product-list .product {
-      border-right: 1px solid #d6d6d6; } }
-
-@media (min-width: 700px) {
-  main #product-list {
-    grid-template-columns: repeat(3, 33.33%); } }
-
-@media (min-width: 720px) {
-  header {
-    width: 100%;
-    background-color: black;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    grid-template-columns: auto auto 1fr auto auto auto auto; }
-    header > a {
-      color: white;
-      display: block; }
-    header a.name {
-      margin-right: 12px;
-      font-size: 17px; }
-    header input {
-      font-weight: 600;
-      padding: 8px 3%;
-      margin: 0;
-      border: none;
-      border-radius: 5px; }
-    header a.login {
-      display: flex;
-      align-items: center;
-      padding: 0 7px;
-      color: skyblue; }
-      header a.login i {
-        padding-right: 4px; }
-  body > .container {
-    display: grid;
-    grid-template-columns: minmax(200px, 20%) auto; }
-  aside {
-    display: block; }
-    aside a {
-      color: black; } }
-
-@media (min-width: 1030px) {
-  header {
-    grid-template-columns: auto auto 1fr auto auto auto auto; }
-    header img.menu {
-      display: none; }
-    header i.switch-theme {
-      color: yellow;
-      padding: 10px;
-      float: left;
-      display: block; }
-    header nav {
-      margin: 0 5px;
-      display: grid;
-      grid-auto-flow: column;
-      grid-gap: 14px; }
-      header nav a {
-        display: block;
-        color: white; }
-  main #product-list {
-    grid-template-columns: repeat(4, 25%); } }
-
-/* Стилі для "Наш офіс" */
-/* Стилі для "Вакансії" */
-/* Стилі для "Клієнти" */
-@media (min-width: 500px) {
-  #section-clients {
-    grid-template-rows: auto auto;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 13px; }
-  #section-clients h2 {
-    grid-column: 1/3; } }

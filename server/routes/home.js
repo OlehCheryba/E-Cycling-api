@@ -2,6 +2,7 @@ const homeRouter     = require('express').Router();
 const homeController = require('../controllers/home');
 
 homeRouter.get('/', homeController.index);
+homeRouter.get('/admin', homeController.admin);
 homeRouter.get('/login', homeController.login);
 homeRouter.get('/registration', homeController.registration);
 homeRouter.get('/our-office', homeController.ourOffice);
