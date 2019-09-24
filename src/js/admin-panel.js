@@ -13,18 +13,18 @@ export default class {
       </form>`;
     $('#auto').on('submit', e => {
       e.preventDefault();
-      fetch('login', {
+      fetch('user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          login: $('#inpLogin').value,
+          email: $('#inpLogin').value,
           password: $('#inpPassword').value
         })
       })
-        .then(res => res.text())
-        .then(str => str === 'true' ? this.renderAdminPanel() : alert('Не вірний логін або пароль'));
+        .then(res => res.json())
+        .then(res => res.message === "Login successful" ? this.renderAdminPanel() : alert('Не вірний логін або пароль'));
     });
   }
   renderAdminPanel() {
@@ -88,6 +88,9 @@ export default class {
       form.append('fileName', item.fileName);
       fetch('products', {
         method: 'POST',
+        headers: {
+          "Authorization": localStorage.getItem('token')
+        },
         body: form
       })
         .then(() => this.productList.renderItem(item));
@@ -97,7 +100,10 @@ export default class {
       e.preventDefault();
       const id = this.productList.productsArr.find(el => el.name === $('#removeBikeName').value)._id;
       fetch('products/' + id, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          "Authorization": localStorage.getItem('token')
+        }
       })
         .then(() => document.getElementById(id).remove());
       e.target.reset();

@@ -1,6 +1,6 @@
 var path = require('path');
 
-const public = path.join(__dirname, '../public/');
+const public = path.join(__dirname, '../../public/');
 
 module.exports = {
   index: (req, res) => res.sendFile(public + 'index.html'),

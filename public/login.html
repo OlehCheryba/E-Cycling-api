@@ -29,7 +29,11 @@
         })
       })
         .then(res => res.json())
-        .then(res => alert(res.message));
+        .then(res => {
+          localStorage.setItem('token', res.token);
+          alert(res.message);
+          document.location.href = 'http://localhost:3000';
+        });
     });
   </script>
 </body>
