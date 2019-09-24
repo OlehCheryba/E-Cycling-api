@@ -19,10 +19,6 @@ app.use('/selected-orders', selectedOrderRouter);
 app.use('/call-me', callMeRouter);
 app.use('/user', userRouter);
 
-app.post('/login', (req, res) => {
-	req.body.login === '' && req.body.password === '' ? res.send('true') : res.send('false');
-});
-
 mongoose.connect("mongodb://localhost:27017/e-cycling", { useNewUrlParser: true, useUnifiedTopology: true }, () => {
   app.listen(process.env.port || 3000, process.env.IP || '0.0.0.0', () => {
     console.log('Server is working');

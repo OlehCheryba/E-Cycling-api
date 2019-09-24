@@ -52,7 +52,7 @@
     }
   }
 
-  body>section {
+  body>.container {
     display: grid;
     grid-template-columns: minmax(200px, 20%) auto;
   }

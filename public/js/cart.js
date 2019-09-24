@@ -7,7 +7,7 @@ export default class {
     this.renderCounter();
   }
   renderCart() {
-    this.div.classList.remove('d-none');
+    this.div.hidden = false;
     let table = '';
     for (let item in this.cart) {
       table += `<tr><td>${item}</td><td>${this.cart[item]}</td><tr>`;
@@ -15,7 +15,7 @@ export default class {
     this.div.find('.cart-body').innerHTML = `<table>${table}<table>` 
   }
   addEventListeners() {
-    this.div.find('.close').on('click', () => this.div.classList.add('d-none'));
+    this.div.find('.close').on('click', () => this.div.hidden = true);
     this.div.find('.clear').on('click', () => this.cleanCard());
     this.div.find('.order').on('click', () => {
       fetch('orders', {
@@ -29,7 +29,7 @@ export default class {
         })
       })
         .then(() => alert('Замовлення прийнято'), () => alert('Виникла помилка.'));
-      this.div.classList.add('d-none');
+      this.div.hidden = true;
       this.cleanCard();
     })
   }

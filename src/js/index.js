@@ -11,6 +11,6 @@ const adminPanel = new AdminPanel($('#owner-panel'), productList);
 
 $('.open-cart').on('click', () => cart.renderCart());
 $('#cart-container').on('click', function(event) {
-  if (this === event.target) this.classList.add('d-none');
+  if (this === event.target) this.hidden = true;
 });
-$('#owner').on('click', () => $('#owner-panel').classList.remove('d-none'));
+$('#owner').on('click', () => $('#owner-panel').hidden = false);

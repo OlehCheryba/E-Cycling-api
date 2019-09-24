@@ -14,9 +14,6 @@ img {
   max-width: 1240px;
   margin: auto; }
 
-.d-none {
-  display: none; }
-
 .d-block {
   display: block; }
 
@@ -48,7 +45,7 @@ input[type="submit"], button {
 a {
   text-decoration: none; }
 
-/* ______________________________________________________________________________ лінія */
+/* ______________________________________________________________________________ line */
 header button {
   min-width: 60px; }
 
@@ -249,7 +246,7 @@ i.switch-theme {
       color: skyblue; }
       header a.login i {
         padding-right: 4px; }
-  body > section {
+  body > .container {
     display: grid;
     grid-template-columns: minmax(200px, 20%) auto; }
   aside {
