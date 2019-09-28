@@ -12,7 +12,7 @@ const createToken = (email, userId) => {
     },
     process.env.JWT_KEY,
     {
-        expiresIn: "1h"
+      expiresIn: "1h"
     }
   );
 }
@@ -21,7 +21,7 @@ module.exports = {
   signup: (req, res) => {
     User.findOne({ email: req.body.email }).exec()
       .then(user => {
-        if (user !== null) return res.json({ message: "Mail has already been used" });
+        if (user !== null) return res.json({ message: "Mail has already used" });
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           if (err) return res.json({ error: err });
           const user = new User({
@@ -48,7 +48,7 @@ module.exports = {
           if (!result) return res.json({ message: "Login failed" });
           return res.json({
             message: "Login successful",
-            token: createToken(user.email, user._id)
+            token: createToken(user.email, user._id, user.role)
           });
         });
       });

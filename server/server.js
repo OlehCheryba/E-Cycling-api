@@ -4,12 +4,12 @@ const bodyParser          = require('body-parser');
 const mongoose            = require('mongoose');
 require('dotenv').config({ path: "/"});
 
-const homeRouter          = require('./server/routes/home');
-const productRouter       = require('./server/routes/product');
-const orderRouter         = require('./server/routes/order');
-const selectedOrderRouter = require('./server/routes/selected-order');
-const callMeRouter        = require('./server/routes/call-me');
-const userRouter          = require('./server/routes/user');
+const homeRouter          = require('./routes/home');
+const productRouter       = require('./routes/product');
+const orderRouter         = require('./routes/order');
+const selectedOrderRouter = require('./routes/selected-order');
+const callMeRouter        = require('./routes/call-me');
+const userRouter          = require('./routes/user');
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
