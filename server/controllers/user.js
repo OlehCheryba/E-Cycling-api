@@ -1,8 +1,8 @@
-const mongoose = require('mongoose'),
-      bcrypt   = require("bcrypt"),
-      jwt      = require("jsonwebtoken"),
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-      User     = require('../models/user');
+const User = require('../models/user');
 
 const createToken = (email, userId, role) => {
   return jwt.sign(
@@ -16,15 +16,15 @@ const createToken = (email, userId, role) => {
       expiresIn: "1h"
     }
   );
-}
+};
 
 module.exports = {
   signup: (req, res) => {
     User.findOne({ email: req.body.email }).exec()
       .then(user => {
-        if (user !== null) return res.json({ message: 'Mail has already used' });
+        if (user !== null) return res.send(409).json({message: 'Mail has already used'});
         bcrypt.hash(req.body.password, 10, (err, hash) => {
-          if (err) return res.json({ error: err });
+          if (err) return res.status(500).json({error: err});
           const user = new User({
             _id: new mongoose.Types.ObjectId(),
             email: req.body.email,
@@ -32,8 +32,8 @@ module.exports = {
             role: 'user'
           });
           user.save()
-            .then(result => {
-              return res.json({
+            .then(() => {
+              res.status(200).json({
                 message: 'User created',
                 token: createToken(user.email, user._id, user.role)
               });
@@ -44,15 +44,15 @@ module.exports = {
   login: (req, res) => {
     User.findOne({ email: req.body.email }).exec()
       .then(user => {
-        if (user === null) return res.json({ message: 'Login failed' });
+        if (user === null) return res.status(401).json({message: 'Login failed'});
         bcrypt.compare(req.body.password, user.password, (err, result) => {
-          if (err) return res.json({ message: 'Login failed' });
-          if (!result) return res.json({ message: 'Login failed' });
-          return res.json({
+          if (err) return res.status(401).json({message: 'Login failed'});
+          if (!result) return res.status(401).json({message: 'Login failed'});
+          res.status(200).json({
             message: 'Login successful',
             token: createToken(user.email, user._id, user.role)
           });
         });
       });
   }
-}
+};

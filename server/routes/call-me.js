@@ -1,7 +1,7 @@
-const router           = require('express').Router(),
+const router = require('express').Router();
 
-      checkAdmin       = require('../middleware/check-admin'),
-      callMeController = require('../controllers/call-me');
+const checkAdmin = require('../middleware/check-admin');
+const callMeController = require('../controllers/call-me');
 
 router.get('/', checkAdmin, callMeController.getCallMe);
 router.post('/', callMeController.addCallMe);

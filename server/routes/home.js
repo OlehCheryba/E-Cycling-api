@@ -1,6 +1,6 @@
-const router     = require('express').Router(),
+const router = require('express').Router();
 
-      homeController = require('../controllers/home');
+const homeController = require('../controllers/home');
 
 router.get('/', homeController.index);
 router.get('/admin', homeController.admin);

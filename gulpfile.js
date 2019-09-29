@@ -4,6 +4,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify-es').default;
 const sass = require('gulp-sass');
+const jsx = require('gulp-jsx');
 
 const cssFiles = [
   './src/css/main.scss',
@@ -36,6 +37,9 @@ gulp.task('default', () => {
 
   gulp.watch('./src/js/**/*.js', () => {
    return gulp.src(jsFiles)
+      .pipe(jsx({
+        factory: 'React.createClass'
+      }))
       //.pipe(uglify({
       //  toplevel: true
       //}))

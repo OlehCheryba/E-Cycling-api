@@ -15,7 +15,7 @@ export default class {
      `<div class="product" id=${el._id}>
         <a class="image-link" href="#"><img src="img/products/${el.fileName}" alt="Фото товару"></a>
         <a href="#">${el.name}</a>
-        <b>${el.price}$</b> 
+        <b>${el.price}$</b>
         <section>
           <i class="fas fa-cart-plus buy fa-lg"></i>
         </section>

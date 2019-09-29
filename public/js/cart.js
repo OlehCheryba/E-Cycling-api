@@ -12,7 +12,7 @@ export default class {
     for (let item in this.cart) {
       table += `<tr><td>${item}</td><td>${this.cart[item]}</td><tr>`;
     }
-    this.div.find('.cart-body').innerHTML = `<table>${table}<table>` 
+    this.div.find('.cart-body').innerHTML = `<table>${table}<table>`
   }
   addEventListeners() {
     this.div.find('.close').on('click', () => this.div.hidden = true);

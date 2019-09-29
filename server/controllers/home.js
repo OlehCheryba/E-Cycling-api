@@ -10,4 +10,4 @@ module.exports = {
   ourOffice: (req, res) => res.sendFile(public + 'our-office.html'),
   vacancies: (req, res) => res.sendFile(public + 'vacancies.html'),
   clients: (req, res) => res.sendFile(public + 'clients.html')
-}
+};

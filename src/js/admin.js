@@ -29,21 +29,23 @@ const renderAdminPanel = () => {
   prepareTable('call-me', $('#call-me'));
   addEventListeners();
 };
-const prepareTable = async (url, table) => {
-  const res = await fetch(url, {
+const prepareTable =  (url, table) => {
+  fetch(url, {
     method: 'GET',
     headers: {
       "Authorization": localStorage.getItem('token')
     }
-  });
-  const dataArr = await res.json();
-  let result = '';
-  dataArr.forEach(obj => {
-    result += '<tr>';
-    for (let el in obj) result += `<td>${obj[el]}</td>`;
-    result += '</tr>';
   })
-  table.innerHTML += result;
+    .then(res => res.json())
+    .then(dataArr => {
+      let result = '';
+      dataArr.forEach(obj => {
+        result += '<tr>';
+        for (let el in obj) result += `<td>${obj[el]}</td>`;
+        result += '</tr>';
+      })
+      table.innerHTML += result;
+    });
 };
 const addEventListeners = () => {
   $('#del-orders').on('click', () => delData('orders'));

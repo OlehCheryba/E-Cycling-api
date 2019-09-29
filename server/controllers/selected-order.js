@@ -1,11 +1,12 @@
-const mongoose      = require('mongoose'),
-      SelectedOrder = require('../models/selected-order');
+const mongoose = require('mongoose');
+const SelectedOrder = require('../models/selected-order');
 
 module.exports = {
   getSelectedOrders: (req, res) => {
-    SelectedOrder.find().exec().then(selectedOrderList => {
-      res.send(selectedOrderList);
-    });
+    SelectedOrder.find().exec()
+      .then(selectedOrderList => {
+        res.status(200).json(selectedOrderList);
+      });
   },
   addSelectedOrder: (req, res) => {
     const selectedOrder = new SelectedOrder({
@@ -22,16 +23,18 @@ module.exports = {
       coment: req.body.coment
     });
     selectedOrder.save()
-      .then(selectedOrder => {
-        console.log(selectedOrder);
-        res.send()
+      .then(() => {
+        res.status(200).json({message: 'Succesfully'});
       })
-      .catch(e => console.log(e))
+      .catch(e => {
+        console.log(e);
+        res.status(500).json({message: 'Failed'});
+      });
   },
   delSelectedOrders: (req, res) => {
-    SelectedOrder.remove().exec().then(result => {
-      console.log(result);
-      res.send();
-    });
+    SelectedOrder.remove().exec()
+      .then(() => {
+        res.status(200).json({message: 'Succesfully'});
+      });
   }
-}
+};

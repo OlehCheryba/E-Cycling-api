@@ -1,11 +1,12 @@
-const mongoose = require('mongoose'),
-      CallMe   = require('../models/call-me');
+const mongoose = require('mongoose');
+const CallMe = require('../models/call-me');
 
 module.exports = {
   getCallMe: (req, res) => {
-    CallMe.find().exec().then(callMeList => {
-      res.send(callMeList);
-    });
+    CallMe.find().exec()
+      .then(callMeList => {
+        res.status(200).json(callMeList);
+      });
   },
   addCallMe: (req, res) => {
     const callMe = new CallMe({
@@ -13,16 +14,18 @@ module.exports = {
       number: req.body.number
     });
     callMe.save()
-      .then(callMe => {
-        console.log(callMe);
-        res.send()
+      .then(() => {
+        res.status(200).json({message: 'Succesfully'});
       })
-      .catch(e => console.log(e))
+      .catch(e => {
+        console.log(e);
+        res.status(500).json({message: 'Failed'});
+      });
   },
   delCallMe: (req, res) => {
-    CallMe.remove().exec().then(result => {
-      console.log(result);
-      res.send();
-    });
+    CallMe.remove().exec()
+      .then(() => {
+        res.status(200).json({message: 'Succesfully'});
+      });
   }
-}
+};

@@ -1,28 +1,13 @@
-const mongoose   = require('mongoose'),
-      multer     = require("multer"),
-      Product    = require('../models/product');
-
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, './public/img/products/');
-    },
-    filename: (req, file, cb) => {
-      cb(null, file.originalname);
-    }
-  }),
-  limits: {
-    fileSize: 2048 * 2048 * 5
-  }
-});
+const mongoose = require('mongoose');
+const Product = require('../models/product');
 
 module.exports = {
   getProducts: (req, res) => {
-    Product.find().exec().then(productList => {
-      res.send(productList);
-    });
+    Product.find().exec()
+      .then(productList => {
+        res.status(200).json(productList);
+      });
   },
-  addFile: upload.single('filetoupload'),
   addProduct: (req, res) => {
     const product = new Product({
       _id: new mongoose.Types.ObjectId(),
@@ -32,16 +17,18 @@ module.exports = {
       fileName: req.body.fileName
     });
     product.save()
-      .then(product => {
-        console.log(product);
-        res.send('Succesfully');
+      .then(() => {
+        res.status(200).json({message: 'Succesfully'});
       })
-      .catch(e => console.log(e));
+      .catch(e => {
+        console.log(e);
+        res.status(500).json({message: 'Failed'});
+      });
   },
   delProduct: (req, res) => {
-    Product.remove({_id: req.params.productId}).exec().then(result => {
-      console.log(result);
-      res.send();
-    });
+    Product.remove({_id: req.params.productId}).exec()
+      .then(() => {
+        res.status(200).json({message: 'Succesfully'});
+      });
   }
-}
+};

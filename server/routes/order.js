@@ -1,7 +1,7 @@
-const router     = require('express').Router(),
+const router = require('express').Router();
 
-      checkAdmin      = require('../middleware/check-admin'),
-      orderController = require('../controllers/order');
+const checkAdmin = require('../middleware/check-admin');
+const orderController = require('../controllers/order');
 
 router.get('/', checkAdmin, orderController.getOrders);
 router.post('/', orderController.addOrder);
