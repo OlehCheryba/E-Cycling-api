@@ -1,8 +1,8 @@
-const userRouter     = require('express').Router();
-const checkOwner     = require('../middleware/check-owner');
-const userController = require('../controllers/user');
+const router     = require('express').Router(),
 
-userRouter.post('/signup', userController.signup);
-userRouter.post('/login', userController.login);
+      userController = require('../controllers/user');
 
-module.exports = userRouter;
+router.post('/signup', userController.signup);
+router.post('/login', userController.login);
+
+module.exports = router;

@@ -1,8 +1,10 @@
-const callMeRouter     = require('express').Router();
-const callMeController = require('../controllers/call-me');
+const router           = require('express').Router(),
 
-callMeRouter.get('/', callMeController.getCallMe);
-callMeRouter.post('/', callMeController.addCallMe);
-callMeRouter.delete('/', callMeController.delCallMe);
+      checkAdmin       = require('../middleware/check-admin'),
+      callMeController = require('../controllers/call-me');
 
-module.exports = callMeRouter;
+router.get('/', checkAdmin, callMeController.getCallMe);
+router.post('/', callMeController.addCallMe);
+router.delete('/',checkAdmin, callMeController.delCallMe);
+
+module.exports = router;

@@ -1,15 +1,15 @@
-const express             = require('express');
-const app                 = express();
-const bodyParser          = require('body-parser');
-const mongoose            = require('mongoose');
 require('dotenv').config({ path: "/"});
+const express             = require('express'),
+      bodyParser          = require('body-parser'),
+      mongoose            = require('mongoose'),
+      app                 = express(),
 
-const homeRouter          = require('./routes/home');
-const productRouter       = require('./routes/product');
-const orderRouter         = require('./routes/order');
-const selectedOrderRouter = require('./routes/selected-order');
-const callMeRouter        = require('./routes/call-me');
-const userRouter          = require('./routes/user');
+      homeRouter          = require('./routes/home'),
+      productRouter       = require('./routes/product'),
+      orderRouter         = require('./routes/order'),
+      selectedOrderRouter = require('./routes/selected-order'),
+      callMeRouter        = require('./routes/call-me'),
+      userRouter          = require('./routes/user');
 
 app.use(bodyParser.json());
 app.use(express.static('public'));

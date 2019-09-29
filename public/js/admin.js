@@ -30,7 +30,12 @@ const renderAdminPanel = () => {
   addEventListeners();
 };
 const prepareTable = async (url, table) => {
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    method: 'GET',
+    headers: {
+      "Authorization": localStorage.getItem('token')
+    }
+  });
   const dataArr = await res.json();
   let result = '';
   dataArr.forEach(obj => {

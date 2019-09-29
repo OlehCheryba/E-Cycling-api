@@ -1,12 +1,13 @@
-const homeRouter     = require('express').Router();
-const homeController = require('../controllers/home');
+const router     = require('express').Router(),
 
-homeRouter.get('/', homeController.index);
-homeRouter.get('/admin', homeController.admin);
-homeRouter.get('/login', homeController.login);
-homeRouter.get('/registration', homeController.registration);
-homeRouter.get('/our-office', homeController.ourOffice);
-homeRouter.get('/vacancies', homeController.vacancies);
-homeRouter.get('/clients', homeController.clients);
+      homeController = require('../controllers/home');
 
-module.exports = homeRouter;
+router.get('/', homeController.index);
+router.get('/admin', homeController.admin);
+router.get('/login', homeController.login);
+router.get('/registration', homeController.registration);
+router.get('/our-office', homeController.ourOffice);
+router.get('/vacancies', homeController.vacancies);
+router.get('/clients', homeController.clients);
+
+module.exports = router;

@@ -1,6 +1,6 @@
-const mongoose   = require('mongoose');
-const multer     = require("multer");
-const Product    = require('../models/product');
+const mongoose   = require('mongoose'),
+      multer     = require("multer"),
+      Product    = require('../models/product');
 
 const upload = multer({
   storage: multer.diskStorage({

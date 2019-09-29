@@ -1,9 +1,10 @@
-const productRouter     = require('express').Router();
-const productController = require('../controllers/product');
-const checkAdmin        = require('../middleware/check-admin');
+const router     = require('express').Router(),
 
-productRouter.get('/', productController.getProducts);
-productRouter.post('/', checkAdmin, productController.addFile, productController.addProduct);
-productRouter.delete('/:productId', checkAdmin, productController.delProduct);
+      checkAdmin        = require('../middleware/check-admin'),
+      productController = require('../controllers/product');
 
-module.exports = productRouter;
+router.get('/', productController.getProducts);
+router.post('/', checkAdmin, productController.addFile, productController.addProduct);
+router.delete('/:productId', checkAdmin, productController.delProduct);
+
+module.exports = router;

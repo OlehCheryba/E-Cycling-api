@@ -1,14 +1,15 @@
-const mongoose = require('mongoose');
-const bcrypt   = require("bcrypt");
-const jwt      = require("jsonwebtoken");
+const mongoose = require('mongoose'),
+      bcrypt   = require("bcrypt"),
+      jwt      = require("jsonwebtoken"),
 
-const User     = require('../models/user');
+      User     = require('../models/user');
 
-const createToken = (email, userId) => {
+const createToken = (email, userId, role) => {
   return jwt.sign(
     {
-      email: email,
-      userId: userId
+      email,
+      userId,
+      role
     },
     process.env.JWT_KEY,
     {
@@ -21,19 +22,20 @@ module.exports = {
   signup: (req, res) => {
     User.findOne({ email: req.body.email }).exec()
       .then(user => {
-        if (user !== null) return res.json({ message: "Mail has already used" });
+        if (user !== null) return res.json({ message: 'Mail has already used' });
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           if (err) return res.json({ error: err });
           const user = new User({
             _id: new mongoose.Types.ObjectId(),
             email: req.body.email,
-            password: hash
+            password: hash,
+            role: 'user'
           });
           user.save()
             .then(result => {
               return res.json({
-                message: "User created",
-                token: createToken(user.email, user._id)
+                message: 'User created',
+                token: createToken(user.email, user._id, user.role)
               });
             });
         });
@@ -42,12 +44,12 @@ module.exports = {
   login: (req, res) => {
     User.findOne({ email: req.body.email }).exec()
       .then(user => {
-        if (user === null) return res.json({ message: "Login failed" });
+        if (user === null) return res.json({ message: 'Login failed' });
         bcrypt.compare(req.body.password, user.password, (err, result) => {
-          if (err) return res.json({ message: "Login failed" });
-          if (!result) return res.json({ message: "Login failed" });
+          if (err) return res.json({ message: 'Login failed' });
+          if (!result) return res.json({ message: 'Login failed' });
           return res.json({
-            message: "Login successful",
+            message: 'Login successful',
             token: createToken(user.email, user._id, user.role)
           });
         });

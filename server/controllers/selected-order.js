@@ -1,5 +1,5 @@
-const mongoose      = require('mongoose');
-const SelectedOrder = require('../models/selected-order');
+const mongoose      = require('mongoose'),
+      SelectedOrder = require('../models/selected-order');
 
 module.exports = {
   getSelectedOrders: (req, res) => {

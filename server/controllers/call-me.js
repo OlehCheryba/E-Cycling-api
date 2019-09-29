@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const CallMe   = require('../models/call-me');
+const mongoose = require('mongoose'),
+      CallMe   = require('../models/call-me');
 
 module.exports = {
   getCallMe: (req, res) => {

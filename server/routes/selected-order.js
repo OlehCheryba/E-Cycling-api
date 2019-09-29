@@ -1,8 +1,10 @@
-const selectedOrderRouter     = require('express').Router();
-const selectedOrderController = require('../controllers/selected-order');
+const router                  = require('express').Router(),
 
-selectedOrderRouter.get('/', selectedOrderController.getSelectedOrders);
-selectedOrderRouter.post('/', selectedOrderController.addSelectedOrder);
-selectedOrderRouter.delete('/', selectedOrderController.delSelectedOrders);
+      checkAdmin              = require('../middleware/check-admin'),
+      selectedOrderController = require('../controllers/selected-order');
 
-module.exports = selectedOrderRouter;
+router.get('/', checkAdmin, selectedOrderController.getSelectedOrders);
+router.post('/', selectedOrderController.addSelectedOrder);
+router.delete('/', checkAdmin, selectedOrderController.delSelectedOrders);
+
+module.exports = router;

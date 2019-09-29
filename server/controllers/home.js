@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 const public = path.join(__dirname, '../../public/');
 
