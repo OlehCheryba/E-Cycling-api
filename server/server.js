@@ -7,7 +7,7 @@ const app = require('./app');
 const server = http.createServer(app);
 const port  = process.env.port || 3000;
 
-mongoose.connect('mongodb://localhost:27017/e-cycling', { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+mongoose.connect('mongodb://localhost:27017/e-cycling', { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true }, () => {
   server.listen(port, () => {
     console.log('Server is working');
   });

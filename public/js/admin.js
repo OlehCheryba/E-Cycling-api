@@ -33,7 +33,7 @@ const prepareTable =  (url, table) => {
   fetch(url, {
     method: 'GET',
     headers: {
-      "Authorization": localStorage.getItem('token')
+      "Authorization": localStorage.getItem('accessToken')
     }
   })
     .then(res => res.json())
@@ -67,7 +67,7 @@ const addEventListeners = () => {
     fetch('products', {
       method: 'POST',
       headers: {
-        "Authorization": localStorage.getItem('token')
+        "Authorization": localStorage.getItem('accessToken')
       },
       body: form
     });
@@ -79,7 +79,7 @@ const addEventListeners = () => {
     fetch('products/' + id, {
       method: 'DELETE',
       headers: {
-        "Authorization": localStorage.getItem('token')
+        "Authorization": localStorage.getItem('accessToken')
       }
     });
     e.target.reset();
@@ -107,7 +107,8 @@ $('#auto').on('submit', e => {
   })
     .then(res => res.json())
     .then(res => {
-      localStorage.setItem('token', res.token);
+      localStorage.setItem('accessToken', res.accessToken);
+      localStorage.setItem('refreshToken', res.refreshToken);
       res.message === "Login successful" ? renderAdminPanel() : alert('Не вірний логін або пароль');
     });
 });

@@ -2,20 +2,30 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const verifyToken = require('../middleware/verify-token');
 const User = require('../models/user');
 
-const createToken = (email, userId, role) => {
+const createAccessToken = (email, userId, role) => {
   return jwt.sign(
     {
-      email,
-      userId,
-      role
+      email, userId, role
     },
-    process.env.JWT_KEY,
+    process.env.JWT_ACCESS_KEY,
     {
-      expiresIn: "1h"
+      expiresIn: "25s"
     }
-  );
+  )
+};
+const createRefreshToken = (userId) => {
+  return jwt.sign(
+    {
+      userId
+    },
+    process.env.JWT_REFRESH_KEY,
+    {
+      expiresIn: "60d"
+    }
+  )
 };
 
 module.exports = {
@@ -50,9 +60,30 @@ module.exports = {
           if (!result) return res.status(401).json({message: 'Login failed'});
           res.status(200).json({
             message: 'Login successful',
-            token: createToken(user.email, user._id, user.role)
+            accessToken: createAccessToken(user.email, user._id, user.role),
+            refreshToken: createRefreshToken(user._id)
           });
         });
       });
+  },
+  changeRights(id, role, res) {
+    User.findByIdAndUpdate(id, {role}).exec()
+      .then(user => {
+        res.status(200).json({message: 'Successfully'});
+      })
+      .catch(() => {
+        res.status(500).json({message: 'Error'});
+      });
+  },
+  getNewToken(req, res) {
+    jwt.verify(req.body.refreshToken, process.env.JWT_REFRESH_KEY, (err, decoded) => {
+      if (err) return console.log(err);
+      User.findById(decoded.userId).exec()
+        .then(user => {
+          res.status(200).json({
+            accessToken: createAccessToken(user.email, user._id, user.role)
+          });
+        });
+    });
   }
 };

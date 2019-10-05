@@ -1,8 +1,8 @@
-const getRole = require('./get-role');
+const verifyToken = require('./verify-token');
 
 module.exports = (req, res, next) => {
-  const role = getRole(req.headers.authorization);
-  (role === 'admin' || role === 'owner') 
-    ? next()
-    : res.status(403).json({message: 'No rights for this action'});
+  const role = verifyToken.role(req.headers.authorization);
+  if (role === 'admin' || role === 'owner') next();
+  else if (role === 'bad') res.status(403).json({message: 'Your token is bad'});
+  else res.status(403).json({message: 'You have no rights'});
 };

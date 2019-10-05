@@ -1,5 +1,6 @@
 {
   "env": {
-    "JWT_KEY": "mydifficultkey"
+    "JWT_ACCESS_KEY": "accessKey",
+    "JWT_REFRESH_KEY": "refreshKey"
   }
 }
