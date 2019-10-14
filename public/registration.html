@@ -19,7 +19,7 @@
   <script>
     $('signup').on('submit', function (e) {
       e.preventDefault();
-      fetch('user/signup', {
+      fetch('auth/signup', {
         method: 'POST',
         headers:{
           'Content-Type': 'application/json'

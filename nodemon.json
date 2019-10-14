@@ -1,6 +1,8 @@
 {
   "env": {
-    "JWT_ACCESS_KEY": "accessKey",
-    "JWT_REFRESH_KEY": "refreshKey"
+    "JWT_ACCESS_SECRET": "accessKey",
+    "JWT_REFRESH_SECRET": "refreshKey",
+    "JWT_ACCESS_TIME": "30s",
+    "JWT_REFRESH_TIME": "2d"
   }
 }

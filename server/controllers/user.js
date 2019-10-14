@@ -1,9 +1,11 @@
 const User = require('../models/user');
+const Token = require('../models/token');
 
 module.exports = {
-  changeRights(id, role, res) {
-    User.findByIdAndUpdate(id, {role}).exec()
+  changeRights(userId, role, res) {
+    User.findByIdAndUpdate(userId, {role}).exec()
       .then(() => {
+        Token.revoke(userId);
         res.status(200).json({message: 'Successfully'});
       })
       .catch(() => {

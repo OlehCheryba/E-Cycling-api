@@ -5,36 +5,12 @@ const jwt = require('jsonwebtoken');
 const Token = require('../models/token');
 const User = require('../models/user');
 
-const createAccessToken = (userId, role) => {
-  return jwt.sign(
-    {
-      userId, role
-    },
-    process.env.JWT_ACCESS_KEY,
-    {
-      expiresIn: "25s"
-    }
-  )
-};
-const createRefreshToken = (userId, role) => {
-  return jwt.sign(
-    {
-      userId, role
-    },
-    process.env.JWT_REFRESH_KEY,
-    {
-      expiresIn: "1000s",
-      subject: String(userId)
-    }
-  )
-};
-
 module.exports = {
   signup: (req, res) => {
     User.findOne({ email: req.body.email }).exec()
       .then(user => {
-        if (user !== null) return res.send(409).json({message: 'Mail has already used'});
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
+        if (user !== null) return res.status(409).json({message: 'Mail has already used'});
+        bcrypt.hash(req.body.password, 10, async (err, hash) => {
           if (err) return res.status(500).json({error: err});
           const user = new User({
             _id: new mongoose.Types.ObjectId(),
@@ -42,41 +18,55 @@ module.exports = {
             password: hash,
             role: 'user'
           });
-          user.save()
+          const newTokens = Token.create(user._id, user.role)
+          const token = new Token({
+            _id: user._id,
+            tokenList: { [newTokens.refreshToken.replace(/\./g, '__')]: 'reg11' } }
+          );
+          token.save()
             .then(() => {
-              res.status(200).json({
-                message: 'User created',
-                token: createToken(user.email, user._id, user.role)
-              });
+              user.save()
+                .then(() => {
+                  res.status(200).json(newTokens);
+                });
             });
         });
       });
   },
   login: (req, res) => {
+    console.log(req.ip,
+      req.connection.remoteAdress)
     User.findOne({ email: req.body.email }).exec()
       .then(user => {
         if (user === null) return res.status(401).json({message: 'Login failed'});
-        bcrypt.compare(req.body.password, user.password, (err, result) => {
-          if (err) return res.status(401).json({message: 'Login failed'});
-          if (!result) return res.status(401).json({message: 'Login failed'});
-          res.status(200).json({
-            message: 'Login successful',
-            accessToken: createAccessToken(user._id, user.role),
-            refreshToken: createRefreshToken(user._id, user.role)
-          });
+        bcrypt.compare(req.body.password, user.password, async (err, result) => {
+          if (err || !result) return res.status(401).json({message: 'Login failed'});
+          const newTokens = Token.create(user._id, user.role)
+          const { tokenList } = await Token.findById(user._id)
+          await Token.findByIdAndUpdate(
+            user._id,
+            { tokenList: { ...tokenList, [newTokens.refreshToken]: 'login11' } }
+          );
+          res.status(200).json(newTokens);
         });
       });
   },
-  createAcessToken(req, res) {
-    jwt.verify(req.body.refreshToken, process.env.JWT_REFRESH_KEY, async (err, decoded) => {
-      console.log(await Token.isValid(decoded));
-      if (err) return res.status(401).json({message: 'Bad Refresh Token'});
-      if (!await Token.isValid(decoded)) {
-        return res.status(401).json({message: 'Bad Refresh Token'});
-      }
-      res.status(200).json({acesssToken: createAccessToken(decoded.userId, decoded.role)});
-    });
+  createTokens: async (req, res) => {
+    const token = req.body.refreshToken;
+    try {
+      const decoded = await jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+      const { tokenList } = await Token.findById(decoded.userId)
+      if (!(token in tokenList)) throw new Error
+
+      delete tokenList[token]
+      const newTokens = Token.create(decoded.userId, decoded.role)
+      await Token.findByIdAndUpdate(
+        decoded.userId, 
+        { tokenList: { ...tokenList, [newTokens.refreshToken]: '21' } }
+      );
+      res.status(200).json(newTokens);
+    } catch (e) {
+      res.status(401).json({message: 'Bad Refresh Token'});
+    }
   }
 };
-
-Token.revoke('5d906a1097160d36e8ae2c46', 1000);

@@ -95,7 +95,7 @@ const delData = nameToRemove => {
 const adminPanel = $('#admin-panel');
 $('#auto').on('submit', e => {
   e.preventDefault();
-  fetch('user/login', {
+  fetch('auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -105,10 +105,16 @@ $('#auto').on('submit', e => {
       password: $('#inpPassword').value
     })
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.status !== 200) throw new Error;
+      return res.json();
+    })
     .then(res => {
       localStorage.setItem('accessToken', res.accessToken);
       localStorage.setItem('refreshToken', res.refreshToken);
-      res.message === "Login successful" ? renderAdminPanel() : alert('Не вірний логін або пароль');
+      renderAdminPanel();
+    })
+    .catch(() => {
+      alert('Не вірний логін або пароль');
     });
 });
