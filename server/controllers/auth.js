@@ -7,7 +7,7 @@ const User = require('../models/user');
 
 module.exports = {
   signup: (req, res) => {
-    User.findOne({ email: req.body.email }).exec()
+    User.findOne({ email: req.body.email })
       .then(user => {
         if (user !== null) return res.status(409).json({message: 'Mail has already used'});
         bcrypt.hash(req.body.password, 10, async (err, hash) => {
@@ -34,7 +34,7 @@ module.exports = {
       });
   },
   login: (req, res) => {
-    User.findOne({ email: req.body.email }).exec()
+    User.findOne({ email: req.body.email })
       .then(user => {
         if (user === null) return res.status(401).json({message: 'Login failed'});
         bcrypt.compare(req.body.password, user.password, async (err, result) => {

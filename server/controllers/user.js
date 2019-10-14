@@ -3,7 +3,7 @@ const Token = require('../models/token');
 
 module.exports = {
   changeRights(userId, role, res) {
-    User.findByIdAndUpdate(userId, {role}).exec()
+    User.findByIdAndUpdate(userId, {role})
       .then(() => {
         Token.revoke(userId);
         res.status(200).json({message: 'Successfully'});

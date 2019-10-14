@@ -3,7 +3,7 @@ const CallMe = require('../models/call-me');
 
 module.exports = {
   getCallMe: (req, res) => {
-    CallMe.find().exec()
+    CallMe.find()
       .then(callMeList => {
         res.status(200).json(callMeList);
       });
@@ -23,7 +23,7 @@ module.exports = {
       });
   },
   delCallMe: (req, res) => {
-    CallMe.remove().exec()
+    CallMe.remove()
       .then(() => {
         res.status(200).json({message: 'Succesfully'});
       });

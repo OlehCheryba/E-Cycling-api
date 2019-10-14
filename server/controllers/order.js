@@ -3,7 +3,7 @@ const Order = require('../models/order');
 
 module.exports = {
   getOrders: (req, res) => {
-    Order.find().exec()
+    Order.find()
       .then(orderList => {
         res.status(200).json(orderList);
       });
@@ -24,7 +24,7 @@ module.exports = {
       });
   },
   delOrders: (req, res) => {
-    Order.remove().exec()
+    Order.remove()
       .then(() => {
         res.status(200).json({message: 'Succesfully'});
       });

@@ -3,7 +3,7 @@ const SelectedOrder = require('../models/selected-order');
 
 module.exports = {
   getSelectedOrders: (req, res) => {
-    SelectedOrder.find().exec()
+    SelectedOrder.find()
       .then(selectedOrderList => {
         res.status(200).json(selectedOrderList);
       });
@@ -32,7 +32,7 @@ module.exports = {
       });
   },
   delSelectedOrders: (req, res) => {
-    SelectedOrder.remove().exec()
+    SelectedOrder.remove()
       .then(() => {
         res.status(200).json({message: 'Succesfully'});
       });

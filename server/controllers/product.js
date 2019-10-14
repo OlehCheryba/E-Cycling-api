@@ -3,7 +3,7 @@ const Product = require('../models/product');
 
 module.exports = {
   getProducts: (req, res) => {
-    Product.find().exec()
+    Product.find()
       .then(productList => {
         res.status(200).json(productList);
       });
@@ -17,7 +17,8 @@ module.exports = {
       fileName: req.body.fileName
     });
     product.save()
-      .then(() => {
+      .then((ww) => {
+        console.log(ww)
         res.status(200).json({message: 'Succesfully'});
       })
       .catch(e => {
@@ -26,7 +27,7 @@ module.exports = {
       });
   },
   delProduct: (req, res) => {
-    Product.remove({_id: req.params.productId}).exec()
+    Product.remove({_id: req.params.productId})
       .then(() => {
         res.status(200).json({message: 'Succesfully'});
       });
