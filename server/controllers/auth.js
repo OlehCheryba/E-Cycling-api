@@ -21,7 +21,7 @@ module.exports = {
           const newTokens = Token.create(user._id, user.role)
           const token = new Token({
             _id: user._id,
-            tokenList: { [newTokens.refreshToken.replace(/\./g, '__')]: 'reg11' } }
+            tokenList: { [jwt.decode(newTokens.refreshToken).jti]: req.ip } }
           );
           token.save()
             .then(() => {
@@ -34,35 +34,50 @@ module.exports = {
       });
   },
   login: (req, res) => {
-    console.log(req.ip,
-      req.connection.remoteAdress)
     User.findOne({ email: req.body.email }).exec()
       .then(user => {
         if (user === null) return res.status(401).json({message: 'Login failed'});
         bcrypt.compare(req.body.password, user.password, async (err, result) => {
           if (err || !result) return res.status(401).json({message: 'Login failed'});
-          const newTokens = Token.create(user._id, user.role)
-          const { tokenList } = await Token.findById(user._id)
+          const newTokens = Token.create(user._id, user.role);
+          const { tokenList } = await Token.findById(user._id);
+          tokenList[jwt.decode(newTokens.refreshToken).jti] = req.ip;
           await Token.findByIdAndUpdate(
             user._id,
-            { tokenList: { ...tokenList, [newTokens.refreshToken]: 'login11' } }
+            { tokenList }
           );
           res.status(200).json(newTokens);
         });
       });
   },
+  logout: async (req, res) => {
+    try {
+      const decoded = jwt.decode(req.body.refreshToken);
+      const { tokenList } = await Token.findById(decoded.userId);
+      delete tokenList[decoded.jti];
+      await Token.findByIdAndUpdate(
+        user._id,
+        { tokenList }
+      );
+      res.status(200).json({message: 'Succesfully'});
+    } catch (e) {
+      res.status(500).json({message: 'Logout failed'});
+    }
+  },
   createTokens: async (req, res) => {
     const token = req.body.refreshToken;
+    const ip = req.ip;
     try {
       const decoded = await jwt.verify(token, process.env.JWT_REFRESH_SECRET);
-      const { tokenList } = await Token.findById(decoded.userId)
-      if (!(token in tokenList)) throw new Error
+      const { tokenList } = await Token.findById(decoded.userId);
+      if (tokenList[decoded.jti] !== ip) throw new Error;
 
-      delete tokenList[token]
-      const newTokens = Token.create(decoded.userId, decoded.role)
+      delete tokenList[decoded.jti];
+      const newTokens = Token.create(decoded.userId, decoded.role);
+      tokenList[jwt.decode(newTokens.refreshToken).jti] = ip;
       await Token.findByIdAndUpdate(
         decoded.userId, 
-        { tokenList: { ...tokenList, [newTokens.refreshToken]: '21' } }
+        { tokenList }
       );
       res.status(200).json(newTokens);
     } catch (e) {
