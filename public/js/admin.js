@@ -100,6 +100,7 @@ $('#auto').on('submit', e => {
     headers: {
       'Content-Type': 'application/json'
     },
+    withCredentials: true,
     body: JSON.stringify({
       email: $('#inpLogin').value,
       password: $('#inpPassword').value

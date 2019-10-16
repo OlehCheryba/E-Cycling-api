@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 const homeRouter = require('./routes/home');
@@ -10,6 +11,7 @@ const callMeRouter = require('./routes/call-me');
 const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
 
+app.use(cookieParser(process.env.COOKIES_SECRET));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 

@@ -6,7 +6,7 @@ mongoose.Promise = require('bluebird');
 const app = require('./app');
 
 const server = http.createServer(app);
-const port  = process.env.port || 80;
+const port = process.env.port || 80;
 
 mongoose.connect(
   'mongodb://localhost:27017/e-cycling', 
