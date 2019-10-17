@@ -19,17 +19,17 @@ module.exports = {
     product.save()
       .then((ww) => {
         console.log(ww)
-        res.status(200).json({message: 'Succesfully'});
+        res.status(200).json({ message: 'Succesfully' });
       })
       .catch(e => {
         console.log(e);
-        res.status(500).json({message: 'Failed'});
+        res.status(500).json({ message: 'Failed' });
       });
   },
   delProduct: (req, res) => {
     Product.remove({_id: req.params.productId})
       .then(() => {
-        res.status(200).json({message: 'Succesfully'});
+        res.status(200).json({ message: 'Succesfully' });
       });
   }
 };

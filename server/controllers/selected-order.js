@@ -24,17 +24,17 @@ module.exports = {
     });
     selectedOrder.save()
       .then(() => {
-        res.status(200).json({message: 'Succesfully'});
+        res.status(200).json({ message: 'Succesfully' });
       })
       .catch(e => {
         console.log(e);
-        res.status(500).json({message: 'Failed'});
+        res.status(500).json({ message: 'Failed' });
       });
   },
   delSelectedOrders: (req, res) => {
     SelectedOrder.remove()
       .then(() => {
-        res.status(200).json({message: 'Succesfully'});
+        res.status(200).json({ message: 'Succesfully' });
       });
   }
 };

@@ -1,8 +1,8 @@
 const verifyToken = require('./verify-token');
 
 module.exports = (req, res, next) => {
-  const role = verifyToken.role(req.headers.authorization);
-  if (role === 'admin' || role === 'owner') next();
-  else if (role === 'bad') res.status(403).json({message: 'Your token is bad'});
-  else res.status(403).json({message: 'You have no rights'});
+  const role = verifyToken.getRole(req);
+  if (!role) res.status(403).json({ message: 'Your token is bad' });
+  else if (role === 'admin' || role === 'owner') next();
+  else res.status(403).json({ message: 'You have no rights' });
 };

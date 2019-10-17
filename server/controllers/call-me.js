@@ -15,17 +15,17 @@ module.exports = {
     });
     callMe.save()
       .then(() => {
-        res.status(200).json({message: 'Succesfully'});
+        res.status(200).json({ message: 'Succesfully' });
       })
       .catch(e => {
         console.log(e);
-        res.status(500).json({message: 'Failed'});
+        res.status(500).json({ message: 'Failed' });
       });
   },
   delCallMe: (req, res) => {
     CallMe.remove()
       .then(() => {
-        res.status(200).json({message: 'Succesfully'});
+        res.status(200).json({ message: 'Succesfully' });
       });
   }
 };

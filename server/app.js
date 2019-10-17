@@ -23,9 +23,8 @@ app.use('/orders', orderRouter);
 app.use('/selected-orders', selectedOrderRouter);
 app.use('/call-me', callMeRouter);
 
-
 app.use((req, res) => {
-  res.status(404).json({message: 'Not found'});
+  res.status(404).json({ message: 'Not found' });
 });
 
 module.exports = app;

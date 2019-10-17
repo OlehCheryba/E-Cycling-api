@@ -16,17 +16,17 @@ module.exports = {
     });
     order.save()
       .then(() => {
-        res.status(200).json({message: 'Succesfully'});
+        res.status(200).json({ message: 'Succesfully' });
       })
       .catch(e => {
         console.log(e);
-        res.status(500).json({message: 'Failed'});
+        res.status(500).json({ message: 'Failed' });
       });
   },
   delOrders: (req, res) => {
     Order.remove()
       .then(() => {
-        res.status(200).json({message: 'Succesfully'});
+        res.status(200).json({ message: 'Succesfully' });
       });
   }
 };

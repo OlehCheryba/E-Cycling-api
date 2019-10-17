@@ -1,9 +1,11 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-  role(token) {
-    return jwt.verify(token, process.env.JWT_ACCESS_SECRET, (err, decoded) => 
-      err ? 'bad' : decoded.role
+  getRole(req) {
+    return jwt.verify(
+      req.signedCookies.accessToken, 
+      process.env.JWT_ACCESS_SECRET, 
+      (err, { role }) => err ? undefined : role
     );
   }
 }

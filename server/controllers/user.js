@@ -6,10 +6,10 @@ module.exports = {
     User.findByIdAndUpdate(userId, {role})
       .then(() => {
         Token.revoke(userId);
-        res.status(200).json({message: 'Successfully'});
+        res.status(200).json({ message: 'Successfully' });
       })
       .catch(() => {
-        res.status(500).json({message: 'Error'});
+        res.status(500).json({ message: 'Error' });
       });
   }
 };
