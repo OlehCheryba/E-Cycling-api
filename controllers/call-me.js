@@ -17,8 +17,7 @@ module.exports = {
       .then(() => {
         res.status(200).json({ message: 'Succesfully' });
       })
-      .catch(e => {
-        console.log(e);
+      .catch(() => {
         res.status(500).json({ message: 'Failed' });
       });
   },

@@ -17,12 +17,10 @@ module.exports = {
       fileName: req.body.fileName
     });
     product.save()
-      .then((ww) => {
-        console.log(ww)
+      .then(() => {
         res.status(200).json({ message: 'Succesfully' });
       })
-      .catch(e => {
-        console.log(e);
+      .catch(() => {
         res.status(500).json({ message: 'Failed' });
       });
   },

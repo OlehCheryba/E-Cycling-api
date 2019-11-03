@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -w server server/server.js"
+    "start": "nodemon server.js -w"
   },
   "repository": {
     "type": "git",
@@ -21,30 +21,15 @@
     "bcrypt": "^3.0.6",
     "bluebird": "^3.7.0",
     "body-parser": "^1.19.0",
-    "browser-fingerprint": "^0.1.0",
     "cookie-parser": "^1.4.4",
-    "del": "^5.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "fingerprintjs2": "^2.1.0",
-    "formidable": "^1.2.1",
-    "gulp-jsx": "^2.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.3.0",
-    "mongoose": "^5.7.1",
+    "mongoose": ">=5.7.5",
     "multer": "^1.4.2",
-    "mv": "^2.1.1",
-    "node-fetch": "^2.6.0",
-    "redis": "^2.8.0"
-  },
-  "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.0",
-    "gulp-clean-css": "^4.2.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-sass": "^4.0.2",
-    "gulp-uglify-es": "^1.0.4",
-    "node-sass": "^4.12.0"
+    "nodemon": "^1.19.4",
   },
   "description": "",
   "browserslist": [

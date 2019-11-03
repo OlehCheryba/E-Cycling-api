@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const Token = require('../models/token');
 const User = require('../models/user');
+
 const cookieOptions = {
   maxAge: 9999999999,
   httpOnly: true,
@@ -11,25 +12,27 @@ const cookieOptions = {
 };
 const getBrowserId = req => {
   const browserId = req.signedCookies.browserId;
-  return browserId 
-    ? { 
+  if (browserId) { 
+    return { 
       browserId, 
       haveId: true 
     }
-    : { 
+  } else {
+    return { 
       browserId: new mongoose.Types.ObjectId(),
       haveId: false 
     };
+  }
 };
 
 module.exports = {
   signup: async (req, res) => {
     try {
-      const dbUser = await User.findOne({ email: req.body.email });
-      if (dbUser) return res.status(409).json({ message: 'This email is already in use' });
+      const dbUser = await User.findOne({ login: req.body.login });
+      if (dbUser) return res.status(409).json({ message: 'This login is already in use' });
       const user = new User({
         _id: new mongoose.Types.ObjectId(),
-        email: req.body.email,
+        login: req.body.login,
         password: bcrypt.hash(req.body.password, 10),
         role: 'user'
       });
@@ -54,7 +57,7 @@ module.exports = {
   },
   login: async (req, res) => {
     try {
-      const user = await User.findOne({ email: req.body.email });
+      const user = await User.findOne({ login: req.body.login });
       if (!user) throw new Error;
       const passwordMatch = await bcrypt.compare(req.body.password, user.password);
       if (!passwordMatch) throw new Error;
@@ -85,13 +88,13 @@ module.exports = {
       await Token.findByIdAndUpdate(userId, { tokenList });
 
       res.status(200)
-        .cookie('accessToken', '', cookieOptions)
-        .cookie('refreshToken', '', cookieOptions)
+        .clearCookie('accessToken')
+        .clearCookie('refreshToken')
         .end();
     } catch (e) {
       res.status(401)
-        .cookie('accessToken', '', cookieOptions)
-        .cookie('refreshToken', '', cookieOptions)
+        .clearCookie('accessToken')
+        .clearCookie('refreshToken')
         .json({ message: 'Logout failed' });
     }
   },
