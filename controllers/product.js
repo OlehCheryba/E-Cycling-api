@@ -3,9 +3,14 @@ const Product = require('../models/product');
 
 module.exports = {
   getProducts: (req, res) => {
-    Product.find()
+    const pageSize = req.query.size;
+    const skipCount = (req.query.page - 1) * pageSize;
+    Product.find().limit(+pageSize).skip(+skipCount)
       .then(productList => {
-        res.status(200).json(productList);
+        res.status(200).json({
+          products: productList,
+          totalCount: 7
+        });
       });
   },
   addProduct: (req, res) => {

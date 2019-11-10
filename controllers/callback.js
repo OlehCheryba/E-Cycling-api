@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
-const CallMe = require('../models/call-me');
+const Callback = require('../models/callback');
 
 module.exports = {
-  getCallMe: (req, res) => {
-    CallMe.find()
-      .then(callMeList => {
-        res.status(200).json(callMeList);
+  getCallbacks: (req, res) => {
+    Callback.find()
+      .then(callbacksList => {
+        res.status(200).json(callbacksList);
       });
   },
-  addCallMe: (req, res) => {
-    const callMe = new CallMe({
+  addCallback: (req, res) => {
+    const callback = new Callback({
       _id: new mongoose.Types.ObjectId(),
       number: req.body.number
     });
-    callMe.save()
+    callback.save()
       .then(() => {
         res.status(200).json({ message: 'Succesfully' });
       })
@@ -21,8 +21,8 @@ module.exports = {
         res.status(500).json({ message: 'Failed' });
       });
   },
-  delCallMe: (req, res) => {
-    CallMe.remove()
+  delCallbacks: (req, res) => {
+    Callback.remove()
       .then(() => {
         res.status(200).json({ message: 'Succesfully' });
       });

@@ -7,8 +7,8 @@ const User = require('../models/user');
 
 const cookieOptions = {
   maxAge: 9999999999,
-  httpOnly: true,
-  signed: true
+  //httpOnly: true,
+  //signed: true
 };
 const getBrowserId = req => {
   const browserId = req.signedCookies.browserId;
@@ -117,6 +117,20 @@ module.exports = {
         .end();
     } catch (e) {
       res.status(401).json({ message: 'Please relogin' });
+    }
+  },
+  me: async(req, res) => {
+    try {
+      const token = req.signedCookies.accessToken;
+      console.log(req.signedCookies)
+      console.log(req.cookies) 
+      const decoded = await jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+      console.log(decoded)
+      const user = await User.findOneById(decoded.userId);
+      console.log(user)
+      res.status(200).json({ userId: decoded.userId });
+    } catch(e) {
+      res.status(403).json({ message: 'You are not logined' });
     }
   }
 };
