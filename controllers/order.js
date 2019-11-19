@@ -1,3 +1,4 @@
+const { getNextSequence } = require('../db');
 const mongoose = require('mongoose');
 const Order = require('../models/order');
 
@@ -8,11 +9,12 @@ module.exports = {
         res.status(200).json(orderList);
       });
   },
-  addOrder: (req, res) => {
+  addOrder: async (req, res) => {
     const order = new Order({
       _id: new mongoose.Types.ObjectId(),
       number: req.body.number,
-      list: req.body.list
+      list: req.body.list,
+      id: await getNextSequence('orders')
     });
     order.save()
       .then(() => {
@@ -23,7 +25,7 @@ module.exports = {
       });
   },
   delOrders: (req, res) => {
-    Order.remove()
+    Order.deleteMany()
       .then(() => {
         res.status(200).json({ message: 'Succesfully' });
       });

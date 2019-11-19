@@ -1,25 +1,26 @@
 const mongoose = require('mongoose');
 const Product = require('../models/product');
+const db = require('../db');
 
 module.exports = {
-  getProducts: (req, res) => {
-    const pageSize = req.query.size;
+  getProducts: async (req, res) => {
+    const pageSize = +req.query.size;
     const skipCount = (req.query.page - 1) * pageSize;
-    Product.find().limit(+pageSize).skip(+skipCount)
-      .then(productList => {
-        res.status(200).json({
-          products: productList,
-          totalCount: 7
-        });
-      });
+    const totalCount = await Product.countDocuments();
+    const products = await Product.find().limit(pageSize).skip(skipCount)
+    res.status(200).json({
+      products,
+      totalCount
+    });
   },
-  addProduct: (req, res) => {
+  addProduct: async (req, res) => {
     const product = new Product({
       _id: new mongoose.Types.ObjectId(),
       name: req.body.name,
       price: req.body.price,
       description: req.body.description,
-      fileName: req.body.fileName
+      fileName: req.body.fileName,
+      id: await db.getNextSequence('products')
     });
     product.save()
       .then(() => {
@@ -29,8 +30,12 @@ module.exports = {
         res.status(500).json({ message: 'Failed' });
       });
   },
+  getProduct: async (req, res) => {
+    const product = await Product.findOne({ id: req.params.productId });
+    res.status(200).json(product);
+  },
   delProduct: (req, res) => {
-    Product.remove({_id: req.params.productId})
+    Product.deleteOne({ id: req.params.productId })
       .then(() => {
         res.status(200).json({ message: 'Succesfully' });
       });

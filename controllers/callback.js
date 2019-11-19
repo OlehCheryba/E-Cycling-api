@@ -1,3 +1,4 @@
+const { getNextSequence } = require('../db');
 const mongoose = require('mongoose');
 const Callback = require('../models/callback');
 
@@ -8,10 +9,11 @@ module.exports = {
         res.status(200).json(callbacksList);
       });
   },
-  addCallback: (req, res) => {
+  addCallback: async (req, res) => {
     const callback = new Callback({
       _id: new mongoose.Types.ObjectId(),
-      number: req.body.number
+      number: req.body.number,
+      id: await getNextSequence('callbacks')
     });
     callback.save()
       .then(() => {
@@ -22,7 +24,7 @@ module.exports = {
       });
   },
   delCallbacks: (req, res) => {
-    Callback.remove()
+    Callback.deleteMany()
       .then(() => {
         res.status(200).json({ message: 'Succesfully' });
       });

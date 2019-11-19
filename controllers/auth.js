@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const Token = require('../models/token');
-const User = require('../models/user');
+const { getNextSequence } = require('../db');
+const Customer = require('../models/customer');
 
 const cookieOptions = {
   maxAge: 9999999999,
-  //httpOnly: true,
-  //signed: true
+  httpOnly: true,
+  signed: true
 };
 const getBrowserId = req => {
   const browserId = req.signedCookies.browserId;
@@ -24,27 +24,49 @@ const getBrowserId = req => {
     };
   }
 };
+const createTokens = (customerId, role) => {
+  return {
+    accessToken: jwt.sign(
+      {
+        customerId, role
+      },
+      process.env.JWT_ACCESS_SECRET,
+      {
+        expiresIn: process.env.JWT_ACCESS_TIME
+      }
+    ),
+    refreshToken: jwt.sign(
+      {
+        customerId, role
+      },
+      process.env.JWT_REFRESH_SECRET,
+      {
+        expiresIn: process.env.JWT_REFRESH_TIME,
+        jwtid: String(new mongoose.Types.ObjectId())
+      }
+    )
+  }
+}
 
 module.exports = {
   signup: async (req, res) => {
     try {
-      const dbUser = await User.findOne({ login: req.body.login });
-      if (dbUser) return res.status(409).json({ message: 'This login is already in use' });
-      const user = new User({
+      const dbCustomer = await Customer.findOne({ email: req.body.email });
+      if (dbCustomer) return res.status(409).json({ message: 'This email is already in use' });
+      
+      const customer = new Customer({
         _id: new mongoose.Types.ObjectId(),
         login: req.body.login,
+        email: req.body.email,
         password: bcrypt.hash(req.body.password, 10),
-        role: 'user'
+        role: 'customer',
+        id: await getNextSequence('customers')
       });
-      await user.save();
 
-      const newTokens = Token.create(user._id, user.role);
+      const newTokens = createTokens(customer.id, customer.role);
       const { browserId, haveId } = getBrowserId(req);
-      const token = new Token({
-        _id: user._id,
-        tokenList: { [browserId]: jwt.decode(newTokens.refreshToken).jti }
-      });
-      await token.save();
+      customer.tokenList = { [browserId]: jwt.decode(newTokens.refreshToken).jti }
+      await customer.save();
 
       res.status(200)
         .cookie('accessToken', newTokens.accessToken, cookieOptions)
@@ -57,16 +79,15 @@ module.exports = {
   },
   login: async (req, res) => {
     try {
-      const user = await User.findOne({ login: req.body.login });
-      if (!user) throw new Error;
-      const passwordMatch = await bcrypt.compare(req.body.password, user.password);
+      const customer = await Customer.findOne({ email: req.body.email });
+      if (!customer) throw new Error;
+      const passwordMatch = await bcrypt.compare(req.body.password, customer.password);
       if (!passwordMatch) throw new Error;
 
-      const newTokens = Token.create(user._id, user.role);
+      const newTokens = createTokens(customer.id, customer.role);
       const { browserId, haveId } = getBrowserId(req);
-      const { tokenList } = await Token.findById(user._id);
-      tokenList[browserId] = jwt.decode(newTokens.refreshToken).jti;
-      await Token.findByIdAndUpdate(user._id, { tokenList });
+      customer.tokenList[browserId] = jwt.decode(newTokens.refreshToken).jti;
+      await customer.save();
 
       res.status(200)
         .cookie('accessToken', newTokens.accessToken, cookieOptions)
@@ -82,10 +103,10 @@ module.exports = {
     const { browserId, haveId } = getBrowserId(req);
     try {
       if (!haveId || !token) throw new Error;
-      const { userId } = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
-      const { tokenList } = await Token.findById(userId);
-      delete tokenList[browserId];
-      await Token.findByIdAndUpdate(userId, { tokenList });
+      const { customerId } = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+      const customer = await Customer.findOne({ id: customerId });
+      delete customer.tokenList[browserId];
+      await customer.save();
 
       res.status(200)
         .clearCookie('accessToken')
@@ -104,12 +125,12 @@ module.exports = {
     try {
       if (!haveId || !token) throw new Error;
       const decoded = await jwt.verify(token, process.env.JWT_REFRESH_SECRET);
-      const { tokenList } = await Token.findById(decoded.userId);
-      if (tokenList[browserId] !== decoded.jti) throw new Error;
+      const customer = await Customer.findOne({ id: decoded.customerId });
+      if (customer.tokenList[browserId] !== decoded.jti) throw new Error;
 
-      const newTokens = Token.create(decoded.userId, decoded.role);
-      tokenList[browserId] = jwt.decode(newTokens.refreshToken).jti;
-      await Token.findByIdAndUpdate(decoded.userId, { tokenList });
+      const newTokens = createTokens(decoded.customerId, decoded.role);
+      customer.tokenList[browserId] = jwt.decode(newTokens.refreshToken).jti;
+      await customer.save();
 
       res.status(200)
         .cookie('accessToken', newTokens.accessToken, cookieOptions)
@@ -119,18 +140,12 @@ module.exports = {
       res.status(401).json({ message: 'Please relogin' });
     }
   },
-  me: async(req, res) => {
+  me: async (req, res) => {
     try {
-      const token = req.signedCookies.accessToken;
-      console.log(req.signedCookies)
-      console.log(req.cookies) 
-      const decoded = await jwt.verify(token, process.env.JWT_ACCESS_SECRET);
-      console.log(decoded)
-      const user = await User.findOneById(decoded.userId);
-      console.log(user)
-      res.status(200).json({ userId: decoded.userId });
+      const customer = await Customer.findOne({ id: req.userData.customerId });
+      res.status(200).json(customer);
     } catch(e) {
-      res.status(403).json({ message: 'You are not logined' });
+      res.status(401).json({ message: 'You are not logined' });
     }
   }
 };

@@ -4,18 +4,21 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const app = express();
 
-const productRouter = require('./routers/product');
+const customerRouter = require('./routers/customer');
 const orderRouter = require('./routers/order');
 const selectedOrderRouter = require('./routers/selected-order');
 const callbackRouter = require('./routers/callback');
-const userRouter = require('./routers/user');
+const productRouter = require('./routers/product');
 const authRouter = require('./routers/auth');
 
-app.use(cors());
+app.use(cors({
+	origin: 'http://localhost:8000',
+	credentials: true
+}));
 app.use(cookieParser(process.env.COOKIES_SECRET));
 app.use(bodyParser.json());
 
-app.use('/users', userRouter);
+app.use('/customers', customerRouter);
 app.use('/auth', authRouter);
 app.use('/products', productRouter);
 app.use('/orders', orderRouter);
