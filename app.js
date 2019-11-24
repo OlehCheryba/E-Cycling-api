@@ -10,6 +10,7 @@ const selectedOrderRouter = require('./routers/selected-order');
 const callbackRouter = require('./routers/callback');
 const productRouter = require('./routers/product');
 const authRouter = require('./routers/auth');
+const cartRouter = require('./routers/cart');
 
 app.use(cors({
 	origin: 'http://localhost:8000',
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 
 app.use('/customers', customerRouter);
 app.use('/auth', authRouter);
+app.use('/carts', cartRouter);
 app.use('/products', productRouter);
 app.use('/orders', orderRouter);
 app.use('/selected-orders', selectedOrderRouter);

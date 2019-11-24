@@ -5,23 +5,22 @@ module.exports = {
     const pageSize = +req.query.size;
     const skipCount = (req.query.page - 1) * pageSize;
     const totalCount = await Customer.countDocuments();
-    const customers = await Customer.find().limit(pageSize).skip(skipCount);
+    const customers = await Customer.find({}, { _id: 0, login: 1, role: 1, id: 1 }).limit(pageSize).skip(skipCount);
     res.status(200).json({
       customers,
       totalCount
     });
   },
   getCustomer: async (req, res) => {
-    const customer = await Customer.findOne({ id: req.params.customerId });
+    const customer = await Customer.findOne({ id: req.params.customerId }, { _id: 0, login: 1, role: 1, id: 1 });
     res.status(200).json(customer);
   },
-  changeRights(customerId, role, res) {
-    Customer.findOneAndUpdate({ id: customerId }, { role, tokenList: {} })
-      .then(() => {
-        res.status(200).json({ message: 'Successfully' });
-      })
-      .catch(() => {
-        res.status(500).json({ message: 'Error' });
-      });
+  async changeRights(customerId, role, res) {
+    try {
+      await Customer.findOneAndUpdate({ id: customerId }, { role });
+      res.status(200).json({ message: 'Successfully' });
+    } catch  (e) {
+      res.status(500).json({ message: 'Error' });
+    }
   }
 };

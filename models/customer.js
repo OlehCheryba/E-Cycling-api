@@ -7,7 +7,8 @@ const customerSchema = mongoose.Schema({
   password: String,
   role: String,
   id: Number,
-  tokenList: Object
+  tokenList: Object,
+  cartId: String
 });
 
 module.exports = mongoose.model('Customer', customerSchema);
