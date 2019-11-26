@@ -1,9 +1,11 @@
 const router = require('express').Router();
 
+const fetchCustomerData = require('../middleware/fetch-customer-data');
 const checkOwner = require('../middleware/check-owner');
 const customerController = require('../controllers/customer');
 
 router.get('/', customerController.getCustomers);
+router.get('/me', fetchCustomerData, customerController.getMe);
 router.get('/:customerId', customerController.getCustomer);
 router.post('/admin', checkOwner, (req, res) => {
   customerController.changeRights(req.body.id, 'admin', res);

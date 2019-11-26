@@ -19,6 +19,7 @@ app.use(cors({
 app.use(cookieParser(process.env.COOKIES_SECRET));
 app.use(bodyParser.json());
 
+app.use('/images', express.static('public'))
 app.use('/customers', customerRouter);
 app.use('/auth', authRouter);
 app.use('/carts', cartRouter);
@@ -28,7 +29,7 @@ app.use('/selected-orders', selectedOrderRouter);
 app.use('/callbacks', callbackRouter);
 
 app.use((req, res) => {
-  res.status(404).json({ message: 'Not found' });
+  res.sendStatus(404);
 });
 
 module.exports = app;

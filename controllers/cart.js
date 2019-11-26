@@ -12,12 +12,12 @@ const cookieOptions = {
 module.exports = {
   async createCart(req, res) {
     try {
-      const cartId = await getNextSequence('carts');
+      const cartId = req.signedCookies.cartId || await getNextSequence('carts');
+
       const newCart = new Cart({ 
         _id: new mongoose.Types.ObjectId(),
         id: cartId
       });
-
       await newCart.save();
 
       res.status(201)
@@ -35,7 +35,7 @@ module.exports = {
       const cart = await Cart.findOne({ id: cartId });
 
       if (!cart) {
-        return res.sendStatus(404);
+        return res.status(200).json({ products: [] });
       }
       res.status(200).json({ products: cart.products });
     } catch (e) {
@@ -53,13 +53,14 @@ module.exports = {
       }
       res.sendStatus(204);
     } catch (e) {
-      res,sendStatus(500);
+      res.sendStatus(500);
     }
   },
 
   async putProduct(req, res) {
     try {
       const cartId = req.signedCookies.cartId;
+      const productToPutId = req.params.productId;
       const newProduct = req.body.product;
 
       const cart = await Cart.findOne({ id: cartId });
@@ -67,12 +68,8 @@ module.exports = {
         return res.sendStatus(404);
       }
 
-      cart.products = cart.products.map((product) => {
-        if (product.id !== newProduct.id) {
-          return product.id;
-        }
-        return newProduct
-      })
+      cart.products = cart.products.filter(({ id }) => id !== productToPutId);
+      cart.products.push(newProduct);
 
       cart.markModified('products');
       await cart.save();

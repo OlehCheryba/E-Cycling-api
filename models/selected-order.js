@@ -12,7 +12,7 @@ const selectedOrderSchema = mongoose.Schema({
   doublePendant: Boolean,
   wings: Boolean,
   coment: String,
-  id: Number
+  id: String
 });
 
 module.exports = mongoose.model('SelectedOrder', selectedOrderSchema);

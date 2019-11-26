@@ -19,7 +19,7 @@ module.exports = {
       name: req.body.name,
       price: req.body.price,
       description: req.body.description,
-      fileName: req.body.fileName,
+      photoSrc: req.body.photoSrc,
       id: await db.getNextSequence('products')
     });
     product.save()
@@ -31,8 +31,12 @@ module.exports = {
       });
   },
   getProduct: async (req, res) => {
-    const product = await Product.findOne({ id: req.params.productId });
-    res.status(200).json(product);
+    try {
+      const product = await Product.findOne({ id: req.params.productId });
+      res.status(200).json({ product });
+    } catch (e) {
+      res.semdtatus(404);
+    }
   },
   delProduct: (req, res) => {
     Product.deleteOne({ id: req.params.productId })

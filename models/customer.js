@@ -6,7 +6,7 @@ const customerSchema = mongoose.Schema({
   email: String,
   password: String,
   role: String,
-  id: Number,
+  id: String,
   tokenList: Object,
   cartId: String
 });

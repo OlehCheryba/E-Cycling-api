@@ -21,6 +21,6 @@ module.exports = {
       { $inc: { current: 1 } },
       { returnOriginal: false },
     );
-    return result.value.current;
+    return String(result.value.current);
   }
 }

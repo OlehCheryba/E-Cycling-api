@@ -49,69 +49,80 @@ const createTokens = (customerId, role) => {
   }
 }
 const summCarts = async (newCartId, oldCartId) => {
-  try {
-    let newCart = await Cart.findOne({ id: newCartId });
-    if (!newCart) {
-      newCart = new Cart({ 
-        _id: new mongoose.Types.ObjectId(),
-        id: newCartId,
-        items: {},
-        totalCount: 0
-      });
-    }
-    const oldCart = await Cart.findOneAndDelete({ id: oldCartId });
-
-    Object.entries(oldCart.items).map(([ key, value ]) => {
-      if (!newCart.items[key]) {
-        newCart.items[key] = value;
-      } else {
-        newCart.items[key] += value;
-      }
-      newCart.markModified(`items.${key}`);
-    })
-    newCart.totalCount += oldCart.totalCount;
-
-    newCart.markModified('totalCount');
-    await newCart.save();
-
-  } catch (err) {
-    throw err;
+  const oldCart = await Cart.findOneAndDelete({ id: oldCartId });
+  if (!oldCart || !oldCart.products.length) {
+    return;
   }
+
+  let newCart = await Cart.findOne({ id: newCartId });
+  if (!newCart) {
+    newCart = new Cart({ 
+      _id: new mongoose.Types.ObjectId(),
+      id: newCartId,
+      products: oldCart.products
+    });
+
+    return await newCart.save();
+  }
+
+  oldCart.products.forEach((oldCartProduct) => {
+    const newCartProduct = newCart.products.find((product) => product.id === oldCartProduct.id);
+    if (!newCartProduct) {
+      return newCart.products.push(oldCartProduct);
+    }
+
+    newCart.products = newCart.products.map((product) => {
+      if (product.id !== oldCartProduct.id) {
+        return product;
+      }
+
+      product.amount += oldCartProduct.amount;
+      return product 
+    })
+  })
+
+  newCart.markModified('products');
+  await newCart.save();
 }
 
 module.exports = {
-  signup: async (req, res) => {
+  register: async (req, res) => {
     try {
       const dbCustomer = await Customer.findOne({ email: req.body.email });
-      if (dbCustomer) return res.status(409).json({ message: 'This email is already in use' });
+      if (dbCustomer) {
+        return res.status(409).json({ message: 'This email is already in use' });
+      }
       
-      const cartId = await getNextSequence('carts');
       const customer = new Customer({
         _id: new mongoose.Types.ObjectId(),
         login: req.body.login,
         email: req.body.email,
-        password: bcrypt.hash(req.body.password, 10),
+        password: await bcrypt.hash(req.body.password, 10),
         role: 'customer',
-        cartId,
         id: await getNextSequence('customers')
       });
+
+      if (req.signedCookies.cartId) {
+        customer.cartId = req.signedCookies.cartId;
+      } else {
+        const userCartId = await getNextSequence('carts');
+        customer.cartId = userCartId;
+        res.cookie('cartId', userCartId, cookieOptions);
+      }
 
       const newTokens = createTokens(customer.id, customer.role);
       const { browserId, haveId } = getBrowserId(req);
       customer.tokenList = { [browserId]: jwt.decode(newTokens.refreshToken).jti }
-      customer.markModified('tokenList');
+
       await customer.save();
 
-      await summCarts(customer.cartId, req.signedCookies.cartId);
-
-      res.status(200)
+      res.status(201)
         .cookie('accessToken', newTokens.accessToken, cookieOptions)
-        .cookie('refreshToken', newTokens.refreshToken, cookieOptions)
-        .cookie('cartId', customer.cartId, cookieOptions);
+        .cookie('refreshToken', newTokens.refreshToken, cookieOptions);
       if (!haveId) res.cookie('browserId', browserId, cookieOptions);
       res.end();
     } catch (e) {
-      res.status(400).json({ message: 'Signup failed' });
+      res.sendStatus(400);
     }
   },
   login: async (req, res) => {
@@ -127,8 +138,11 @@ module.exports = {
       customer.markModified('tokenList');
       await customer.save();
 
-      await summCarts(customer.cartId, req.signedCookies.cartId);      
-      
+      const oldCartId = req.signedCookies.cartId;
+      if (oldCartId) {
+        await summCarts(customer.cartId, oldCartId);      
+      }
+
       res.status(200)
         .cookie('accessToken', newTokens.accessToken, cookieOptions)
         .cookie('refreshToken', newTokens.refreshToken, cookieOptions)
@@ -184,22 +198,6 @@ module.exports = {
         .end();
     } catch (e) {
       res.status(401).json({ message: 'Please relogin' });
-    }
-  },
-  me: async (req, res) => {
-    try {
-      const customer = await Customer.findOne(
-        { id: req.userData.customerId }, 
-        { _id: 0, login: 1, email: 1, role: 1, id: 1 }
-      );
-      if (!customer) throw new Error;
-
-      res.status(200).json(customer);
-    } catch (e) {
-      if (req.signedCookies.refreshToken) {
-        return res.status(403).json({ message: 'Please refresh your token' });
-      }
-      res.status(401).json({ message: 'You are not logined' });
     }
   }
 };

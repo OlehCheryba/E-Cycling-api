@@ -1,8 +1,14 @@
-const fetchUserData = require('./fetch-user-data');
+const fetchCustomerData = require('./fetch-customer-data');
 
 module.exports = (req, res, next) => {
-  const { role } = fetchUserData(req);
-  if (!role) res.status(403).json({ message: 'Your token is bad' });
-  else if (role === 'admin' || role === 'owner') next();
-  else res.status(403).json({ message: 'You have no rights' });
+  const data = fetchCustomerData(req);
+  if (!data) {
+    res.sendStatus(401);
+  }
+  
+  if (data.role === 'admin' || data.role === 'owner') {
+    next();
+  } else {
+    res.sendStatus(403);
+  }
 };

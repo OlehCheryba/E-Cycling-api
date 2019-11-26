@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const fetchUserData = (req, res, next) => {
+const fetchCustomerData = (req, res, next) => {
   return jwt.verify(
     req.signedCookies.accessToken, 
     process.env.JWT_ACCESS_SECRET, 
@@ -12,4 +12,4 @@ const fetchUserData = (req, res, next) => {
     }
   );
 }
-module.exports = fetchUserData;
+module.exports = fetchCustomerData;
