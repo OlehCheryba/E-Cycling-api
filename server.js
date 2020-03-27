@@ -3,7 +3,7 @@ const { connectToDb } = require('./db');
 
 const app = require('./app');
 
-const port = process.env.port || 80;
+const port = process.env.PORT || 8000;
 
 (async () => {
   try {
@@ -11,6 +11,6 @@ const port = process.env.port || 80;
     await app.listen(port);
     console.log(`API server is working on port ${port}`);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 })();
